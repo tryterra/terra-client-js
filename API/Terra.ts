@@ -12,8 +12,7 @@ import { Body } from "../models/Body";
 import { Sleep } from "../models/Sleep";
 import { Daily } from "../models/Daily";
 import { Menstruation } from "../models/Menstruation";
-
-export class Terra {
+export default class Terra {
   private devID: string = "";
   private apiKey: string = "";
   private userID: string = "";
@@ -65,7 +64,13 @@ export class Terra {
   }
 
   // Data getters
-  private getDataWrapper<T>(type: string) {
+  private getDataWrapper<T>(
+    type: string
+  ): (
+    startDate: Date,
+    endDate?: Date,
+    toWebhook?: boolean
+  ) => Promise<TerraDataResponse<T>> {
     return (startDate: Date, endDate?: Date, toWebhook?: boolean) => {
       return GetData<T>(
         type,
