@@ -1,6 +1,7 @@
 import { Athlete } from "../models/Athlete";
 import { TerraUser } from "../models/TerraUser";
 import TerraError from "./TerraError";
+import fetch, { Headers } from "node-fetch";
 
 export interface TerraAthleteResponse {
   athlete: Athlete;

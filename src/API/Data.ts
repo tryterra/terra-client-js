@@ -1,6 +1,7 @@
 import { TerraUser } from "../models/TerraUser";
 import { DateToTerraDate } from "./Helpers";
 import TerraError from "./TerraError";
+import fetch, { Headers } from "node-fetch";
 
 export interface TerraDataResponse<T> {
   data: Array<T>;

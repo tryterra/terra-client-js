@@ -1,11 +1,10 @@
 import TerraError from "./TerraError";
-
-import { URL } from "url";
+import fetch, { Headers } from "node-fetch";
 
 export interface TerraWidgetResponse {
   session_id: string;
   status: string;
-  url: URL;
+  url: string;
 }
 
 export function GenerateWidgetSession(

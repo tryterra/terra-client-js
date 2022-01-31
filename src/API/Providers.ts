@@ -1,4 +1,5 @@
 import TerraError from "./TerraError";
+import fetch, { Headers } from "node-fetch";
 
 export interface TerraProvidersResponse {
   status: string;

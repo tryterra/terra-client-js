@@ -1,3 +1,5 @@
 node_modules
 .DS_Store
 example
+package-lock.json
+tsconfig.json

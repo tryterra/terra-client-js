@@ -1,16 +1,5 @@
-// const { default: Terra } = require("..");
+const { Terra } = require("..");
+t.generateWidgetSession()
+  .then((s) => console.log(s.url))
+  .catch((e) => console.log(e));
 
-
-import express from "express";
-import Terra from "../API/Terra";
-
-const app = express();
-const port = 3000;
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
