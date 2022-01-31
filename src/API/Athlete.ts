@@ -1,7 +1,7 @@
 import { Athlete } from "../models/Athlete";
 import { TerraUser } from "../models/TerraUser";
 import TerraError from "./TerraError";
-import fetch, { Headers } from "node-fetch";
+import fetch from "cross-fetch";
 
 export interface TerraAthleteResponse {
   athlete: Athlete;
@@ -16,14 +16,13 @@ export function GetAthlete(
   userId: string,
   toWebhook: boolean = true
 ): Promise<TerraAthleteResponse> {
-  var myHeaders = new Headers();
-  myHeaders.append("X-API-Key", apiKey);
-  myHeaders.append("dev-id", devId);
-  myHeaders.append("Content-Type", "application/json");
-
   var requestOptions = {
     method: "GET",
-    headers: myHeaders,
+    headers: {
+      "X-API-Key": apiKey,
+      "dev-id": devId,
+      "Content-Type": "application/json",
+    },
   };
 
   return new Promise<TerraAthleteResponse>((res, rej) => {

@@ -1,5 +1,5 @@
 import TerraError from "./TerraError";
-import fetch, { Headers } from "node-fetch";
+import fetch from "cross-fetch";
 
 export interface TerraProvidersResponse {
   status: string;
@@ -7,12 +7,11 @@ export interface TerraProvidersResponse {
 }
 
 export function GetProviders(): Promise<TerraProvidersResponse> {
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
   var requestOptions = {
     method: "GET",
-    headers: myHeaders,
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
 
   return new Promise<TerraProvidersResponse>((res, rej) => {

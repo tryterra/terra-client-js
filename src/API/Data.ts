@@ -1,7 +1,7 @@
 import { TerraUser } from "../models/TerraUser";
 import { DateToTerraDate } from "./Helpers";
 import TerraError from "./TerraError";
-import fetch, { Headers } from "node-fetch";
+import fetch from "cross-fetch";
 
 export interface TerraDataResponse<T> {
   data: Array<T>;
@@ -18,14 +18,13 @@ export function GetData<T>(
   endDate?: Date,
   toWebhook?: Boolean
 ): Promise<TerraDataResponse<T>> {
-  var myHeaders = new Headers();
-  myHeaders.append("X-API-Key", apiKey);
-  myHeaders.append("dev-id", devId);
-  myHeaders.append("Content-Type", "application/json");
-
   var requestOptions = {
     method: "GET",
-    headers: myHeaders,
+    headers: {
+      "X-API-Key": apiKey,
+      "dev-id": devId,
+      "Content-Type": "application/json",
+    },
   };
 
   var params = {

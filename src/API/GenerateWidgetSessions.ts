@@ -1,6 +1,5 @@
 import TerraError from "./TerraError";
-import fetch, { Headers } from "node-fetch";
-
+import fetch from "cross-fetch";
 export interface TerraWidgetResponse {
   session_id: string;
   status: string;
@@ -16,11 +15,6 @@ export function GenerateWidgetSession(
   auth_success_redirect_url?: string,
   auth_failure_redirect_url?: string
 ): Promise<TerraWidgetResponse> {
-  var myHeaders = new Headers();
-  myHeaders.append("X-API-Key", apiKey);
-  myHeaders.append("dev-id", devId);
-  myHeaders.append("Content-Type", "application/json");
-
   var raw = JSON.stringify({
     reference_id: referenceId,
     providers: providers.join(","),
@@ -31,7 +25,11 @@ export function GenerateWidgetSession(
 
   var requestOptions = {
     method: "POST",
-    headers: myHeaders,
+    headers: {
+      "X-API-Key": apiKey,
+      "dev-id": devId,
+      "Content-Type": "application/json",
+    },
     body: raw,
   };
 

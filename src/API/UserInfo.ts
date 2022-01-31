@@ -1,6 +1,6 @@
 import { TerraUser } from "../models/TerraUser";
 import TerraError from "./TerraError";
-import fetch, { Headers } from "node-fetch";
+import fetch from "cross-fetch";
 
 export interface TerraUserResponse {
   status: string;
@@ -13,14 +13,13 @@ export function GetUser(
   apiKey: string,
   userId: string
 ): Promise<TerraUserResponse> {
-  var myHeaders = new Headers();
-  myHeaders.append("X-API-Key", apiKey);
-  myHeaders.append("dev-id", devId);
-  myHeaders.append("Content-Type", "application/json");
-
   var requestOptions = {
     method: "GET",
-    headers: myHeaders,
+    headers: {
+      "X-API-Key": apiKey,
+      "dev-id": devId,
+      "Content-Type": "application/json",
+    },
   };
 
   return new Promise<TerraUserResponse>((res, rej) => {
