@@ -8,6 +8,7 @@ export interface TerraDataResponse<T> {
   status: string;
   user: TerraUser;
   type: string;
+  reference?: string;
 }
 export function GetData<T>(
   type: string,
@@ -43,9 +44,6 @@ export function GetData<T>(
   }
 
   return new Promise<TerraDataResponse<T>>((res, rej) => {
-    console.log(
-      `https://api.tryterra.co/v2/${type}?` + new URLSearchParams(params)
-    );
     fetch(
       `https://api.tryterra.co/v2/${type}?` + new URLSearchParams(params),
       requestOptions

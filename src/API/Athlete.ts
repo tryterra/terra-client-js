@@ -8,6 +8,7 @@ export interface TerraAthleteResponse {
   status: string;
   type: string;
   user: TerraUser;
+  reference?: string;
 }
 
 export function GetAthlete(
