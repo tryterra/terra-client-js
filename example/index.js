@@ -17,7 +17,7 @@ app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 // Webhook port
 app.post("/hook", (req, _) => {
   const r = req.body;
-  console.log(r);
+  console.log(r.data);
   if (r["type"] === "auth") {
     terra.setCurrentUser(r.user.user_id);
     terra.getAthlete(true).then((r) => console.log(r));
