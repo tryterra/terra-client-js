@@ -27,6 +27,7 @@ Now you can call the following functions from the instance:
 - `getProviders`
 - `getUsers`
 - `getUser`
+- `deauthUser`
 - `getAthlete`
 - `getActivity`
 - `getBody`

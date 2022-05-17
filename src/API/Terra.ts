@@ -7,7 +7,7 @@ import {
 } from "./GenerateWidgetSessions";
 import { GetProviders, TerraProvidersResponse } from "./Providers";
 import { GetSubscribers, TerraSubscriptionsResponse } from "./Subscribers";
-import { GetUser, TerraUserResponse } from "./UserInfo";
+import { DeauthUser, GetUser, TerraUserResponse } from "./UserInfo";
 import { Body } from "../models/Body";
 import { Sleep } from "../models/Sleep";
 import { Daily } from "../models/Daily";
@@ -104,6 +104,18 @@ export default class Terra {
    */
   getUser(userID: string): Promise<TerraUserResponse> {
     return GetUser(this.devID, this.apiKey, userID);
+  }
+
+  /**
+   * Deauthenticate Terra user
+   *
+   * @param {string} userID - Terra user ID
+   *
+   * @return {Promise<void>} A promise fulfilled when deauth succeeds
+   *
+   */
+  deauthUser(userID: string): Promise<void> {
+    return DeauthUser(this.devID, this.apiKey, userID);
   }
 
   // Data getters

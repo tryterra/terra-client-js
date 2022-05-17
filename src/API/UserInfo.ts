@@ -32,3 +32,27 @@ export function GetUser(
       .catch((error) => rej(error as TerraError));
   });
 }
+
+export function DeauthUser(
+  devId: string,
+  apiKey: string,
+  userId: string
+): Promise<void> {
+  var requestOptions = {
+    method: "DELETE",
+    headers: {
+      "X-API-Key": apiKey,
+      "dev-id": devId,
+      "Content-Type": "application/json",
+    },
+  };
+
+  return new Promise<void>((res, rej) => {
+    fetch(
+      `https://api.tryterra.co/v2/auth/deauthenticateUser?user_id=${userId}`,
+      requestOptions
+    )
+      .then((_) => res())
+      .catch((error) => rej(error as TerraError));
+  });
+}

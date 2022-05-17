@@ -34,3 +34,13 @@ app.get("/session", (req, res) => {
     .then((s) => res.send(s.url))
     .catch((e) => console.log(e));
 });
+
+terra.getUsers().then((res) => {
+  const user = res.users[0].user_id;
+  terra.setCurrentUser(user);
+  console.log(terra.getCurrentUser());
+  terra
+    .deauthUser(user)
+    .catch((e) => console.log(e))
+    .then((i) => console.log(i));
+});
