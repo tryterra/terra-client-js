@@ -15,34 +15,10 @@ import { Menstruation } from "../models/Menstruation";
 export default class Terra {
   private devID: string = "";
   private apiKey: string = "";
-  private userID: string = "";
 
-  constructor(devID: string, apiKey: string, userID?: string) {
+  constructor(devID: string, apiKey: string) {
     this.devID = devID;
     this.apiKey = apiKey;
-    if (userID !== undefined) {
-      this.userID = userID;
-    }
-  }
-
-  /**
-   * Sets the current Terra user. Function calls on the instance will be called with this user ID
-   *
-   * @param {string} userID - Terra user ID
-   *
-   */
-  setCurrentUser(userID: string): void {
-    this.userID = userID;
-  }
-
-  /**
-   * Sets the current Terra user set.
-   *
-   * @returns {string} Terra user ID
-   *
-   */
-  getCurrentUser(): string {
-    return this.userID;
   }
 
   /**
@@ -122,16 +98,22 @@ export default class Terra {
   private getDataWrapper<T>(
     type: string
   ): (
+    userId: string,
     startDate: Date,
     endDate?: Date,
     toWebhook?: boolean
   ) => Promise<TerraDataResponse<T>> {
-    return (startDate: Date, endDate?: Date, toWebhook?: boolean) => {
+    return (
+      userId: string,
+      startDate: Date,
+      endDate?: Date,
+      toWebhook?: boolean
+    ) => {
       return GetData<T>(
         type,
         this.devID,
         this.apiKey,
-        this.userID,
+        userId,
         startDate,
         endDate,
         toWebhook
@@ -146,8 +128,11 @@ export default class Terra {
    * @return {Promise<TerraAthleteResponse>} A promise of type Athlete Data
    *
    */
-  getAthlete(toWebhook?: boolean): Promise<TerraAthleteResponse> {
-    return GetAthlete(this.devID, this.apiKey, this.userID, toWebhook);
+  getAthlete(
+    userId: string,
+    toWebhook?: boolean
+  ): Promise<TerraAthleteResponse> {
+    return GetAthlete(this.devID, this.apiKey, userId, toWebhook);
   }
 
   /**

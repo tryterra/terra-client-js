@@ -1,79 +1,86 @@
-import { BreathSample } from "./BreathSample";
-import { HRSample } from "./HRSample";
-import { HRVSample } from "./HRVSample";
-import { HypnogramSample } from "./HypnogramSample";
-import { SnoringSample } from "./SnoringSample";
-import { SPO2Sample } from "./SPO2Sample";
+import { RecoveryLevel } from "./enums/RecoveryLevel";
+import { SleepUploadType } from "./enums/SleepUploadType";
+import { BreathSample } from "./samples/BreathSample";
+import { HeartRateDataSample } from "./samples/HeartRateDataSample";
+import { HeartRateVariabilityDataSampleRMSSD } from "./samples/HeartRateVariabilityDataSampleRMSSD";
+import { HeartRateVariabilityDataSampleSDNN } from "./samples/HeartRateVariabilityDataSampleSDNN";
+import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
+import { SleepHypnogramSample } from "./samples/SleepHypnogramSample";
+import { SnoringSample } from "./samples/SnoringSample";
 
 export interface Sleep {
-  heart_rate_data: {
-    summary: {
-      user_hr_max: number;
-      min_hr: number;
-      avg_hr_variability: number;
-      avg_hr: number;
-      max_hr: number;
+  sleep_durations_data: {
+    other: {
+      duration_in_bed_seconds: number;
+      duration_unmeasurable_sleep_seconds: number;
     };
-    detailed: {
-      hrv_samples: Array<HRVSample>;
-      hr_samples: Array<HRSample>;
+    sleep_efficiency: number;
+    hypnogram_samples: Array<SleepHypnogramSample>;
+    awake: {
+      duration_short_interruption_seconds: number;
+      duration_awake_state_seconds: number;
+      duration_long_interruption_seconds: number;
+      num_wakeup_events: number;
+      wake_up_latency_seconds: number;
+      num_out_of_bed_events: number;
+      sleep_latency_seconds: number;
     };
-  };
-  respiration_data: {
-    breaths_data: {
-      samples: Array<BreathSample>;
-      end_time: String;
-      start_time: String;
-      max_breaths_per_min: number;
-      min_breaths_per_min: number;
-      avg_breaths_per_min: number;
-      on_demand_reading: Boolean;
-    };
-    oxygen_saturation_data: {
-      samples: Array<SPO2Sample>;
-      end_time: String;
-      start_time: String;
-      on_demand_reading: Boolean;
-    };
-    snoring_data: {
-      num_snoring_events: number;
-      samples: Array<SnoringSample>;
-      end_time: String;
-      start_time: String;
-      total_snoring_duration: number;
+    asleep: {
+      duration_light_sleep_state_seconds: number;
+      duration_asleep_state_seconds: number;
+      num_REM_events: number;
+      duration_REM_sleep_state_seconds: number;
+      duration_deep_sleep_state_seconds: number;
     };
   };
   metadata: {
-    sleep_efficiency: number;
-    end_time: String;
-    start_time: String;
-    sleep_duration_planned: number;
+    end_time: string;
+    start_time: string;
+    upload_type: SleepUploadType;
   };
-  sleep_durations_data: {
-    awake: {
-      num_out_of_bed_events: number;
-      num_wakeup_events: number;
-      duration_after_wakeup: number;
-      waso: number;
-      duration_before_sleeping: number;
-      duration_long_interruption: number;
-      duration_awake_state: number;
-      duration_short_interruption: number;
+  heart_rate_data: {
+    summary: {
+      max_hr_bpm: number;
+      avg_hrv_rmssd: number;
+      min_hr_bpm: number;
+      user_max_hr_bpm: number;
+      avg_hr_bpm: number;
+      avg_hrv_sdnn: number;
     };
-    other: {
-      duration_unmeasurable_sleep: number;
-      duration_in_bed: number;
-    };
-    hypnogram_samples: Array<HypnogramSample>;
-    asleep: {
-      duration_deep_sleep_state: number;
-      duration_REM_sleep_state: number;
-      duration_asleep_state: number;
-      num_REM_events: number;
-      duration_light_sleep_state: number;
+    detailed: {
+      hr_samples: Array<HeartRateDataSample>;
+      hrv_samples_sdnn: Array<HeartRateVariabilityDataSampleSDNN>;
+      hrv_samples_rmssd: Array<HeartRateVariabilityDataSampleRMSSD>;
     };
   };
   temperature_data: {
     delta: number;
+  };
+  readiness_data: {
+    readiness: number;
+    recovery_level: RecoveryLevel;
+  };
+  respiration_data: {
+    breaths_data: {
+      min_breaths_per_min: number;
+      avg_breaths_per_min: number;
+      max_breaths_per_min: number;
+      on_demand_reading: Boolean;
+      end_time: string;
+      samples: Array<BreathSample>;
+      start_time: string;
+    };
+    snoring_data: {
+      num_snoring_events: number;
+      total_snoring_duration_seconds: number;
+      end_time: string;
+      samples: Array<SnoringSample>;
+      start_time: string;
+    };
+    oxygen_saturation_data: {
+      start_time: string;
+      end_time: string;
+      samples: Array<OxygenSaturationSample>;
+    };
   };
 }

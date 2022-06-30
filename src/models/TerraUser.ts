@@ -1,5 +1,5 @@
 export interface TerraUser {
-  last_webhook_update: String;
-  provider: String;
-  user_id: String;
+  user_id: string;
+  provider: string;
+  last_webhook_update: string;
 }

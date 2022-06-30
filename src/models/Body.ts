@@ -1,54 +1,76 @@
-import { AFibFlag } from "./AFibFlag";
-import { GlucoseDataSample } from "./GlucoseDataSample";
-import { OxygenSaturationSample } from "./OxygenSaturationSample";
+import { AFibClassificationSample } from "./samples/AFibClassificationSample";
+import { BloodPressureSample } from "./samples/BloodPressureSample";
+import { GlucoseDataSample } from "./samples/GlucoseDataSample";
+import { HeartRateDataSample } from "./samples/HeartRateDataSample";
+import { HeartRateVariabilityDataSampleRMSSD } from "./samples/HeartRateVariabilityDataSampleRMSSD";
+import { HeartRateVariabilityDataSampleSDNN } from "./samples/HeartRateVariabilityDataSampleSDNN";
+import { HydrationLevelSample } from "./samples/HydrationLevelSample";
+import { HydrationMeasurementSample } from "./samples/HydrationMeasurementSample";
+import { MeasurementDataSample } from "./samples/MeasurementDataSample";
+import { OtherDeviceData } from "./samples/OtherDeviceData";
+import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
+import { PulseVelocitySample } from "./samples/PulseVelocitySample";
+import { TemperatureSample } from "./samples/TemperatureSample";
+import { Vo2MaxSample } from "./samples/Vo2MaxSample";
 
 export interface Body {
   oxygen_data: {
-    saturation_percentage: number;
-    max_volume_ml_per_min_per_kg: number;
     saturation_samples: Array<OxygenSaturationSample>;
-  };
-  insulin_data: {
-    insulin_units: number;
-    insulin_type: String;
-    day_avg_blood_glucose_mg_per_dL: number;
-    blood_glucose_samples: Array<GlucoseDataSample>;
-    urine_colour: String;
+    avg_saturation_percentage: number;
+    vo2_samples: Array<Vo2MaxSample>;
+    vo2max_ml_per_min_per_kg: number;
   };
   metadata: {
-    start_time: String;
-  };
-  heart_data: {
-    pulse_wave_velocity_metres_per_second: number;
-    pulse_bpm: number;
-    hr_variability: number;
-    afib_classification: AFibFlag;
-  };
-  blood_pressure_data: {
-    systolic_bp: number;
-    diastolic_bp: number;
+    end_time: string;
+    start_time: string;
   };
   hydration_data: {
-    hydration_level: String;
-    hydration_kg: number;
-    water_consumption_ml: number;
+    hydration_amount_samples: Array<HydrationLevelSample>;
+    hydration_level_samples: Array<HydrationMeasurementSample>;
+    day_total_water_consumption_ml: number;
+  };
+  device_data: {
+    name: string;
+    other_devices: Array<OtherDeviceData>;
+    hardware_version: string;
+    manufacturer: string;
+    software_version: string;
+    activation_timestamp: string;
+    serial_number: string;
+  };
+  blood_pressure_data: {
+    blood_pressure_samples: Array<BloodPressureSample>;
   };
   temperature_data: {
-    temperature_celsius: number;
-    skin_temperature_celsius: number;
-    body_temperature_celsius: number;
+    body_temperature_samples: Array<TemperatureSample>;
+    ambient_temperature_samples: Array<TemperatureSample>;
+    skin_temperature_samples: Array<TemperatureSample>;
   };
   measurements_data: {
-    fat_percentage: number;
-    BMI: number;
-    muscle_mass_g: number;
-    skin_fold_mm: number;
-    BMR: number;
-    height_cm: number;
-    estimated_fitness_age: number;
-    bone_mass_g: number;
-    water_percentage: number;
-    RMR: number;
-    weight_kg: number;
+    measurements: Array<MeasurementDataSample>;
+  };
+  heart_data: {
+    afib_classification_samples: Array<AFibClassificationSample>;
+    heart_rate_data: {
+      summary: {
+        max_hr_bpm: number;
+        resting_hr_bpm: number;
+        avg_hrv_rmssd: number;
+        min_hr_bpm: number;
+        user_max_hr_bpm: number;
+        avg_hrv_sdnn: number;
+        avg_hr_bpm: number;
+      };
+      detailed: {
+        hr_samples: Array<HeartRateDataSample>;
+        hrv_samples_sdnn: Array<HeartRateVariabilityDataSampleSDNN>;
+        hrv_samples_rmssd: Array<HeartRateVariabilityDataSampleRMSSD>;
+      };
+    };
+    pulse_wave_velocity_samples: Array<PulseVelocitySample>;
+  };
+  glucose_data: {
+    blood_glucose_samples: Array<GlucoseDataSample>;
+    day_avg_blood_glucose_mg_per_dL: number;
   };
 }

@@ -1,12 +1,13 @@
 export interface Athlete {
-  first_name: String;
-  last_name: String;
-  gender: String;
-  sex: String;
-  date_of_birth: String;
-  bio: String;
-  email: String;
-  city: String;
-  state: String;
-  country: String;
+  age: number;
+  country: string;
+  bio: string;
+  state: string;
+  last_name: string;
+  sex: string;
+  city: string;
+  email: string;
+  date_of_birth: string;
+  first_name: string;
+  gender: string;
 }

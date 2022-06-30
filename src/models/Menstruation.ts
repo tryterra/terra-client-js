@@ -1,12 +1,18 @@
 export interface Menstruation {
-  period_start_date: String;
-  day_in_cycle: number;
-  period_length_in_days: number;
-  current_phase: number;
-  length_of_current_phase_in_day: number;
-  days_until_next_phase: number;
-  predicted_cycle_length_in_days: number;
-  is_predicted_cycle: String;
-  cycle_length_in_days: number;
-  last_updated_time: String;
+  metadata: {
+    end_time: string;
+    start_time: string;
+  };
+  menstruation_data: {
+    period_length_days: number;
+    current_phase: number;
+    length_of_current_phase_days: number;
+    days_until_next_phase: number;
+    period_start_date: string;
+    predicted_cycle_length_days: number;
+    day_in_cycle: number;
+    last_updated_time: string;
+    cycle_length_days: number;
+    is_predicted_cycle: string;
+  };
 }
