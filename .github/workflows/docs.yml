@@ -24,7 +24,7 @@ jobs:
         
       - name: Copy to Documentation Website Location
         run: |
-          cp -rf ./docs/. gh-pages
+          cp -rf ./docs/. gh-pages && cp -rf ./images gh-pages
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
