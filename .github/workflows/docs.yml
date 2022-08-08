@@ -12,13 +12,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Node
-     	uses: actions/setup-node@v3
-  	with:
-    		node-version: 18
-
+        uses: actions/setup-node@v3
+  	    with:
+          node-version: 18
+          
       - name: Build docs with Typedoc
         run: npm run docs
-
+        
       - name: Copy to Documentation Website Location
         run: |
           cp -rf ./docs/. gh-pages
