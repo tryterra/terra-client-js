@@ -1,6 +1,7 @@
 import { TerraUser } from "../models/TerraUser";
-import TerraError from "./TerraError";
+import { TerraError } from "./TerraError";
 import fetch from "cross-fetch";
+import { RequestWrapper } from "./Helpers";
 
 export interface TerraUserResponse {
   status: string;
@@ -13,7 +14,7 @@ export function GetUser(
   apiKey: string,
   userId: string
 ): Promise<TerraUserResponse> {
-  var requestOptions = {
+  const requestOptions = {
     method: "GET",
     headers: {
       "X-API-Key": apiKey,
@@ -22,14 +23,8 @@ export function GetUser(
     },
   };
 
-  return new Promise<TerraUserResponse>((res, rej) => {
-    fetch(
-      `https://api.tryterra.co/v2/userInfo?user_id=${userId}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => res(result as TerraUserResponse))
-      .catch((error) => rej(error as TerraError));
+  return RequestWrapper<TerraUserResponse>("userInfo", requestOptions, {
+    user_id: userId,
   });
 }
 
@@ -38,7 +33,7 @@ export function DeauthUser(
   apiKey: string,
   userId: string
 ): Promise<void> {
-  var requestOptions = {
+  const requestOptions = {
     method: "DELETE",
     headers: {
       "X-API-Key": apiKey,

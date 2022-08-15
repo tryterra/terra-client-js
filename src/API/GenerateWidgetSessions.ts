@@ -1,5 +1,4 @@
-import TerraError from "./TerraError";
-import fetch from "cross-fetch";
+import { RequestWrapper } from "./Helpers";
 export interface TerraWidgetResponse {
   session_id: string;
   status: string;
@@ -23,7 +22,7 @@ export function GenerateWidgetSession(
     language: language,
   });
 
-  var requestOptions = {
+  const requestOptions = {
     method: "POST",
     headers: {
       "X-API-Key": apiKey,
@@ -33,13 +32,8 @@ export function GenerateWidgetSession(
     body: raw,
   };
 
-  return new Promise<TerraWidgetResponse>((res, rej) => {
-    fetch(
-      "https://api.tryterra.co/v2/auth/generateWidgetSession",
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => res(result as TerraWidgetResponse))
-      .catch((error) => rej(error as TerraError));
-  });
+  return RequestWrapper<TerraWidgetResponse>(
+    "auth/generateWidgetSession",
+    requestOptions
+  );
 }

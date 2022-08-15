@@ -1,7 +1,6 @@
 import { Athlete } from "../models/Athlete";
 import { TerraUser } from "../models/TerraUser";
-import TerraError from "./TerraError";
-import fetch from "cross-fetch";
+import { RequestWrapper } from "./Helpers";
 
 export interface TerraAthleteResponse {
   athlete: Athlete;
@@ -17,7 +16,7 @@ export function GetAthlete(
   userId: string,
   toWebhook: boolean = true
 ): Promise<TerraAthleteResponse> {
-  var requestOptions = {
+  const requestOptions = {
     method: "GET",
     headers: {
       "X-API-Key": apiKey,
@@ -26,13 +25,14 @@ export function GetAthlete(
     },
   };
 
-  return new Promise<TerraAthleteResponse>((res, rej) => {
-    fetch(
-      `https://api.tryterra.co/v2/athlete?user_id=${userId}&to_webhook=${toWebhook}`,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => res(result as TerraAthleteResponse))
-      .catch((error) => rej(error as TerraError));
-  });
+  const requestParams = {
+    user_id: userId,
+    to_webhook: toWebhook,
+  };
+
+  return RequestWrapper<TerraAthleteResponse>(
+    "athlete",
+    requestOptions,
+    requestParams
+  );
 }

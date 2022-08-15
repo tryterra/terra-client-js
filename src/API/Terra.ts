@@ -1,5 +1,5 @@
 import { Activity } from "../models/Activity";
-import { GetData, TerraDataResponse } from "./Data";
+import { dataType, GetData, TerraDataResponse } from "./Data";
 import { TerraAthleteResponse, GetAthlete } from "./Athlete";
 import {
   GenerateWidgetSession,
@@ -96,7 +96,7 @@ export default class Terra {
 
   // Data getters
   private getDataWrapper<T>(
-    type: string
+    type: dataType
   ): (
     userId: string,
     startDate: Date,

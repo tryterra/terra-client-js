@@ -1,5 +1,4 @@
-import TerraError from "./TerraError";
-import fetch from "cross-fetch";
+import { RequestWrapper } from "./Helpers";
 
 export interface TerraProvidersResponse {
   status: string;
@@ -7,17 +6,12 @@ export interface TerraProvidersResponse {
 }
 
 export function GetProviders(): Promise<TerraProvidersResponse> {
-  var requestOptions = {
+  const requestOptions = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   };
 
-  return new Promise<TerraProvidersResponse>((res, rej) => {
-    fetch("https://api.tryterra.co/v2/integrations", requestOptions)
-      .then((response) => response.json())
-      .then((result) => res(result as TerraProvidersResponse))
-      .catch((error) => rej(error as TerraError));
-  });
+  return RequestWrapper<TerraProvidersResponse>("integrations", requestOptions);
 }

@@ -1,7 +1,5 @@
 import { TerraUser } from "../models/TerraUser";
-import { DateToTerraDate } from "./Helpers";
-import TerraError from "./TerraError";
-import fetch from "cross-fetch";
+import { DateToTerraDate, RequestWrapper } from "./Helpers";
 
 export interface TerraDataResponse<T> {
   data: Array<T>;
@@ -10,8 +8,17 @@ export interface TerraDataResponse<T> {
   type: string;
   reference?: string;
 }
+
+export type dataType =
+  | "activity"
+  | "body"
+  | "daily"
+  | "nutrition"
+  | "sleep"
+  | "menstruation";
+
 export function GetData<T>(
-  type: string,
+  type: dataType,
   devId: string,
   apiKey: string,
   userId: string,
@@ -19,7 +26,7 @@ export function GetData<T>(
   endDate?: Date,
   toWebhook?: Boolean
 ): Promise<TerraDataResponse<T>> {
-  var requestOptions = {
+  const requestOptions = {
     method: "GET",
     headers: {
       "X-API-Key": apiKey,
@@ -28,28 +35,24 @@ export function GetData<T>(
     },
   };
 
-  var params = {
+  var requestParams = {
     user_id: userId,
     start_date: DateToTerraDate(startDate),
   };
   if (endDate) {
-    params = Object.assign({}, params, {
+    requestParams = Object.assign({}, requestParams, {
       end_date: DateToTerraDate(endDate),
     });
   }
   if (toWebhook !== undefined) {
-    params = Object.assign({}, params, {
+    requestParams = Object.assign({}, requestParams, {
       to_webhook: toWebhook.toString(),
     });
   }
 
-  return new Promise<TerraDataResponse<T>>((res, rej) => {
-    fetch(
-      `https://api.tryterra.co/v2/${type}?` + new URLSearchParams(params),
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((result) => res(result as TerraDataResponse<T>))
-      .catch((error) => rej(error as TerraError));
-  });
+  return RequestWrapper<TerraDataResponse<T>>(
+    `${type}`,
+    requestOptions,
+    requestParams
+  );
 }

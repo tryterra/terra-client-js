@@ -1,4 +1,4 @@
-export default interface TerraError {
+export interface TerraError {
     status: string;
     message: string;
 }

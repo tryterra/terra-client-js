@@ -2,7 +2,10 @@
 
 A wrapper in javascript for the Terra endpoints and models.
 
+Full API reference: https://tryterra.github.io/terra-client-js
+
 Check the example server with a webhook in `/example`!
+
 ## Usage
 
 Install using
@@ -19,10 +22,8 @@ Initialise a new Terra instance with:
 const terra = new Terra(process.env.DEV_ID, process.env.API_KEY);
 ```
 
-Now you can call the following functions from the instance:
+Now you can call the following functions from the instance, for example:
 
-- `setCurrentUser`
-- `getCurrentUser`
 - `generateWidgetSession`
 - `getProviders`
 - `getUsers`
@@ -35,14 +36,18 @@ Now you can call the following functions from the instance:
 - `getSleep`
 - `getMenstruation`
 
+Check the full reference on https://tryterra.github.io/terra-client-js/
+
 In addition, all the data models documented on https://docs.tryterra.co/data-models are available to import and use. For example
 
 ```ts
 const terra = new Terra(process.env.DEV_ID, process.env.API_KEY);
-terra.setCurrentUser(myDatabase.getARandomUser());
-terra.getAthlete(false).then((res) => console.log(res.athlete.first_name));
+terra
+  .getAthlete("1234-user-id-5678", false)
+  .then((res) => console.log(res.athlete.first_name))
+  .catch((e) => console.log(e.status, e.message));
 ```
 
-The models support autocompleting the types to manipulate data coming from Terra:
+The models support autocompleting the types to manipulate data coming from Terra, which should accelerate your backend development:
 
 ![typed_1](./images/typed_1.png)

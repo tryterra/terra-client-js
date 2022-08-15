@@ -18,10 +18,6 @@ app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 app.post("/hook", (req, _) => {
   const r = req.body;
   console.log(r.data);
-  if (r["type"] === "auth") {
-    terra.setCurrentUser(r.user.user_id);
-    terra.getAthlete(true).then((r) => console.log(r));
-  }
 });
 
 app.get("/", (req, res) => {
@@ -35,12 +31,37 @@ app.get("/session", (req, res) => {
     .catch((e) => console.log(e));
 });
 
-terra.getUsers().then((res) => {
-  const user = res.users[0].user_id;
-  terra.setCurrentUser(user);
-  console.log(terra.getCurrentUser());
-  terra
-    .deauthUser(user)
-    .catch((e) => console.log(e))
-    .then((i) => console.log(i));
-});
+terra
+  .getUsers()
+  .then((res) => {
+    console.log(res);
+    res.users.forEach((u) => {
+      if (u.provider == "OURA") {
+        terra
+          .getAthlete(u.user_id, false)
+          .then((r) => console.log(r))
+          .catch((e) => console.log(e));
+        terra
+          .getBody(u.user_id, new Date(), undefined, false)
+          .then((r) => console.log(r))
+          .catch((e) => console.log(e));
+        terra
+          .getDaily(u.user_id, new Date(), undefined, false)
+          .then((r) => console.log(r))
+          .catch((e) => console.log(e));
+        terra
+          .getMenstruation(u.user_id, new Date(), undefined, false)
+          .then((r) => console.log(r))
+          .catch((e) => console.log(e));
+        terra
+          .getSleep(u.user_id, new Date(), undefined, false)
+          .then((r) => console.log(r))
+          .catch((e) => console.log(e));
+        terra
+          .getActivity(u.user_id, new Date(), undefined, false)
+          .then((r) => console.log(r))
+          .catch((e) => console.log(e));
+      }
+    });
+  })
+  .catch((e) => console.log(e));
