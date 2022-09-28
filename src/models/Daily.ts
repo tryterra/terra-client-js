@@ -11,13 +11,17 @@ import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
 import { StepSample } from "./samples/StepSample";
 import { StressSample } from "./samples/StressSample";
 import { Vo2MaxSample } from "./samples/Vo2MaxSample";
+type Some<T> = T;
+type None = null;
+export type Nothing = null | undefined;
 
+export type Option<T> = Some<T> | None;
 export interface Daily {
   oxygen_data: {
     saturation_samples: Array<OxygenSaturationSample>;
-    avg_saturation_percentage?: number;
+    avg_saturation_percentage?: Option<number>;
     vo2_samples: Array<Vo2MaxSample>;
-    vo2max_ml_per_min_per_kg?: number;
+    vo2max_ml_per_min_per_kg?: Option<number>;
   };
   metadata: {
     end_time: string;
@@ -35,50 +39,50 @@ export interface Daily {
   };
   distance_data: {
     swimming?: {
-      num_strokes?: number;
-      num_laps?: number;
-      pool_length_meters?: number;
+      num_strokes?: Option<number>;
+      num_laps?: Option<number>;
+      pool_length_meters?: Option<number>;
     };
-    floors_climbed?: number;
+    floors_climbed?: Option<number>;
     elevation?: {
-      loss_actual_meters?: number;
-      min_meters?: number;
-      avg_meters?: number;
-      gain_actual_meters?: number;
-      max_meters?: number;
-      gain_planned_meters?: number;
+      loss_actual_meters?: Option<number>;
+      min_meters?: Option<number>;
+      avg_meters?: Option<number>;
+      gain_actual_meters?: Option<number>;
+      max_meters?: Option<number>;
+      gain_planned_meters?: Option<number>;
     };
-    steps?: number;
+    steps?: Option<number>;
     detailed?: {
       step_samples: Array<StepSample>;
       distance_samples: Array<DistanceSample>;
       elevation_samples: Array<ElevationSample>;
     };
-    distance_meters?: number;
+    distance_meters?: Option<number>;
   };
   MET_data: {
     MET_samples: Array<METSample>;
-    num_low_intensity_minutes?: number;
-    num_high_intensity_minutes?: number;
-    num_inactive_minutes?: number;
-    num_moderate_intensity_minutes?: number;
-    avg_level?: number;
+    num_low_intensity_minutes?: Option<number>;
+    num_high_intensity_minutes?: Option<number>;
+    num_inactive_minutes?: Option<number>;
+    num_moderate_intensity_minutes?: Option<number>;
+    avg_level?: Option<number>;
   };
   calories_data: {
-    net_intake_calories?: number;
-    BMR_calories?: number;
-    total_burned_calories?: number;
-    net_activity_calories?: number;
+    net_intake_calories?: Option<number>;
+    BMR_calories?: Option<number>;
+    total_burned_calories?: Option<number>;
+    net_activity_calories?: Option<number>;
   };
   heart_rate_data: {
     summary: {
-      max_hr_bpm?: number;
-      resting_hr_bpm?: number;
-      avg_hrv_rmssd?: number;
-      min_hr_bpm?: number;
-      user_max_hr_bpm?: number;
-      avg_hrv_sdnn?: number;
-      avg_hr_bpm?: number;
+      max_hr_bpm?: Option<number>;
+      resting_hr_bpm?: Option<number>;
+      avg_hrv_rmssd?: Option<number>;
+      min_hr_bpm?: Option<number>;
+      user_max_hr_bpm?: Option<number>;
+      avg_hrv_sdnn?: Option<number>;
+      avg_hr_bpm?: Option<number>;
     };
     detailed: {
       hr_samples: Array<HeartRateDataSample>;
@@ -87,24 +91,24 @@ export interface Daily {
     };
   };
   active_durations_data: {
-    activity_seconds?: number;
-    rest_seconds?: number;
-    low_intensity_seconds?: number;
+    activity_seconds?: Option<number>;
+    rest_seconds?: Option<number>;
+    low_intensity_seconds?: Option<number>;
     activity_levels_samples: Array<ActivityLevelSample>;
-    vigorous_intensity_seconds?: number;
-    num_continuous_inactive_periods?: number;
-    inactivity_seconds?: number;
-    moderate_intensity_seconds?: number;
+    vigorous_intensity_seconds?: Option<number>;
+    num_continuous_inactive_periods?: Option<number>;
+    inactivity_seconds?: Option<number>;
+    moderate_intensity_seconds?: Option<number>;
   };
   stress_data: {
-    rest_stress_duration_seconds?: number;
-    stress_duration_seconds?: number;
-    activity_stress_duration_seconds?: number;
-    avg_stress_level?: number;
-    low_stress_duration_seconds?: number;
-    medium_stress_duration_seconds?: number;
+    rest_stress_duration_seconds?: Option<number>;
+    stress_duration_seconds?: Option<number>;
+    activity_stress_duration_seconds?: Option<number>;
+    avg_stress_level?: Option<number>;
+    low_stress_duration_seconds?: Option<number>;
+    medium_stress_duration_seconds?: Option<number>;
     samples: Array<StressSample>;
-    high_stress_duration_seconds?: number;
-    max_stress_level?: number;
+    high_stress_duration_seconds?: Option<number>;
+    max_stress_level?: Option<number>;
   };
 }
