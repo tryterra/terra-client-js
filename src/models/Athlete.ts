@@ -1,13 +1,15 @@
+import { Nullable } from "./helpers/typings";
+
 export interface Athlete {
-  age?: number;
-  country?: string;
-  bio?: string;
-  state?: string;
-  last_name?: string;
-  sex?: string;
-  city?: string;
-  email?: string;
-  date_of_birth?: string;
-  first_name?: string;
-  gender?: string;
+  age: Nullable<number>;
+  country: Nullable<string>;
+  bio: Nullable<string>;
+  state: Nullable<string>;
+  last_name: Nullable<string>;
+  sex: Nullable<string>;
+  city: Nullable<string>;
+  email: Nullable<string>;
+  date_of_birth: Nullable<string>;
+  first_name: Nullable<string>;
+  gender: Nullable<string>;
 }
