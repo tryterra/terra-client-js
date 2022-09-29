@@ -1,3 +1,1 @@
-type Some<T> = T;
-type None = null;
-export type Nullable<T> = Some<T> | None;
+export type Nullable<T> = T | null;

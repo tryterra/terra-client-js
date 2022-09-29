@@ -16,7 +16,7 @@ export function RequestWrapper<T>(
   requestParams: { [id: string]: any } = {}
 ): Promise<T> {
   return new Promise<T>((res, rej) => {
-    const url = new URL(endpoint, "https://api.tryterra.co/v2");
+    const url = new URL(endpoint, "https://api.tryterra.co/v2/");
     Object.entries(requestParams).forEach(([k, v]) =>
       url.searchParams.append(k, v)
     );
