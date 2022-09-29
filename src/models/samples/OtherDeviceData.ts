@@ -1,7 +1,9 @@
+import { Nullable } from "../helpers/typings";
+
 export interface OtherDeviceData {
   name: string;
-  manufacturer?: string;
-  serial_number?: string;
-  software_version?: string;
-  hardware_version?: string;
+  manufacturer: Nullable<string>;
+  serial_number: Nullable<string>;
+  software_version: Nullable<string>;
+  hardware_version: Nullable<string>;
 }
