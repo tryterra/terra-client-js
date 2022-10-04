@@ -1,5 +1,5 @@
 import { URL } from "url";
-import { TerraError } from "./TerraError";
+import { TerraPayload } from "./WebhookEvents";
 import fetch from "cross-fetch";
 
 export function DateToTerraDate(d: Date): string {
@@ -25,7 +25,7 @@ export function RequestWrapper<T>(
         response
           .json()
           .then((result) =>
-            response.ok ? res(result as T) : rej(result as TerraError)
+            response.ok ? res(result as T) : rej(result as TerraPayload)
           )
       )
       .catch((error) => rej(error));

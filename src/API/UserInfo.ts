@@ -1,5 +1,5 @@
 import { TerraUser } from "../models/TerraUser";
-import { TerraError } from "./TerraError";
+import { TerraPayload } from "./WebhookEvents";
 import fetch from "cross-fetch";
 import { RequestWrapper } from "./Helpers";
 
@@ -48,6 +48,6 @@ export function DeauthUser(
       requestOptions
     )
       .then((_) => res())
-      .catch((error) => rej(error as TerraError));
+      .catch((error) => rej(error as TerraPayload));
   });
 }

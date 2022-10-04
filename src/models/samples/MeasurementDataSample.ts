@@ -1,20 +1,20 @@
-import { Nullable } from "../helpers/typings";
+import { Option } from "../helpers/typings";
 
 export interface MeasurementDataSample {
   measurement_time: string;
-  BMI: Nullable<number>;
-  BMR: Nullable<number>;
-  RMR: Nullable<number>;
-  estimated_fitness_age: Nullable<number>;
-  skin_fold_mm: Nullable<number>;
-  bodyfat_percentage: Nullable<number>;
-  weight_kg: Nullable<number>;
-  height_cm: Nullable<number>;
-  bone_mass_kg: Nullable<number>;
-  muscle_mass_kg: Nullable<number>;
-  lean_mass_kg: Nullable<number>;
-  water_percentage: Nullable<number>;
-  insulin_units: Nullable<number>;
-  insulin_type: Nullable<string>;
-  urine_color: Nullable<string>;
+  BMI: Option<number>;
+  BMR: Option<number>;
+  RMR: Option<number>;
+  estimated_fitness_age: Option<number>;
+  skin_fold_mm: Option<number>;
+  bodyfat_percentage: Option<number>;
+  weight_kg: Option<number>;
+  height_cm: Option<number>;
+  bone_mass_kg: Option<number>;
+  muscle_mass_kg: Option<number>;
+  lean_mass_kg: Option<number>;
+  water_percentage: Option<number>;
+  insulin_units: Option<number>;
+  insulin_type: Option<string>;
+  urine_color: Option<string>;
 }

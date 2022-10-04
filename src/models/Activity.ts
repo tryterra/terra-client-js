@@ -1,6 +1,6 @@
 import { ActivityType } from "./enums/ActivityType";
 import { UploadType } from "./enums/UploadType";
-import { Nullable } from "./helpers/typings";
+import { Option } from "./helpers/typings";
 import { ActivityLevelSample } from "./samples/ActivityLevelSample";
 import { CadenceSample } from "./samples/CadenceSample";
 import { DistanceSample } from "./samples/DistanceSample";
@@ -20,78 +20,78 @@ import { Vo2MaxSample } from "./samples/Vo2MaxSample";
 
 export interface Activity {
   movement_data: {
-    normalized_speed_meters_per_second: Nullable<number>;
-    max_cadence_rpm: Nullable<number>;
-    avg_speed_meters_per_second: Nullable<number>;
-    avg_pace_minutes_per_kilometer: Nullable<number>;
-    max_velocity_meters_per_second: Nullable<number>;
-    max_pace_minutes_per_kilometer: Nullable<number>;
-    max_torque_newton_meters: Nullable<number>;
-    avg_cadence_rpm: Nullable<number>;
-    avg_velocity_meters_per_second: Nullable<number>;
-    avg_torque_newton_meters: Nullable<number>;
+    normalized_speed_meters_per_second: Option<number>;
+    max_cadence_rpm: Option<number>;
+    avg_speed_meters_per_second: Option<number>;
+    avg_pace_minutes_per_kilometer: Option<number>;
+    max_velocity_meters_per_second: Option<number>;
+    max_pace_minutes_per_kilometer: Option<number>;
+    max_torque_newton_meters: Option<number>;
+    avg_cadence_rpm: Option<number>;
+    avg_velocity_meters_per_second: Option<number>;
+    avg_torque_newton_meters: Option<number>;
     cadence_samples: Array<CadenceSample>;
     speed_samples: Array<SpeedSample>;
-    max_speed_meters_per_second: Nullable<number>;
+    max_speed_meters_per_second: Option<number>;
   };
   power_data: {
-    max_watts: Nullable<number>;
-    avg_watts: Nullable<number>;
+    max_watts: Option<number>;
+    avg_watts: Option<number>;
     power_samples: Array<PowerSample>;
   };
   position_data: {
     position_samples: Array<PositionSample>;
-    centre_pos_lat_lng_deg: [number, number];
+    center_pos_lat_lng_deg: [number, number];
     start_pos_lat_lng_deg: [number, number];
     end_pos_lat_lng_deg: [number, number];
   };
   oxygen_data: {
     saturation_samples: Array<OxygenSaturationSample>;
-    avg_saturation_percentage: Nullable<number>;
+    avg_saturation_percentage: Option<number>;
     vo2_samples: Array<Vo2MaxSample>;
-    vo2max_ml_per_min_per_kg: Nullable<number>;
+    vo2max_ml_per_min_per_kg: Option<number>;
   };
   metadata: {
-    name: Nullable<string>;
-    summary_id: Nullable<string>;
-    country: Nullable<string>;
-    state: Nullable<string>;
+    name: Option<string>;
+    summary_id: Option<string>;
+    country: Option<string>;
+    state: Option<string>;
     upload_type: UploadType;
     end_time: string;
-    city: Nullable<string>;
-    type: Nullable<ActivityType>;
+    city: Option<string>;
+    type: Option<ActivityType>;
     start_time: string;
   };
   TSS_data: {
     TSS_samples: Array<TSSSample>;
   };
   device_data: {
-    name: Nullable<string>;
+    name: Option<string>;
     other_devices: Array<OtherDeviceData>;
-    hardware_version: Nullable<string>;
-    manufacturer: Nullable<string>;
-    software_version: Nullable<string>;
-    activation_timestamp: Nullable<string>;
-    serial_number: Nullable<string>;
+    hardware_version: Option<string>;
+    manufacturer: Option<string>;
+    software_version: Option<string>;
+    activation_timestamp: Option<string>;
+    serial_number: Option<string>;
   };
   distance_data: {
     summary: {
       swimming: {
-        num_strokes: Nullable<number>;
-        num_laps: Nullable<number>;
-        pool_length_meters: Nullable<number>;
+        num_strokes: Option<number>;
+        num_laps: Option<number>;
+        pool_length_meters: Option<number>;
       };
       floors_climbed: number;
       elevation: {
-        loss_actual_meters: Nullable<number>;
-        min_meters: Nullable<number>;
-        avg_meters: Nullable<number>;
-        gain_actual_meters: Nullable<number>;
-        max_meters: Nullable<number>;
-        gain_planned_meters: Nullable<number>;
+        loss_actual_meters: Option<number>;
+        min_meters: Option<number>;
+        avg_meters: Option<number>;
+        gain_actual_meters: Option<number>;
+        max_meters: Option<number>;
+        gain_planned_meters: Option<number>;
       };
-      steps: Nullable<number>;
-      distance_meters: Nullable<number>;
+      steps: Option<number>;
+      distance_meters: Option<number>;
     };
     detailed: {
       distance_samples: Array<DistanceSample>;
@@ -99,31 +99,31 @@ export interface Activity {
     };
   };
   calories_data: {
-    net_intake_calories: Nullable<number>;
-    BMR_calories: Nullable<number>;
-    total_burned_calories: Nullable<number>;
-    net_activity_calories: Nullable<number>;
+    net_intake_calories: Option<number>;
+    BMR_calories: Option<number>;
+    total_burned_calories: Option<number>;
+    net_activity_calories: Option<number>;
   };
   lap_data: {
     laps: Array<LapSample>;
   };
   MET_data: {
     MET_samples: Array<METSample>;
-    num_low_intensity_minutes: Nullable<number>;
-    num_high_intensity_minutes: Nullable<number>;
-    num_inactive_minutes: Nullable<number>;
-    num_moderate_intensity_minutes: Nullable<number>;
-    avg_level: Nullable<number>;
+    num_low_intensity_minutes: Option<number>;
+    num_high_intensity_minutes: Option<number>;
+    num_inactive_minutes: Option<number>;
+    num_moderate_intensity_minutes: Option<number>;
+    avg_level: Option<number>;
   };
   heart_rate_data: {
     summary: {
-      max_hr_bpm: Nullable<number>;
-      resting_hr_bpm: Nullable<number>;
-      avg_hrv_rmssd: Nullable<number>;
-      min_hr_bpm: Nullable<number>;
-      user_max_hr_bpm: Nullable<number>;
-      avg_hrv_sdnn: Nullable<number>;
-      avg_hr_bpm: Nullable<number>;
+      max_hr_bpm: Option<number>;
+      resting_hr_bpm: Option<number>;
+      avg_hrv_rmssd: Option<number>;
+      min_hr_bpm: Option<number>;
+      user_max_hr_bpm: Option<number>;
+      avg_hrv_sdnn: Option<number>;
+      avg_hr_bpm: Option<number>;
     };
     detailed: {
       hr_samples: Array<HeartRateDataSample>;
@@ -132,26 +132,26 @@ export interface Activity {
     };
   };
   active_durations_data: {
-    activity_seconds: Nullable<number>;
-    rest_seconds: Nullable<number>;
-    low_intensity_seconds: Nullable<number>;
+    activity_seconds: Option<number>;
+    rest_seconds: Option<number>;
+    low_intensity_seconds: Option<number>;
     activity_levels_samples: Array<ActivityLevelSample>;
-    vigorous_intensity_seconds: Nullable<number>;
-    num_continuous_inactive_periods: Nullable<number>;
-    inactivity_seconds: Nullable<number>;
-    moderate_intensity_seconds: Nullable<number>;
+    vigorous_intensity_seconds: Option<number>;
+    num_continuous_inactive_periods: Option<number>;
+    inactivity_seconds: Option<number>;
+    moderate_intensity_seconds: Option<number>;
   };
   polyline_map_data: {
-    summary_polyline: Nullable<string>;
+    summary_polyline: Option<string>;
   };
   strain_data: {
-    strain_level: Nullable<number>;
+    strain_level: Option<number>;
   };
   work_data: {
-    work_kilojoules: Nullable<number>;
+    work_kilojoules: Option<number>;
   };
   energy_data: {
-    energy_kilojoules: Nullable<number>;
-    energy_planned_kilojoules: Nullable<number>;
+    energy_kilojoules: Option<number>;
+    energy_planned_kilojoules: Option<number>;
   };
 }
