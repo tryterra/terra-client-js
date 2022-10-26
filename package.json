@@ -1,13 +1,13 @@
 {
   "name": "terra-api",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Terra Javascript Package",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "homepage": "https://docs.tryterra.co/docs/js-project",
   "bugs": {
-    "url" : "https://github.com/tryterra/terra-client-js/issues",
-    "email" : "jaafar@tryterra.co"
+    "url": "https://github.com/tryterra/terra-client-js/issues",
+    "email": "jaafar@tryterra.co"
   },
   "files": [
     "lib/"

@@ -32,6 +32,11 @@ app.get("/session", (req, res) => {
 });
 
 terra
+    .generateWidgetSession("refID", "EN")
+    .then((s) => console.log(s.url))
+    .catch((e) => console.log(e));
+
+terra
   .getUsers()
   .then((res) => {
     console.log(res);

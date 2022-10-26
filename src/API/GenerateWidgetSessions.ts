@@ -9,14 +9,14 @@ export function GenerateWidgetSession(
   devId: string,
   apiKey: string,
   referenceId: string,
-  providers: string[],
   language: string,
+  providers?: string[],
   auth_success_redirect_url?: string,
   auth_failure_redirect_url?: string
 ): Promise<TerraWidgetResponse> {
   var raw = JSON.stringify({
     reference_id: referenceId,
-    providers: providers.join(","),
+    providers: providers ? providers.join(",") : undefined,
     auth_success_redirect_url: auth_success_redirect_url,
     auth_failure_redirect_url: auth_failure_redirect_url,
     language: language,
