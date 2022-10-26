@@ -34,8 +34,8 @@ export default class Terra {
    */
   generateWidgetSession(
     referenceID: string,
-    providers: string[],
     language: string,
+    providers?: string[],
     auth_success_redirect_url?: string,
     auth_failure_redirect_url?: string
   ): Promise<TerraWidgetResponse> {
@@ -43,8 +43,8 @@ export default class Terra {
       this.devID,
       this.apiKey,
       referenceID,
-      providers,
       language,
+      providers,
       auth_success_redirect_url,
       auth_failure_redirect_url
     );
