@@ -11,6 +11,7 @@ import { DeauthUser, GetUser, TerraUserResponse } from "./UserInfo";
 import { Body } from "../models/Body";
 import { Sleep } from "../models/Sleep";
 import { Daily } from "../models/Daily";
+import { Nutrition } from "../models/Nutrition";
 import { Menstruation } from "../models/Menstruation";
 export default class Terra {
   private devID: string = "";
@@ -174,6 +175,16 @@ export default class Terra {
    *
    */
   getSleep = this.getDataWrapper<Sleep>("sleep");
+
+  /**
+   * Get Nutrition data for current user
+   * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
+   * @param {Date} startDate - Start date for the date range limit
+   * @param {Date} endDate - End dat for the date range limit
+   * @return {Promise<TerraDataResponse<Nutrition>>} A promise of type Nutrition Data
+   *
+   */
+  getNutrition = this.getDataWrapper<Nutrition>("nutrition");
 
   /**
    * Get Menstruation data for current user
