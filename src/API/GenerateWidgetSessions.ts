@@ -1,4 +1,4 @@
-import { RequestWrapper } from "./Helpers";
+import { RequestWrapper, checkForServerSideAndWarn } from "./Helpers";
 export interface TerraWidgetResponse {
   session_id: string;
   status: string;
@@ -14,6 +14,7 @@ export function GenerateWidgetSession(
   auth_success_redirect_url?: string,
   auth_failure_redirect_url?: string
 ): Promise<TerraWidgetResponse> {
+  checkForServerSideAndWarn();
   var raw = JSON.stringify({
     reference_id: referenceId,
     providers: providers ? providers.join(",") : undefined,
