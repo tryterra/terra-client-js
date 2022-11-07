@@ -26,15 +26,20 @@ app.get("/", (req, res) => {
 
 app.get("/session", (req, res) => {
   terra
-    .generateWidgetSession("refID", ["GARMIN", "FITBIT"], "EN")
+    .generateWidgetSession("refID", "EN", ["GARMIN", "FITBIT"])
     .then((s) => res.send(s.url))
     .catch((e) => console.log(e));
 });
 
 terra
-    .generateWidgetSession("refID", "EN")
-    .then((s) => console.log(s.url))
-    .catch((e) => console.log(e));
+  .generateWidgetSession("refID", "EN")
+  .then((s) => console.log(s.url))
+  .catch((e) => console.log(e));
+
+terra
+  .generateAuthToken()
+  .then((s) => console.log(s))
+  .catch((e) => console.log(e));
 
 terra
   .getUsers()

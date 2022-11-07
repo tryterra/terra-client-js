@@ -22,6 +22,7 @@ export function RequestWrapper<T>(
   requestOptions: RequestInit,
   requestParams: { [id: string]: any } = {}
 ): Promise<T> {
+  checkForServerSideAndWarn();
   return new Promise<T>((res, rej) => {
     const url = new URL(endpoint, "https://api.tryterra.co/v2/");
     Object.entries(requestParams).forEach(([k, v]) =>
