@@ -14,11 +14,13 @@ import { Sleep } from "../models/Sleep";
 import { Daily } from "../models/Daily";
 import { Nutrition } from "../models/Nutrition";
 import { Menstruation } from "../models/Menstruation";
+import { checkForServerSideAndWarn } from "./Helpers";
 export default class Terra {
   private devID: string = "";
   private apiKey: string = "";
 
   constructor(devID: string, apiKey: string) {
+    checkForServerSideAndWarn();
     this.devID = devID;
     this.apiKey = apiKey;
   }
