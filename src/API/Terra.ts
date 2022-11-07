@@ -5,6 +5,7 @@ import {
   GenerateWidgetSession,
   TerraWidgetResponse,
 } from "./GenerateWidgetSessions";
+import { GenerateAuthToken, TerraAuthTokenResponse } from "./GenerateAuthToken";
 import { GetProviders, TerraProvidersResponse } from "./Providers";
 import { GetSubscribers, TerraSubscriptionsResponse } from "./Subscribers";
 import { DeauthUser, GetUser, TerraUserResponse } from "./UserInfo";
@@ -19,6 +20,15 @@ export default class Terra {
   constructor(devID: string, apiKey: string) {
     this.devID = devID;
     this.apiKey = apiKey;
+  }
+
+  /**
+   * Generate an Auth Token to be used with the SDK initialization
+   *
+   * @returns {Promise<TerraAuthTokenResponse>} A promise of type Auth Token Response
+   */
+  generateAuthToken(): Promise<TerraAuthTokenResponse> {
+    return GenerateAuthToken(this.devID, this.apiKey);
   }
 
   /**

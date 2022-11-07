@@ -38,3 +38,16 @@ export function RequestWrapper<T>(
       .catch((error) => rej(error));
   });
 }
+
+export function checkForServerSideAndWarn() {
+  if (
+    typeof process !== "undefined" &&
+    process.release.name.search(/node|io.js/) !== -1
+  ) {
+    //This is good, we are running in node
+  } else {
+    console.warn(
+      "This script is not running in Node.js which means this is probably running on the client side which means you are exposing your API Key which is very dangerous"
+    );
+  }
+}
