@@ -42,6 +42,11 @@ terra
   .catch((e) => console.log(e));
 
 terra
+  .authUser("INBODY", "reference", undefined, undefined, undefined, "1234")
+  .then((r) => console.log(r))
+  .catch((e) => console.log(e));
+
+terra
   .getUsers()
   .then((res) => {
     console.log(res);

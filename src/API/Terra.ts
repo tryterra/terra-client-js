@@ -15,6 +15,7 @@ import { Daily } from "../models/Daily";
 import { Nutrition } from "../models/Nutrition";
 import { Menstruation } from "../models/Menstruation";
 import { checkForServerSideAndWarn } from "./Helpers";
+import { AuthUser, TerraAuthUserResponse } from "./AuthUser";
 export default class Terra {
   private devID: string = "";
   private apiKey: string = "";
@@ -32,6 +33,38 @@ export default class Terra {
    */
   generateAuthToken(): Promise<TerraAuthTokenResponse> {
     return GenerateAuthToken(this.devID, this.apiKey);
+  }
+
+  /**
+   * Generate an Auth URL to be authenticate a user
+   *
+   * @param {string} referenceID - Terra user ID
+   * @param {string} resource - Wearable provider
+   * @param {string} language - Language the widget page is showed in
+   * @param {string} auth_success_redirect_url - Redirect URL when the session succeeds
+   * @param {string} auth_failure_redirect_url - Redirect URL when the session fails
+   * @param {string} facilityId - Facility ID for applicable resource (e.g. INBODY)
+   *
+   * @returns {Promise<TerraAuthUserResponse>} A promise of type Authenticate User Response
+   */
+  authUser(
+    resource: string,
+    referenceId?: string,
+    language?: string,
+    auth_success_redirect_url?: string,
+    auth_failure_redirect_url?: string,
+    facilityId?: string
+  ): Promise<TerraAuthUserResponse> {
+    return AuthUser(
+      this.devID,
+      this.apiKey,
+      resource,
+      referenceId,
+      language,
+      auth_success_redirect_url,
+      auth_failure_redirect_url,
+      facilityId
+    );
   }
 
   /**
