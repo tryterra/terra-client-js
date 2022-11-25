@@ -2,13 +2,14 @@ const { default: Terra } = require("terra-api");
 require("dotenv").config();
 
 // setup a new object instance
-const terra = new Terra(process.env.DEV_ID, process.env.API_KEY);
+const terra = new Terra(process.env.DEV_ID, process.env.API_KEY, process.env.SECRET);
 
 // ---------------------------
 // Server
 // ---------------------------
 const express = require("express");
 const bodyParser = require("body-parser");
+const crypto = require("crypto")
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.json());

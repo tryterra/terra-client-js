@@ -1,7 +1,7 @@
 import { URL } from "url";
 import { TerraPayload } from "./WebhookEvents";
 import fetch from "cross-fetch";
-
+import { createHmac } from "crypto";
 function ZeroPad(value: number, minSize: number) {
   return (
     "0".repeat(Math.max(minSize - value.toString().length, 0)) +
@@ -51,4 +51,18 @@ export function checkForServerSideAndWarn() {
       "This script is not running in Node.js which means this is probably running on the client side which means you are exposing your API Key which is very dangerous"
     );
   }
+}
+
+export function CheckTerraSignature(
+  terraSignature: string,
+  payload: string,
+  secret: string
+  ): Boolean {
+  const s = terraSignature.split(",")
+  const t = s[0].split("=")[1];
+  const v1 = s[1].split("=")[1];
+  var hmac = createHmac("sha256", secret)
+    .update(t + "." + payload)
+    .digest("hex");
+  return hmac === v1;
 }
