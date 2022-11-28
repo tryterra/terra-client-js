@@ -14,16 +14,18 @@ import { Sleep } from "../models/Sleep";
 import { Daily } from "../models/Daily";
 import { Nutrition } from "../models/Nutrition";
 import { Menstruation } from "../models/Menstruation";
-import { checkForServerSideAndWarn } from "./Helpers";
+import { checkForServerSideAndWarn, CheckTerraSignature } from "./Helpers";
 import { AuthUser, TerraAuthUserResponse } from "./AuthUser";
 export default class Terra {
   private devID: string = "";
   private apiKey: string = "";
+  private secret: string = "";
 
-  constructor(devID: string, apiKey: string) {
+  constructor(devID: string, apiKey: string, secret: string) {
     checkForServerSideAndWarn();
     this.devID = devID;
     this.apiKey = apiKey;
+    this.secret = secret;
   }
 
   /**
@@ -185,7 +187,7 @@ export default class Terra {
    * Get Activity data for current user
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
-   * @param {Date} endDate - End dat for the date range limit
+   * @param {Date} endDate - End date for the date range limit
    * @return {Promise<TerraDataResponse<Activity>>} A promise of type Activity Data
    *
    */
@@ -195,7 +197,7 @@ export default class Terra {
    * Get Body data for current user
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
-   * @param {Date} endDate - End dat for the date range limit
+   * @param {Date} endDate - End date for the date range limit
    * @return {Promise<TerraDataResponse<Body>>} A promise of type Body Data
    *
    */
@@ -205,7 +207,7 @@ export default class Terra {
    * Get Daily data for current user
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
-   * @param {Date} endDate - End dat for the date range limit
+   * @param {Date} endDate - End date for the date range limit
    * @return {Promise<TerraDataResponse<Daily>>} A promise of type Daily Data
    *
    */
@@ -215,7 +217,7 @@ export default class Terra {
    * Get Sleep data for current user
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
-   * @param {Date} endDate - End dat for the date range limit
+   * @param {Date} endDate - End date for the date range limit
    * @return {Promise<TerraDataResponse<Sleep>>} A promise of type Sleep Data
    *
    */
@@ -225,7 +227,7 @@ export default class Terra {
    * Get Nutrition data for current user
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
-   * @param {Date} endDate - End dat for the date range limit
+   * @param {Date} endDate - End date for the date range limit
    * @return {Promise<TerraDataResponse<Nutrition>>} A promise of type Nutrition Data
    *
    */
@@ -235,9 +237,21 @@ export default class Terra {
    * Get Menstruation data for current user
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
-   * @param {Date} endDate - End dat for the date range limit
+   * @param {Date} endDate - End date for the date range limit
    * @return {Promise<TerraDataResponse<Menstruation>>} A promise of type Menstruation Data
    *
    */
   getMenstruation = this.getDataWrapper<Menstruation>("menstruation");
+
+  /**
+   * Checks webhook signature
+   * @param {string} terraSignature - Terra signature string found in header of request sent to webhook endpoint
+   * @param {ReqBody} payload - Body of request sent to webhook endpoint
+   * @param {string} secret - Signing secret used to verify webhook
+   * @return {Boolean} - A boolean, true if the signature is valid
+   *
+   */
+  checkTerraSignature(terraSignature: string, payload: string) {
+    return CheckTerraSignature(terraSignature, payload, this.secret);
+  }
 }
