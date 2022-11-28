@@ -57,8 +57,8 @@ export function CheckTerraSignature(
   terraSignature: string,
   payload: string,
   secret: string
-  ): Boolean {
-  const s = terraSignature.split(",")
+): Boolean {
+  const s = terraSignature.split(",");
   const t = s[0].split("=")[1];
   const v1 = s[1].split("=")[1];
   var hmac = createHmac("sha256", secret)

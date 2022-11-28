@@ -248,17 +248,10 @@ export default class Terra {
    * @param {string} terraSignature - Terra signature string found in header of request sent to webhook endpoint
    * @param {ReqBody} payload - Body of request sent to webhook endpoint
    * @param {string} secret - Signing secret used to verify webhook
-   * @return {Promise<Boolean>} - A promise of type boolean
+   * @return {Boolean} - A boolean, true if the signature is valid
    *
    */
-   checkTerraSignature(
-    terraSignature: string,
-    payload: string
-    ) {
-    return CheckTerraSignature(
-      terraSignature,
-      payload,
-      this.secret
-    )
-  };
+  checkTerraSignature(terraSignature: string, payload: string) {
+    return CheckTerraSignature(terraSignature, payload, this.secret);
+  }
 }
