@@ -27,26 +27,20 @@ it("Constructor and functions", () => {
 
 it(".authUser", () => {
   expect(typeof terra.authUser).toBe("function");
-  return terra
-    .authUser("GARMIN")
-    .then((res) => {
-      expect(res.auth_url).not.toBe(undefined);
-      expect(res.status).toBe("success");
-      expect(res.user_id).not.toBe(undefined);
-    })
-    .catch((e) => console.log(e));
+  return terra.authUser("GARMIN").then((res) => {
+    expect(res.auth_url).not.toBe(undefined);
+    expect(res.status).toBe("success");
+    expect(res.user_id).not.toBe(undefined);
+  });
 });
 
 it(".generateAuthToken", () => {
   expect(typeof terra.generateAuthToken).toBe("function");
-  return terra
-    .generateAuthToken()
-    .then((res) => {
-      expect(res.expires_in).not.toBe(undefined);
-      expect(res.token).not.toBe(undefined);
-      expect(res.status).toBe("success");
-    })
-    .catch((e) => console.log(e));
+  return terra.generateAuthToken().then((res) => {
+    expect(res.expires_in).not.toBe(undefined);
+    expect(res.token).not.toBe(undefined);
+    expect(res.status).toBe("success");
+  });
 });
 
 it(".generateWidgetSession", () => {
@@ -57,18 +51,14 @@ it(".generateWidgetSession", () => {
       expect(res.session_id).not.toBe(undefined);
       expect(res.url).not.toBe(undefined);
       expect(res.status).toBe("success");
-    })
-    .catch((e) => console.log(e));
+    });
 });
 
 it(".getProviders", () => {
   expect(typeof terra.getProviders).toBe("function");
-  return terra
-    .getProviders()
-    .then((res) => {
-      expect(res.providers).not.toBe(undefined);
-      expect(res.sdk_providers).not.toBe(undefined);
-      expect(res.status).toBe("success");
-    })
-    .catch((e) => console.log(e));
+  return terra.getProviders().then((res) => {
+    expect(res.providers).not.toBe(undefined);
+    expect(res.sdk_providers).not.toBe(undefined);
+    expect(res.status).toBe("success");
+  });
 });
