@@ -1,4 +1,4 @@
-import { Option } from "./helpers/typings";
+import { Option } from './helpers/typings';
 
 export interface Menstruation {
   metadata: {

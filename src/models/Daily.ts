@@ -1,17 +1,17 @@
-import { UploadType } from "./enums/UploadType";
-import { Option } from "./helpers/typings";
-import { ActivityLevelSample } from "./samples/ActivityLevelSample";
-import { DistanceSample } from "./samples/DistanceSample";
-import { ElevationSample } from "./samples/ElevationSample";
-import { HeartRateDataSample } from "./samples/HeartRateDataSample";
-import { HeartRateVariabilityDataSampleRMSSD } from "./samples/HeartRateVariabilityDataSampleRMSSD";
-import { HeartRateVariabilityDataSampleSDNN } from "./samples/HeartRateVariabilityDataSampleSDNN";
-import { METSample } from "./samples/METSample";
-import { OtherDeviceData } from "./samples/OtherDeviceData";
-import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
-import { StepSample } from "./samples/StepSample";
-import { StressSample } from "./samples/StressSample";
-import { Vo2MaxSample } from "./samples/Vo2MaxSample";
+import { UploadType } from './enums/UploadType';
+import { Option } from './helpers/typings';
+import { ActivityLevelSample } from './samples/ActivityLevelSample';
+import { DistanceSample } from './samples/DistanceSample';
+import { ElevationSample } from './samples/ElevationSample';
+import { HeartRateDataSample } from './samples/HeartRateDataSample';
+import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
+import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
+import { METSample } from './samples/METSample';
+import { OtherDeviceData } from './samples/OtherDeviceData';
+import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
+import { StepSample } from './samples/StepSample';
+import { StressSample } from './samples/StressSample';
+import { Vo2MaxSample } from './samples/Vo2MaxSample';
 
 export interface Daily {
   oxygen_data: {

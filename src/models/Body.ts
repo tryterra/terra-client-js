@@ -1,18 +1,18 @@
-import { Option } from "./helpers/typings";
-import { AFibClassificationSample } from "./samples/AFibClassificationSample";
-import { BloodPressureSample } from "./samples/BloodPressureSample";
-import { GlucoseDataSample } from "./samples/GlucoseDataSample";
-import { HeartRateDataSample } from "./samples/HeartRateDataSample";
-import { HeartRateVariabilityDataSampleRMSSD } from "./samples/HeartRateVariabilityDataSampleRMSSD";
-import { HeartRateVariabilityDataSampleSDNN } from "./samples/HeartRateVariabilityDataSampleSDNN";
-import { HydrationLevelSample } from "./samples/HydrationLevelSample";
-import { HydrationMeasurementSample } from "./samples/HydrationMeasurementSample";
-import { MeasurementDataSample } from "./samples/MeasurementDataSample";
-import { OtherDeviceData } from "./samples/OtherDeviceData";
-import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
-import { PulseVelocitySample } from "./samples/PulseVelocitySample";
-import { TemperatureSample } from "./samples/TemperatureSample";
-import { Vo2MaxSample } from "./samples/Vo2MaxSample";
+import { Option } from './helpers/typings';
+import { AFibClassificationSample } from './samples/AFibClassificationSample';
+import { BloodPressureSample } from './samples/BloodPressureSample';
+import { GlucoseDataSample } from './samples/GlucoseDataSample';
+import { HeartRateDataSample } from './samples/HeartRateDataSample';
+import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
+import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
+import { HydrationLevelSample } from './samples/HydrationLevelSample';
+import { HydrationMeasurementSample } from './samples/HydrationMeasurementSample';
+import { MeasurementDataSample } from './samples/MeasurementDataSample';
+import { OtherDeviceData } from './samples/OtherDeviceData';
+import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
+import { PulseVelocitySample } from './samples/PulseVelocitySample';
+import { TemperatureSample } from './samples/TemperatureSample';
+import { Vo2MaxSample } from './samples/Vo2MaxSample';
 
 export interface Body {
   oxygen_data: {

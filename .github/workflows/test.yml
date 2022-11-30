@@ -3,10 +3,10 @@ name: test
 on:
   pull_request:
     branches:
-      - "main"
+      - 'main'
 
 jobs:
-  tsdoc:
+  lint-format-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,10 +20,18 @@ jobs:
       - name: Install modules
         run: npm install
 
+      - name: Run linter
+        run: |
+          npm run lint
+
+      - name: Run prettier
+        run: |
+          npm run format_check
+
       - name: Add environment files
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
-      
+
       - name: Run tests
         run: |
           npm run test

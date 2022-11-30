@@ -1,24 +1,24 @@
-import { TerraUser } from "../models/TerraUser";
-import { dataType } from "./Data";
+import { TerraUser } from '../models/TerraUser';
+import { dataType } from './Data';
 
-type EventStatus = "success" | "error" | "warning";
+type EventStatus = 'success' | 'error' | 'warning';
 
 type EventType =
-  | "athlete"
-  | "activity"
-  | "body"
-  | "daily"
-  | "sleep"
-  | "nutrition"
-  | "menstruation"
-  | "auth"
-  | "user_reauth"
-  | "connection_error"
-  | "request_processing"
-  | "google_no_datasource"
-  | "request_completed"
-  | "access_revoked"
-  | "deauth	";
+  | 'athlete'
+  | 'activity'
+  | 'body'
+  | 'daily'
+  | 'sleep'
+  | 'nutrition'
+  | 'menstruation'
+  | 'auth'
+  | 'user_reauth'
+  | 'connection_error'
+  | 'request_processing'
+  | 'google_no_datasource'
+  | 'request_completed'
+  | 'access_revoked'
+  | 'deauth	';
 
 export interface TerraPayload {
   status: EventStatus;

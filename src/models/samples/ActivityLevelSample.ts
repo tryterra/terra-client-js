@@ -1,4 +1,4 @@
-import { ActivityLevel } from "../enums/ActivityLevel";
+import { ActivityLevel } from '../enums/ActivityLevel';
 
 export interface ActivityLevelSample {
   timestamp: string;

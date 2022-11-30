@@ -1,5 +1,5 @@
-import { Option } from "./helpers/typings";
-import { Meal } from "./samples/Meal";
+import { Option } from './helpers/typings';
+import { Meal } from './samples/Meal';
 
 export interface Nutrition {
   metadata: {

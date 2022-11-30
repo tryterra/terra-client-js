@@ -1,5 +1,5 @@
-import { TerraUser } from "../models/TerraUser";
-import { DateToTerraDate, RequestWrapper } from "./Helpers";
+import { TerraUser } from '../models/TerraUser';
+import { DateToTerraDate, RequestWrapper } from './Helpers';
 
 export interface TerraDataResponse<T> {
   data: Array<T>;
@@ -9,13 +9,7 @@ export interface TerraDataResponse<T> {
   reference?: string;
 }
 
-export type dataType =
-  | "activity"
-  | "body"
-  | "daily"
-  | "nutrition"
-  | "sleep"
-  | "menstruation";
+export type dataType = 'activity' | 'body' | 'daily' | 'nutrition' | 'sleep' | 'menstruation';
 
 export function GetData<T>(
   type: dataType,
@@ -24,18 +18,18 @@ export function GetData<T>(
   userId: string,
   startDate: Date,
   endDate?: Date,
-  toWebhook?: Boolean
+  toWebhook?: boolean,
 ): Promise<TerraDataResponse<T>> {
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "X-API-Key": apiKey,
-      "dev-id": devId,
-      "Content-Type": "application/json",
+      'X-API-Key': apiKey,
+      'dev-id': devId,
+      'Content-Type': 'application/json',
     },
   };
 
-  var requestParams = {
+  let requestParams = {
     user_id: userId,
     start_date: DateToTerraDate(startDate),
   };
@@ -50,9 +44,5 @@ export function GetData<T>(
     });
   }
 
-  return RequestWrapper<TerraDataResponse<T>>(
-    `${type}`,
-    requestOptions,
-    requestParams
-  );
+  return RequestWrapper<TerraDataResponse<T>>(`${type}`, requestOptions, requestParams);
 }

@@ -1,22 +1,22 @@
-import { ActivityType } from "./enums/ActivityType";
-import { UploadType } from "./enums/UploadType";
-import { Option } from "./helpers/typings";
-import { ActivityLevelSample } from "./samples/ActivityLevelSample";
-import { CadenceSample } from "./samples/CadenceSample";
-import { DistanceSample } from "./samples/DistanceSample";
-import { ElevationSample } from "./samples/ElevationSample";
-import { HeartRateDataSample } from "./samples/HeartRateDataSample";
-import { HeartRateVariabilityDataSampleRMSSD } from "./samples/HeartRateVariabilityDataSampleRMSSD";
-import { HeartRateVariabilityDataSampleSDNN } from "./samples/HeartRateVariabilityDataSampleSDNN";
-import { LapSample } from "./samples/LapSample";
-import { METSample } from "./samples/METSample";
-import { OtherDeviceData } from "./samples/OtherDeviceData";
-import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
-import { PositionSample } from "./samples/PositionSample";
-import { PowerSample } from "./samples/PowerSample";
-import { SpeedSample } from "./samples/SpeedSample";
-import { TSSSample } from "./samples/TSSSample";
-import { Vo2MaxSample } from "./samples/Vo2MaxSample";
+import { ActivityType } from './enums/ActivityType';
+import { UploadType } from './enums/UploadType';
+import { Option } from './helpers/typings';
+import { ActivityLevelSample } from './samples/ActivityLevelSample';
+import { CadenceSample } from './samples/CadenceSample';
+import { DistanceSample } from './samples/DistanceSample';
+import { ElevationSample } from './samples/ElevationSample';
+import { HeartRateDataSample } from './samples/HeartRateDataSample';
+import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
+import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
+import { LapSample } from './samples/LapSample';
+import { METSample } from './samples/METSample';
+import { OtherDeviceData } from './samples/OtherDeviceData';
+import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
+import { PositionSample } from './samples/PositionSample';
+import { PowerSample } from './samples/PowerSample';
+import { SpeedSample } from './samples/SpeedSample';
+import { TSSSample } from './samples/TSSSample';
+import { Vo2MaxSample } from './samples/Vo2MaxSample';
 
 export interface Activity {
   movement_data: {

@@ -1,25 +1,22 @@
-import { Activity } from "../models/Activity";
-import { dataType, GetData, TerraDataResponse } from "./Data";
-import { TerraAthleteResponse, GetAthlete } from "./Athlete";
-import {
-  GenerateWidgetSession,
-  TerraWidgetResponse,
-} from "./GenerateWidgetSessions";
-import { GenerateAuthToken, TerraAuthTokenResponse } from "./GenerateAuthToken";
-import { GetProviders, TerraProvidersResponse } from "./Providers";
-import { GetSubscribers, TerraSubscriptionsResponse } from "./Subscribers";
-import { DeauthUser, GetUser, TerraUserResponse } from "./UserInfo";
-import { Body } from "../models/Body";
-import { Sleep } from "../models/Sleep";
-import { Daily } from "../models/Daily";
-import { Nutrition } from "../models/Nutrition";
-import { Menstruation } from "../models/Menstruation";
-import { checkForServerSideAndWarn, CheckTerraSignature } from "./Helpers";
-import { AuthUser, TerraAuthUserResponse } from "./AuthUser";
+import { Activity } from '../models/Activity';
+import { dataType, GetData, TerraDataResponse } from './Data';
+import { TerraAthleteResponse, GetAthlete } from './Athlete';
+import { GenerateWidgetSession, TerraWidgetResponse } from './GenerateWidgetSessions';
+import { GenerateAuthToken, TerraAuthTokenResponse } from './GenerateAuthToken';
+import { GetProviders, TerraProvidersResponse } from './Providers';
+import { GetSubscribers, TerraSubscriptionsResponse } from './Subscribers';
+import { DeauthUser, GetUser, TerraUserResponse } from './UserInfo';
+import { Body } from '../models/Body';
+import { Sleep } from '../models/Sleep';
+import { Daily } from '../models/Daily';
+import { Nutrition } from '../models/Nutrition';
+import { Menstruation } from '../models/Menstruation';
+import { checkForServerSideAndWarn, CheckTerraSignature } from './Helpers';
+import { AuthUser, TerraAuthUserResponse } from './AuthUser';
 export default class Terra {
-  private devID: string = "";
-  private apiKey: string = "";
-  private secret: string = "";
+  private devID: string = '';
+  private apiKey: string = '';
+  private secret: string = '';
 
   constructor(devID: string, apiKey: string, secret: string) {
     checkForServerSideAndWarn();
@@ -43,8 +40,8 @@ export default class Terra {
    * @param {string} referenceID - Terra user ID
    * @param {string} resource - Wearable provider
    * @param {string} language - Language the widget page is showed in
-   * @param {string} auth_success_redirect_url - Redirect URL when the session succeeds
-   * @param {string} auth_failure_redirect_url - Redirect URL when the session fails
+   * @param {string} authSuccessRedirectUrl - Redirect URL when the session succeeds
+   * @param {string} authFailureRedirectUrl - Redirect URL when the session fails
    * @param {string} facilityId - Facility ID for applicable resource (e.g. INBODY)
    *
    * @returns {Promise<TerraAuthUserResponse>} A promise of type Authenticate User Response
@@ -53,9 +50,9 @@ export default class Terra {
     resource: string,
     referenceId?: string,
     language?: string,
-    auth_success_redirect_url?: string,
-    auth_failure_redirect_url?: string,
-    facilityId?: string
+    authSuccessRedirectUrl?: string,
+    authFailureRedirectUrl?: string,
+    facilityId?: string,
   ): Promise<TerraAuthUserResponse> {
     return AuthUser(
       this.devID,
@@ -63,9 +60,9 @@ export default class Terra {
       resource,
       referenceId,
       language,
-      auth_success_redirect_url,
-      auth_failure_redirect_url,
-      facilityId
+      authSuccessRedirectUrl,
+      authFailureRedirectUrl,
+      facilityId,
     );
   }
 
@@ -75,8 +72,8 @@ export default class Terra {
    * @param {string} referenceID - Terra user ID
    * @param {string[]} providers - Array of strings for wearable providers
    * @param {string} language - Language the widget page is showed in
-   * @param {string} auth_success_redirect_url - Redirect URL when the session succeeds
-   * @param {string} auth_failure_redirect_url - Redirect URL when the session fails
+   * @param {string} authSuccessRedirectUrl - Redirect URL when the session succeeds
+   * @param {string} authFailureRedirectUrl - Redirect URL when the session fails
    *
    * @returns {Promise<TerraWidgetResponse>} A promise of type Widget Response
    */
@@ -84,8 +81,8 @@ export default class Terra {
     referenceID: string,
     language: string,
     providers?: string[],
-    auth_success_redirect_url?: string,
-    auth_failure_redirect_url?: string
+    authSuccessRedirectUrl?: string,
+    authFailureRedirectUrl?: string,
   ): Promise<TerraWidgetResponse> {
     return GenerateWidgetSession(
       this.devID,
@@ -93,8 +90,8 @@ export default class Terra {
       referenceID,
       language,
       providers,
-      auth_success_redirect_url,
-      auth_failure_redirect_url
+      authSuccessRedirectUrl,
+      authFailureRedirectUrl,
     );
   }
 
@@ -144,28 +141,10 @@ export default class Terra {
 
   // Data getters
   private getDataWrapper<T>(
-    type: dataType
-  ): (
-    userId: string,
-    startDate: Date,
-    endDate?: Date,
-    toWebhook?: boolean
-  ) => Promise<TerraDataResponse<T>> {
-    return (
-      userId: string,
-      startDate: Date,
-      endDate?: Date,
-      toWebhook?: boolean
-    ) => {
-      return GetData<T>(
-        type,
-        this.devID,
-        this.apiKey,
-        userId,
-        startDate,
-        endDate,
-        toWebhook
-      );
+    type: dataType,
+  ): (userId: string, startDate: Date, endDate?: Date, toWebhook?: boolean) => Promise<TerraDataResponse<T>> {
+    return (userId: string, startDate: Date, endDate?: Date, toWebhook?: boolean) => {
+      return GetData<T>(type, this.devID, this.apiKey, userId, startDate, endDate, toWebhook);
     };
   }
 
@@ -176,10 +155,7 @@ export default class Terra {
    * @return {Promise<TerraAthleteResponse>} A promise of type Athlete Data
    *
    */
-  getAthlete(
-    userId: string,
-    toWebhook?: boolean
-  ): Promise<TerraAthleteResponse> {
+  getAthlete(userId: string, toWebhook?: boolean): Promise<TerraAthleteResponse> {
     return GetAthlete(this.devID, this.apiKey, userId, toWebhook);
   }
 
@@ -191,7 +167,7 @@ export default class Terra {
    * @return {Promise<TerraDataResponse<Activity>>} A promise of type Activity Data
    *
    */
-  getActivity = this.getDataWrapper<Activity>("activity");
+  getActivity = this.getDataWrapper<Activity>('activity');
 
   /**
    * Get Body data for current user
@@ -201,7 +177,7 @@ export default class Terra {
    * @return {Promise<TerraDataResponse<Body>>} A promise of type Body Data
    *
    */
-  getBody = this.getDataWrapper<Body>("body");
+  getBody = this.getDataWrapper<Body>('body');
 
   /**
    * Get Daily data for current user
@@ -211,7 +187,7 @@ export default class Terra {
    * @return {Promise<TerraDataResponse<Daily>>} A promise of type Daily Data
    *
    */
-  getDaily = this.getDataWrapper<Daily>("daily");
+  getDaily = this.getDataWrapper<Daily>('daily');
 
   /**
    * Get Sleep data for current user
@@ -221,7 +197,7 @@ export default class Terra {
    * @return {Promise<TerraDataResponse<Sleep>>} A promise of type Sleep Data
    *
    */
-  getSleep = this.getDataWrapper<Sleep>("sleep");
+  getSleep = this.getDataWrapper<Sleep>('sleep');
 
   /**
    * Get Nutrition data for current user
@@ -231,7 +207,7 @@ export default class Terra {
    * @return {Promise<TerraDataResponse<Nutrition>>} A promise of type Nutrition Data
    *
    */
-  getNutrition = this.getDataWrapper<Nutrition>("nutrition");
+  getNutrition = this.getDataWrapper<Nutrition>('nutrition');
 
   /**
    * Get Menstruation data for current user
@@ -241,7 +217,7 @@ export default class Terra {
    * @return {Promise<TerraDataResponse<Menstruation>>} A promise of type Menstruation Data
    *
    */
-  getMenstruation = this.getDataWrapper<Menstruation>("menstruation");
+  getMenstruation = this.getDataWrapper<Menstruation>('menstruation');
 
   /**
    * Checks webhook signature

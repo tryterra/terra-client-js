@@ -3,3 +3,6 @@ node_modules
 example
 package-lock.json
 tsconfig.json
+src
+tslint.json
+.prettierrc

@@ -1,52 +1,41 @@
-import { TerraUser } from "../models/TerraUser";
-import { TerraPayload } from "./WebhookEvents";
-import fetch from "cross-fetch";
-import { RequestWrapper } from "./Helpers";
+import { TerraUser } from '../models/TerraUser';
+import { TerraPayload } from './WebhookEvents';
+import fetch from 'cross-fetch';
+import { RequestWrapper } from './Helpers';
 
 export interface TerraUserResponse {
   status: string;
   user: TerraUser;
-  is_authenticated: Boolean;
+  is_authenticated: boolean;
 }
 
-export function GetUser(
-  devId: string,
-  apiKey: string,
-  userId: string
-): Promise<TerraUserResponse> {
+export function GetUser(devId: string, apiKey: string, userId: string): Promise<TerraUserResponse> {
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "X-API-Key": apiKey,
-      "dev-id": devId,
-      "Content-Type": "application/json",
+      'X-API-Key': apiKey,
+      'dev-id': devId,
+      'Content-Type': 'application/json',
     },
   };
 
-  return RequestWrapper<TerraUserResponse>("userInfo", requestOptions, {
+  return RequestWrapper<TerraUserResponse>('userInfo', requestOptions, {
     user_id: userId,
   });
 }
 
-export function DeauthUser(
-  devId: string,
-  apiKey: string,
-  userId: string
-): Promise<void> {
+export function DeauthUser(devId: string, apiKey: string, userId: string): Promise<void> {
   const requestOptions = {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "X-API-Key": apiKey,
-      "dev-id": devId,
-      "Content-Type": "application/json",
+      'X-API-Key': apiKey,
+      'dev-id': devId,
+      'Content-Type': 'application/json',
     },
   };
 
   return new Promise<void>((res, rej) => {
-    fetch(
-      `https://api.tryterra.co/v2/auth/deauthenticateUser?user_id=${userId}`,
-      requestOptions
-    )
+    fetch(`https://api.tryterra.co/v2/auth/deauthenticateUser?user_id=${userId}`, requestOptions)
       .then((_) => res())
       .catch((error) => rej(error as TerraPayload));
   });

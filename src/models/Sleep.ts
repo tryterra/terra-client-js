@@ -1,13 +1,13 @@
-import { RecoveryLevel } from "./enums/RecoveryLevel";
-import { SleepUploadType } from "./enums/SleepUploadType";
-import { Option } from "./helpers/typings";
-import { BreathSample } from "./samples/BreathSample";
-import { HeartRateDataSample } from "./samples/HeartRateDataSample";
-import { HeartRateVariabilityDataSampleRMSSD } from "./samples/HeartRateVariabilityDataSampleRMSSD";
-import { HeartRateVariabilityDataSampleSDNN } from "./samples/HeartRateVariabilityDataSampleSDNN";
-import { OxygenSaturationSample } from "./samples/OxygenSaturationSample";
-import { SleepHypnogramSample } from "./samples/SleepHypnogramSample";
-import { SnoringSample } from "./samples/SnoringSample";
+import { RecoveryLevel } from './enums/RecoveryLevel';
+import { SleepUploadType } from './enums/SleepUploadType';
+import { Option } from './helpers/typings';
+import { BreathSample } from './samples/BreathSample';
+import { HeartRateDataSample } from './samples/HeartRateDataSample';
+import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
+import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
+import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
+import { SleepHypnogramSample } from './samples/SleepHypnogramSample';
+import { SnoringSample } from './samples/SnoringSample';
 
 export interface Sleep {
   sleep_durations_data: {
@@ -66,7 +66,7 @@ export interface Sleep {
       min_breaths_per_min: Option<number>;
       avg_breaths_per_min: Option<number>;
       max_breaths_per_min: Option<number>;
-      on_demand_reading: Option<Boolean>;
+      on_demand_reading: Option<boolean>;
       end_time: Option<string>;
       samples: Array<BreathSample>;
       start_time: Option<string>;
