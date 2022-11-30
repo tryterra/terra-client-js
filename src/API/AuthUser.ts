@@ -1,8 +1,8 @@
 import { RequestWrapper } from "./Helpers";
 export interface TerraAuthUserResponse {
   status: string;
-  token: string;
-  expires_in: number;
+  user_id: string;
+  auth_url: string;
 }
 
 export function AuthUser(
