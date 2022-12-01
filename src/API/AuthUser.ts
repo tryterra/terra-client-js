@@ -1,8 +1,8 @@
-import { RequestWrapper } from "./Helpers";
+import { RequestWrapper } from './Helpers';
 export interface TerraAuthUserResponse {
   status: string;
-  token: string;
-  expires_in: number;
+  user_id: string;
+  auth_url: string;
 }
 
 export function AuthUser(
@@ -11,31 +11,28 @@ export function AuthUser(
   resource: string,
   referenceId?: string,
   language?: string,
-  auth_success_redirect_url?: string,
-  auth_failure_redirect_url?: string,
-  facilityId?: string
+  authSuccessRedirectUrl?: string,
+  authFailureRedirectUrl?: string,
+  facilityId?: string,
 ): Promise<TerraAuthUserResponse> {
-  var raw = JSON.stringify({
+  const raw = JSON.stringify({
     reference_id: referenceId,
-    resource: resource,
-    auth_success_redirect_url: auth_success_redirect_url,
-    auth_failure_redirect_url: auth_failure_redirect_url,
-    language: language,
+    resource,
+    auth_success_redirect_url: authSuccessRedirectUrl,
+    auth_failure_redirect_url: authFailureRedirectUrl,
+    language,
     facility_id: facilityId,
   });
 
   const requestOptions = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "X-API-Key": apiKey,
-      "dev-id": devId,
-      "Content-Type": "application/json",
+      'X-API-Key': apiKey,
+      'dev-id': devId,
+      'Content-Type': 'application/json',
     },
     body: raw,
   };
 
-  return RequestWrapper<TerraAuthUserResponse>(
-    "auth/authenticateUser",
-    requestOptions
-  );
+  return RequestWrapper<TerraAuthUserResponse>('auth/authenticateUser', requestOptions);
 }

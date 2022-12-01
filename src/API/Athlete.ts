@@ -1,6 +1,6 @@
-import { Athlete } from "../models/Athlete";
-import { TerraUser } from "../models/TerraUser";
-import { RequestWrapper } from "./Helpers";
+import { Athlete } from '../models/Athlete';
+import { TerraUser } from '../models/TerraUser';
+import { RequestWrapper } from './Helpers';
 
 export interface TerraAthleteResponse {
   athlete: Athlete;
@@ -14,14 +14,14 @@ export function GetAthlete(
   devId: string,
   apiKey: string,
   userId: string,
-  toWebhook: boolean = true
+  toWebhook: boolean = true,
 ): Promise<TerraAthleteResponse> {
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "X-API-Key": apiKey,
-      "dev-id": devId,
-      "Content-Type": "application/json",
+      'X-API-Key': apiKey,
+      'dev-id': devId,
+      'Content-Type': 'application/json',
     },
   };
 
@@ -30,9 +30,5 @@ export function GetAthlete(
     to_webhook: toWebhook,
   };
 
-  return RequestWrapper<TerraAthleteResponse>(
-    "athlete",
-    requestOptions,
-    requestParams
-  );
+  return RequestWrapper<TerraAthleteResponse>('athlete', requestOptions, requestParams);
 }

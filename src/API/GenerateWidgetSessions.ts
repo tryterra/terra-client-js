@@ -1,4 +1,4 @@
-import { RequestWrapper } from "./Helpers";
+import { RequestWrapper } from './Helpers';
 export interface TerraWidgetResponse {
   session_id: string;
   status: string;
@@ -11,29 +11,26 @@ export function GenerateWidgetSession(
   referenceId: string,
   language: string,
   providers?: string[],
-  auth_success_redirect_url?: string,
-  auth_failure_redirect_url?: string
+  authSuccessRedirectUrl?: string,
+  authFailureRedirectUrl?: string,
 ): Promise<TerraWidgetResponse> {
-  var raw = JSON.stringify({
+  const raw = JSON.stringify({
     reference_id: referenceId,
-    providers: providers ? providers.join(",") : undefined,
-    auth_success_redirect_url: auth_success_redirect_url,
-    auth_failure_redirect_url: auth_failure_redirect_url,
-    language: language,
+    providers: providers ? providers.join(',') : undefined,
+    auth_success_redirect_url: authSuccessRedirectUrl,
+    auth_failure_redirect_url: authFailureRedirectUrl,
+    language,
   });
 
   const requestOptions = {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "X-API-Key": apiKey,
-      "dev-id": devId,
-      "Content-Type": "application/json",
+      'X-API-Key': apiKey,
+      'dev-id': devId,
+      'Content-Type': 'application/json',
     },
     body: raw,
   };
 
-  return RequestWrapper<TerraWidgetResponse>(
-    "auth/generateWidgetSession",
-    requestOptions
-  );
+  return RequestWrapper<TerraWidgetResponse>('auth/generateWidgetSession', requestOptions);
 }

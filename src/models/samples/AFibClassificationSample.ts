@@ -1,4 +1,4 @@
-import { AFibFlag } from "../enums/AFibFlag";
+import { AFibFlag } from '../enums/AFibFlag';
 
 export interface AFibClassificationSample {
   timestamp: string;

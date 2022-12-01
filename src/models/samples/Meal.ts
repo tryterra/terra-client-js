@@ -1,5 +1,5 @@
-import { NutritionUnits } from "../enums/NutritionUnits";
-import { Option } from "../helpers/typings";
+import { NutritionUnits } from '../enums/NutritionUnits';
+import { Option } from '../helpers/typings';
 
 export interface Meal {
   name: string;

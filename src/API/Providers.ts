@@ -1,17 +1,18 @@
-import { RequestWrapper } from "./Helpers";
+import { RequestWrapper } from './Helpers';
 
 export interface TerraProvidersResponse {
   status: string;
   providers: string[];
+  sdk_providers: string[];
 }
 
 export function GetProviders(): Promise<TerraProvidersResponse> {
   const requestOptions = {
-    method: "GET",
+    method: 'GET',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
-  return RequestWrapper<TerraProvidersResponse>("integrations", requestOptions);
+  return RequestWrapper<TerraProvidersResponse>('integrations', requestOptions);
 }
