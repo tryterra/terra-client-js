@@ -13,19 +13,23 @@ const terra = new Terra(
 // ---------------------------
 const express = require("express");
 const bodyParser = require("body-parser");
-const crypto = require("crypto");
 const app = express();
 const PORT = 3000;
-app.use(bodyParser.json());
+app.use(bodyParser.json({
+  verify: (req, _, buf) => {
+    req.rawBody = buf
+  }
+}))
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 // Webhook port
-app.post("/hook", (req, _) => {
-  const r = req.body;
-  console.log(r.data);
+app.post("/hook", (req, res) => {
+  if(!terra.checkTerraSignature(req.headers['terra-signature'], req.rawBody))
+    res.sendStatus(401)
+  res.sendStatus(200)
 });
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Hello Terra!");
 });
 
