@@ -15,6 +15,7 @@
   <h1>Terra Javascript Package</h1>
 </a>
 <p>A wrapper in javascript for the Terra endpoints and models.</p>
+<p>Full API reference: <a href="https://tryterra.github.io/terra-client-js">https://tryterra.github.io/terra-client-js</a></p>
 <p>Check the example server with a webhook in <code>/example</code>!</p>
 
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
@@ -27,10 +28,8 @@
 <p>Initialise a new Terra instance with:</p>
 <pre><code class="language-js"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">terra</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">Terra</span><span class="hl-0">(</span><span class="hl-4">process</span><span class="hl-0">.</span><span class="hl-4">env</span><span class="hl-0">.</span><span class="hl-2">DEV_ID</span><span class="hl-0">, </span><span class="hl-4">process</span><span class="hl-0">.</span><span class="hl-4">env</span><span class="hl-0">.</span><span class="hl-2">API_KEY</span><span class="hl-0">);</span>
 </code></pre>
-<p>Now you can call the following functions from the instance:</p>
+<p>Now you can call the following functions from the instance, for example:</p>
 <ul>
-<li><code>setCurrentUser</code></li>
-<li><code>getCurrentUser</code></li>
 <li><code>generateWidgetSession</code></li>
 <li><code>getProviders</code></li>
 <li><code>getUsers</code></li>
@@ -43,10 +42,11 @@
 <li><code>getSleep</code></li>
 <li><code>getMenstruation</code></li>
 </ul>
+<p>Check the full reference on <a href="https://tryterra.github.io/terra-client-js/">https://tryterra.github.io/terra-client-js/</a></p>
 <p>In addition, all the data models documented on <a href="https://docs.tryterra.co/data-models">https://docs.tryterra.co/data-models</a> are available to import and use. For example</p>
-<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">terra</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">Terra</span><span class="hl-0">(</span><span class="hl-4">process</span><span class="hl-0">.</span><span class="hl-4">env</span><span class="hl-0">.</span><span class="hl-2">DEV_ID</span><span class="hl-0">, </span><span class="hl-4">process</span><span class="hl-0">.</span><span class="hl-4">env</span><span class="hl-0">.</span><span class="hl-2">API_KEY</span><span class="hl-0">);</span><br/><span class="hl-4">terra</span><span class="hl-0">.</span><span class="hl-3">setCurrentUser</span><span class="hl-0">(</span><span class="hl-4">myDatabase</span><span class="hl-0">.</span><span class="hl-3">getARandomUser</span><span class="hl-0">());</span><br/><span class="hl-4">terra</span><span class="hl-0">.</span><span class="hl-3">getAthlete</span><span class="hl-0">(</span><span class="hl-1">false</span><span class="hl-0">).</span><span class="hl-3">then</span><span class="hl-0">((</span><span class="hl-4">res</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-4">res</span><span class="hl-0">.</span><span class="hl-4">athlete</span><span class="hl-0">.</span><span class="hl-4">first_name</span><span class="hl-0">));</span>
+<pre><code class="language-ts"><span class="hl-1">const</span><span class="hl-0"> </span><span class="hl-2">terra</span><span class="hl-0"> = </span><span class="hl-1">new</span><span class="hl-0"> </span><span class="hl-3">Terra</span><span class="hl-0">(</span><span class="hl-4">process</span><span class="hl-0">.</span><span class="hl-4">env</span><span class="hl-0">.</span><span class="hl-2">DEV_ID</span><span class="hl-0">, </span><span class="hl-4">process</span><span class="hl-0">.</span><span class="hl-4">env</span><span class="hl-0">.</span><span class="hl-2">API_KEY</span><span class="hl-0">);</span><br/><span class="hl-4">terra</span><br/><span class="hl-0">  .</span><span class="hl-3">getAthlete</span><span class="hl-0">(</span><span class="hl-5">&quot;1234-user-id-5678&quot;</span><span class="hl-0">, </span><span class="hl-1">false</span><span class="hl-0">)</span><br/><span class="hl-0">  .</span><span class="hl-3">then</span><span class="hl-0">((</span><span class="hl-4">res</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-4">res</span><span class="hl-0">.</span><span class="hl-4">athlete</span><span class="hl-0">.</span><span class="hl-4">first_name</span><span class="hl-0">))</span><br/><span class="hl-0">  .</span><span class="hl-3">catch</span><span class="hl-0">((</span><span class="hl-4">e</span><span class="hl-0">) </span><span class="hl-1">=&gt;</span><span class="hl-0"> </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-3">log</span><span class="hl-0">(</span><span class="hl-4">e</span><span class="hl-0">.</span><span class="hl-4">status</span><span class="hl-0">, </span><span class="hl-4">e</span><span class="hl-0">.</span><span class="hl-4">message</span><span class="hl-0">));</span>
 </code></pre>
-<p>The models support autocompleting the types to manipulate data coming from Terra:</p>
+<p>The models support autocompleting the types to manipulate data coming from Terra, which should accelerate your backend development:</p>
 <p><img src="./images/typed_1.png" alt="typed_1"></p>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -71,14 +71,16 @@
 <li class="current selected"><a href="modules.html">terra-<wbr/>api</a>
 <ul>
 <li class="tsd-kind-module"><a href="modules/API_Athlete.html">API/<wbr/>Athlete</a></li>
+<li class="tsd-kind-module"><a href="modules/API_AuthUser.html">API/<wbr/>Auth<wbr/>User</a></li>
 <li class="tsd-kind-module"><a href="modules/API_Data.html">API/<wbr/>Data</a></li>
+<li class="tsd-kind-module"><a href="modules/API_GenerateAuthToken.html">API/<wbr/>Generate<wbr/>Auth<wbr/>Token</a></li>
 <li class="tsd-kind-module"><a href="modules/API_GenerateWidgetSessions.html">API/<wbr/>Generate<wbr/>Widget<wbr/>Sessions</a></li>
 <li class="tsd-kind-module"><a href="modules/API_Helpers.html">API/<wbr/>Helpers</a></li>
 <li class="tsd-kind-module"><a href="modules/API_Providers.html">API/<wbr/>Providers</a></li>
 <li class="tsd-kind-module"><a href="modules/API_Subscribers.html">API/<wbr/>Subscribers</a></li>
 <li class="tsd-kind-module"><a href="modules/API_Terra.html">API/<wbr/>Terra</a></li>
-<li class="tsd-kind-module"><a href="modules/API_TerraError.html">API/<wbr/>Terra<wbr/>Error</a></li>
 <li class="tsd-kind-module"><a href="modules/API_UserInfo.html">API/<wbr/>User<wbr/>Info</a></li>
+<li class="tsd-kind-module"><a href="modules/API_WebhookEvents.html">API/<wbr/>Webhook<wbr/>Events</a></li>
 <li class="tsd-kind-module"><a href="modules/models_Activity.html">models/<wbr/>Activity</a></li>
 <li class="tsd-kind-module"><a href="modules/models_Athlete.html">models/<wbr/>Athlete</a></li>
 <li class="tsd-kind-module"><a href="modules/models_Body.html">models/<wbr/>Body</a></li>

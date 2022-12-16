@@ -16,7 +16,7 @@
 <h1>Function GenerateWidgetSession</h1></div>
 <section class="tsd-panel">
 <ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-<li class="tsd-signature tsd-anchor-link" id="GenerateWidgetSession">Generate<wbr/>Widget<wbr/>Session<span class="tsd-signature-symbol">(</span>devId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, referenceId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, providers<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, language<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, auth_success_redirect_url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, auth_failure_redirect_url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/API_GenerateWidgetSessions.TerraWidgetResponse.html" class="tsd-signature-type" data-tsd-kind="Interface">TerraWidgetResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#GenerateWidgetSession" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
+<li class="tsd-signature tsd-anchor-link" id="GenerateWidgetSession">Generate<wbr/>Widget<wbr/>Session<span class="tsd-signature-symbol">(</span>devId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, apiKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, referenceId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, language<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, providers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, authSuccessRedirectUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, authFailureRedirectUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/API_GenerateWidgetSessions.TerraWidgetResponse.html" class="tsd-signature-type" data-tsd-kind="Interface">TerraWidgetResponse</a><span class="tsd-signature-symbol">&gt;</span><a href="#GenerateWidgetSession" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -28,16 +28,16 @@
 <li>
 <h5>referenceId: <span class="tsd-signature-type">string</span></h5></li>
 <li>
-<h5>providers: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5></li>
-<li>
 <h5>language: <span class="tsd-signature-type">string</span></h5></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> auth_success_redirect_url: <span class="tsd-signature-type">string</span></h5></li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> providers: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> auth_failure_redirect_url: <span class="tsd-signature-type">string</span></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> authSuccessRedirectUrl: <span class="tsd-signature-type">string</span></h5></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> authFailureRedirectUrl: <span class="tsd-signature-type">string</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/API_GenerateWidgetSessions.TerraWidgetResponse.html" class="tsd-signature-type" data-tsd-kind="Interface">TerraWidgetResponse</a><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/tryterra/terra-client-js/blob/8f1c6db/src/API/GenerateWidgetSessions.ts#L9">API/GenerateWidgetSessions.ts:9</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/tryterra/terra-client-js/blob/394a924/src/API/GenerateWidgetSessions.ts#L8">API/GenerateWidgetSessions.ts:8</a></li></ul></aside></li></ul></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -60,14 +60,16 @@
 <li class="current"><a href="../modules.html">terra-<wbr/>api</a>
 <ul>
 <li class="tsd-kind-module"><a href="../modules/API_Athlete.html">API/<wbr/>Athlete</a></li>
+<li class="tsd-kind-module"><a href="../modules/API_AuthUser.html">API/<wbr/>Auth<wbr/>User</a></li>
 <li class="tsd-kind-module"><a href="../modules/API_Data.html">API/<wbr/>Data</a></li>
+<li class="tsd-kind-module"><a href="../modules/API_GenerateAuthToken.html">API/<wbr/>Generate<wbr/>Auth<wbr/>Token</a></li>
 <li class="current tsd-kind-module"><a href="../modules/API_GenerateWidgetSessions.html">API/<wbr/>Generate<wbr/>Widget<wbr/>Sessions</a></li>
 <li class="tsd-kind-module"><a href="../modules/API_Helpers.html">API/<wbr/>Helpers</a></li>
 <li class="tsd-kind-module"><a href="../modules/API_Providers.html">API/<wbr/>Providers</a></li>
 <li class="tsd-kind-module"><a href="../modules/API_Subscribers.html">API/<wbr/>Subscribers</a></li>
 <li class="tsd-kind-module"><a href="../modules/API_Terra.html">API/<wbr/>Terra</a></li>
-<li class="tsd-kind-module"><a href="../modules/API_TerraError.html">API/<wbr/>Terra<wbr/>Error</a></li>
 <li class="tsd-kind-module"><a href="../modules/API_UserInfo.html">API/<wbr/>User<wbr/>Info</a></li>
+<li class="tsd-kind-module"><a href="../modules/API_WebhookEvents.html">API/<wbr/>Webhook<wbr/>Events</a></li>
 <li class="tsd-kind-module"><a href="../modules/models_Activity.html">models/<wbr/>Activity</a></li>
 <li class="tsd-kind-module"><a href="../modules/models_Athlete.html">models/<wbr/>Athlete</a></li>
 <li class="tsd-kind-module"><a href="../modules/models_Body.html">models/<wbr/>Body</a></li>
