@@ -19,6 +19,7 @@ it('Constructor and functions', () => {
   expect(typeof terra.getSleep).toBe('function');
   expect(typeof terra.getUser).toBe('function');
   expect(typeof terra.getUsers).toBe('function');
+  expect(typeof terra.executeSynchronously).toBe('function');
 });
 
 it('.authUser', () => {
