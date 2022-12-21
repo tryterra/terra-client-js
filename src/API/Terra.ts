@@ -13,10 +13,12 @@ import { Nutrition } from '../models/Nutrition';
 import { Menstruation } from '../models/Menstruation';
 import { checkForServerSideAndWarn, CheckTerraSignature } from './Helpers';
 import { AuthUser, TerraAuthUserResponse } from './AuthUser';
+import { Mutex } from 'async-mutex';
 export default class Terra {
-  private devID: string = '';
-  private apiKey: string = '';
-  private secret: string = '';
+  private devID: string;
+  private apiKey: string;
+  private secret: string;
+  private mutex: Mutex = new Mutex();
 
   constructor(devID: string, apiKey: string, secret: string) {
     checkForServerSideAndWarn();
@@ -229,5 +231,22 @@ export default class Terra {
    */
   checkTerraSignature(terraSignature: string, payload: string) {
     return CheckTerraSignature(terraSignature, payload, this.secret);
+  }
+
+  /**
+   * Synchronises a set of functions. It is meant to be used to handle webhooks if
+   * the infrastructure could face race conditions
+   * @param {(...args: any[]) => void} callback - Function to be executed, usually the webhook handler
+   * @param {any[]} args - Extra arguments passed to the handler, usually the request contents
+   */
+  executeSynchronously(callback: (...args: any[]) => void, ...args: any[]) {
+    this.mutex.acquire().then(async (release) => {
+      try {
+        await callback(...args);
+        release();
+      } catch (e) {
+        release();
+      }
+    });
   }
 }
