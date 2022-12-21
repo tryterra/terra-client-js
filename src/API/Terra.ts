@@ -15,9 +15,9 @@ import { checkForServerSideAndWarn, CheckTerraSignature } from './Helpers';
 import { AuthUser, TerraAuthUserResponse } from './AuthUser';
 import { Mutex } from 'async-mutex';
 export default class Terra {
-  private devID: string = '';
-  private apiKey: string = '';
-  private secret: string = '';
+  private devID: string;
+  private apiKey: string;
+  private secret: string;
   private mutex: Mutex = new Mutex();
 
   constructor(devID: string, apiKey: string, secret: string) {
