@@ -18,7 +18,7 @@ type EventType =
   | 'google_no_datasource'
   | 'request_completed'
   | 'access_revoked'
-  | 'deauth	'
+  | 'deauth'
   | 'internal_server_error'
   | 'unknown';
 
