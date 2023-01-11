@@ -24,10 +24,23 @@ export function RequestWrapper<T>(
     const url = new URL(endpoint, 'https://api.tryterra.co/v2/');
     Object.entries(requestParams).forEach(([k, v]) => url.searchParams.append(k, v));
     fetch(url, requestOptions)
-      .then((response) =>
-        response.json().then((result) => (response.ok ? res(result as T) : rej(result as TerraPayload))),
-      )
-      .catch((error) => rej(error));
+      .then((response) => {
+        if (response.status === 500 || response.status === 502) {
+          rej({
+            status: 'error',
+            type: 'internal_server_error',
+            message: response.status.toString(),
+          } as TerraPayload);
+        }
+        response.json().then((result) => (response.ok ? res(result as T) : rej(result as TerraPayload)));
+      })
+      .catch((error) =>
+        rej({
+          status: 'error',
+          type: 'unknown',
+          message: error,
+        } as TerraPayload),
+      );
   });
 }
 
