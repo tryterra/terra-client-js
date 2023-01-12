@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Added changelog
-- Changed function inputs to an interface where suitable to avoid inputting `undefined` parameters
-- Fixed error handling in the request handler
-- Added CI for publishing
-
 ### Added
 
 - Changelog
+- CI for publishing
+
+### Fixed
+
+- Error handling in the request handler
+
+### Changed
+
+- Function inputs to an interface where suitable to avoid inputting `undefined` parameters
