@@ -31,8 +31,18 @@ export function RequestWrapper<T>(
             type: 'internal_server_error',
             message: response.status.toString(),
           } as TerraPayload);
+          return;
         }
-        response.json().then((result) => (response.ok ? res(result as T) : rej(result as TerraPayload)));
+        response
+          .json()
+          .then((result) => (response.ok ? res(result as T) : rej(result as TerraPayload)))
+          .catch((error) =>
+            rej({
+              status: 'error',
+              type: 'unknown',
+              message: error,
+            } as TerraPayload),
+          );
       })
       .catch((error) =>
         rej({
