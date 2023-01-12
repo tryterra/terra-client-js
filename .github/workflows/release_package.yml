@@ -26,6 +26,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Add env file for testing
+      - name: Add environment files
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
+
       # Build
       - name: Build package
         run: npm run build
