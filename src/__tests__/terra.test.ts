@@ -24,11 +24,15 @@ it('Constructor and functions', () => {
 
 it('.authUser', () => {
   expect(typeof terra.authUser).toBe('function');
-  return terra.authUser('GARMIN').then((res) => {
-    expect(res.auth_url).not.toBe(undefined);
-    expect(res.status).toBe('success');
-    expect(res.user_id).not.toBe(undefined);
-  });
+  return terra
+    .authUser({
+      resource: 'GARMIN',
+    })
+    .then((res) => {
+      expect(res.auth_url).not.toBe(undefined);
+      expect(res.status).toBe('success');
+      expect(res.user_id).not.toBe(undefined);
+    });
 });
 
 it('.generateAuthToken', () => {
@@ -42,11 +46,13 @@ it('.generateAuthToken', () => {
 
 it('.generateWidgetSession', () => {
   expect(typeof terra.generateWidgetSession).toBe('function');
-  return terra.generateWidgetSession('reference_id', 'EN', ['GARMIN', 'FITBIT']).then((res) => {
-    expect(res.session_id).not.toBe(undefined);
-    expect(res.url).not.toBe(undefined);
-    expect(res.status).toBe('success');
-  });
+  return terra
+    .generateWidgetSession({ referenceID: 'reference_id', language: 'EN', providers: ['GARMIN', 'FITBIT'] })
+    .then((res) => {
+      expect(res.session_id).not.toBe(undefined);
+      expect(res.url).not.toBe(undefined);
+      expect(res.status).toBe('success');
+    });
 });
 
 it('.getProviders', () => {

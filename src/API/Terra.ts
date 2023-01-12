@@ -48,23 +48,23 @@ export default class Terra {
    *
    * @returns {Promise<TerraAuthUserResponse>} A promise of type Authenticate User Response
    */
-  authUser(
-    resource: string,
-    referenceId?: string,
-    language?: string,
-    authSuccessRedirectUrl?: string,
-    authFailureRedirectUrl?: string,
-    facilityId?: string,
-  ): Promise<TerraAuthUserResponse> {
+  authUser(params: {
+    resource: string;
+    referenceId?: string;
+    language?: string;
+    authSuccessRedirectUrl?: string;
+    authFailureRedirectUrl?: string;
+    facilityId?: string;
+  }): Promise<TerraAuthUserResponse> {
     return AuthUser(
       this.devID,
       this.apiKey,
-      resource,
-      referenceId,
-      language,
-      authSuccessRedirectUrl,
-      authFailureRedirectUrl,
-      facilityId,
+      params.resource,
+      params.referenceId,
+      params.language,
+      params.authSuccessRedirectUrl,
+      params.authFailureRedirectUrl,
+      params.facilityId,
     );
   }
 
@@ -76,24 +76,27 @@ export default class Terra {
    * @param {string} language - Language the widget page is showed in
    * @param {string} authSuccessRedirectUrl - Redirect URL when the session succeeds
    * @param {string} authFailureRedirectUrl - Redirect URL when the session fails
+   * @param {boolean} showDisconnect - Show disconnect button on widget for same reference ID
    *
    * @returns {Promise<TerraWidgetResponse>} A promise of type Widget Response
    */
-  generateWidgetSession(
-    referenceID: string,
-    language: string,
-    providers?: string[],
-    authSuccessRedirectUrl?: string,
-    authFailureRedirectUrl?: string,
-  ): Promise<TerraWidgetResponse> {
+  generateWidgetSession(params: {
+    referenceID: string;
+    language: string;
+    providers?: string[];
+    authSuccessRedirectUrl?: string;
+    authFailureRedirectUrl?: string;
+    showDisconnect?: boolean;
+  }): Promise<TerraWidgetResponse> {
     return GenerateWidgetSession(
       this.devID,
       this.apiKey,
-      referenceID,
-      language,
-      providers,
-      authSuccessRedirectUrl,
-      authFailureRedirectUrl,
+      params.referenceID,
+      params.language,
+      params.providers,
+      params.authSuccessRedirectUrl,
+      params.authFailureRedirectUrl,
+      params.showDisconnect,
     );
   }
 
@@ -144,9 +147,22 @@ export default class Terra {
   // Data getters
   private getDataWrapper<T>(
     type: dataType,
-  ): (userId: string, startDate: Date, endDate?: Date, toWebhook?: boolean) => Promise<TerraDataResponse<T>> {
-    return (userId: string, startDate: Date, endDate?: Date, toWebhook?: boolean) => {
-      return GetData<T>(type, this.devID, this.apiKey, userId, startDate, endDate, toWebhook);
+  ): (params: {
+    userId: string;
+    startDate: Date;
+    endDate?: Date;
+    toWebhook?: boolean;
+  }) => Promise<TerraDataResponse<T>> {
+    return (params: { userId: string; startDate: Date; endDate?: Date; toWebhook?: boolean }) => {
+      return GetData<T>(
+        type,
+        this.devID,
+        this.apiKey,
+        params.userId,
+        params.startDate,
+        params.endDate,
+        params.toWebhook,
+      );
     };
   }
 
@@ -157,8 +173,8 @@ export default class Terra {
    * @return {Promise<TerraAthleteResponse>} A promise of type Athlete Data
    *
    */
-  getAthlete(userId: string, toWebhook?: boolean): Promise<TerraAthleteResponse> {
-    return GetAthlete(this.devID, this.apiKey, userId, toWebhook);
+  getAthlete(params: { userId: string; toWebhook?: boolean }): Promise<TerraAthleteResponse> {
+    return GetAthlete(this.devID, this.apiKey, params.userId, params.toWebhook);
   }
 
   /**

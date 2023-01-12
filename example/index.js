@@ -44,7 +44,7 @@ async function handleWebhook(req) {
 }
 
 // a constant signaling if we should handle webhooks one by one or not
-HANDLE_SYNC = true
+HANDLE_SYNC = true;
 
 // expose POST /hook endpoint on the server
 // this is where Terra will send webhooks
@@ -55,7 +55,7 @@ app.post('/hook', (req, res) => {
 
   // handle the payload
   // handle synchonously the payloads one by one as they come in, avoiding race conditions
-  if(HANDLE_SYNC) terra.executeSynchronously(handleWebhook, req);
+  if (HANDLE_SYNC) terra.executeSynchronously(handleWebhook, req);
   // race conditions cannot occure, allow async handling
   else handleWebhook(req);
 });
@@ -63,7 +63,11 @@ app.post('/hook', (req, res) => {
 // expose GET /session endpoint to generate a widget session
 app.get('/session', (req, res) => {
   terra
-    .generateWidgetSession('refID', 'EN', ['GARMIN', 'FITBIT'])
+    .generateWidgetSession({
+      referenceID: 'jaafar',
+      showDisconnect: true,
+      providers: ['GARMIN', 'APPLE', 'FITBIT', 'SAMSUNG', 'OURA', 'POLAR'],
+    })
     .then((s) => res.send(s.url))
     .catch((e) => console.log(e));
 });
