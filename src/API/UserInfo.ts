@@ -12,8 +12,13 @@ export interface TerraUserResponse {
 export function GetUser(
   devId: string,
   apiKey: string,
+<<<<<<< HEAD
   userID?: string,
   referenceID?: string,
+=======
+  userId: string,
+  referenceId: string,
+>>>>>>> 371b2e2 (refactor: reformat)
 ): Promise<TerraUserResponse> {
   const requestOptions = {
     method: 'GET',
