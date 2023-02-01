@@ -9,7 +9,7 @@ export interface TerraUserResponse {
   is_authenticated: boolean;
 }
 
-export function GetUser(devId: string, apiKey: string, userId: string): Promise<TerraUserResponse> {
+export function GetUser(devId: string, apiKey: string, userId: string, referenceId:string): Promise<TerraUserResponse> {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -21,6 +21,7 @@ export function GetUser(devId: string, apiKey: string, userId: string): Promise<
 
   return RequestWrapper<TerraUserResponse>('userInfo', requestOptions, {
     user_id: userId,
+    reference_id: referenceId,
   });
 }
 
