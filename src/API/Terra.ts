@@ -128,7 +128,7 @@ export default class Terra {
    * @return {Promise<TerraUserResponse>} A promise of type User
    *
    */
-  getUser(userID: string, referenceID: string): Promise<TerraUserResponse> {
+  getUser(userID?: string, referenceID?: string): Promise<TerraUserResponse> {
     return GetUser(this.devID, this.apiKey, userID, referenceID);
   }
 

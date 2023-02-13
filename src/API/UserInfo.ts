@@ -12,8 +12,8 @@ export interface TerraUserResponse {
 export function GetUser(
   devId: string,
   apiKey: string,
-  userId: string,
-  referenceId: string,
+  userID?: string,
+  referenceID?: string,
 ): Promise<TerraUserResponse> {
   const requestOptions = {
     method: 'GET',
@@ -25,8 +25,8 @@ export function GetUser(
   };
 
   return RequestWrapper<TerraUserResponse>('userInfo', requestOptions, {
-    user_id: userId,
-    reference_id: referenceId,
+    user_id: userID,
+    reference_id: referenceID,
   });
 }
 
