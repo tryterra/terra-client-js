@@ -5,15 +5,18 @@ import { ActivityLevelSample } from './samples/ActivityLevelSample';
 import { CadenceSample } from './samples/CadenceSample';
 import { DistanceSample } from './samples/DistanceSample';
 import { ElevationSample } from './samples/ElevationSample';
+import { FloorsClimbedSample } from './samples/FloorsClimbedSample';
 import { HeartRateDataSample } from './samples/HeartRateDataSample';
 import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
 import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
+import { HeartRateZoneData } from './samples/HeartRateZoneData';
 import { LapSample } from './samples/LapSample';
 import { METSample } from './samples/METSample';
 import { OtherDeviceData } from './samples/OtherDeviceData';
 import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
 import { PositionSample } from './samples/PositionSample';
 import { PowerSample } from './samples/PowerSample';
+import { StepSample } from './samples/StepSample';
 import { SpeedSample } from './samples/SpeedSample';
 import { TSSSample } from './samples/TSSSample';
 import { Vo2MaxSample } from './samples/Vo2MaxSample';
@@ -94,8 +97,10 @@ export interface Activity {
       distance_meters: Option<number>;
     };
     detailed: {
+      step_samples: Array<StepSample>;
       distance_samples: Array<DistanceSample>;
       elevation_samples: Array<ElevationSample>;
+      floors_climbed_samples: Array<FloorsClimbedSample>;
     };
   };
   calories_data: {
@@ -124,6 +129,7 @@ export interface Activity {
       user_max_hr_bpm: Option<number>;
       avg_hrv_sdnn: Option<number>;
       avg_hr_bpm: Option<number>;
+      hr_zone_data: Array<HeartRateZoneData>;
     };
     detailed: {
       hr_samples: Array<HeartRateDataSample>;

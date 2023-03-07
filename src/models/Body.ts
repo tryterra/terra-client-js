@@ -1,6 +1,7 @@
 import { Option } from './helpers/typings';
 import { AFibClassificationSample } from './samples/AFibClassificationSample';
 import { BloodPressureSample } from './samples/BloodPressureSample';
+import { ECGreading } from './samples/ECGReading';
 import { GlucoseDataSample } from './samples/GlucoseDataSample';
 import { HeartRateDataSample } from './samples/HeartRateDataSample';
 import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
@@ -52,6 +53,7 @@ export interface Body {
   };
   heart_data: {
     afib_classification_samples: Array<AFibClassificationSample>;
+    ecgsignal: Array<ECGreading>;
     heart_rate_data: {
       summary: {
         max_hr_bpm: Option<number>;
@@ -72,6 +74,7 @@ export interface Body {
   };
   glucose_data: {
     blood_glucose_samples: Array<GlucoseDataSample>;
+    detailed_blood_glucose_samples: Array<GlucoseDataSample>;
     day_avg_blood_glucose_mg_per_dL: Option<number>;
   };
 }
