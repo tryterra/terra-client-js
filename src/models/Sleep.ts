@@ -5,6 +5,7 @@ import { BreathSample } from './samples/BreathSample';
 import { HeartRateDataSample } from './samples/HeartRateDataSample';
 import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
 import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
+import { OtherDeviceData } from './samples/OtherDeviceData';
 import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
 import { SleepHypnogramSample } from './samples/SleepHypnogramSample';
 import { SnoringSample } from './samples/SnoringSample';
@@ -34,6 +35,15 @@ export interface Sleep {
       duration_deep_sleep_state_seconds: Option<number>;
     };
   };
+  device_data: {
+    name: Option<string>;
+    other_devices: Array<OtherDeviceData>;
+    hardware_version: Option<string>;
+    manufacturer: Option<string>;
+    software_version: Option<string>;
+    activation_timestamp: Option<string>;
+    serial_number: Option<string>;
+  };
   metadata: {
     end_time: string;
     start_time: string;
@@ -47,6 +57,7 @@ export interface Sleep {
       user_max_hr_bpm: Option<number>;
       avg_hr_bpm: Option<number>;
       avg_hrv_sdnn: Option<number>;
+      resting_hr_bpm: Option<number>;
     };
     detailed: {
       hr_samples: Array<HeartRateDataSample>;

@@ -1,6 +1,7 @@
 import { UploadType } from './enums/UploadType';
 import { Option } from './helpers/typings';
 import { ActivityLevelSample } from './samples/ActivityLevelSample';
+import { CalorieSample } from './samples/CalorieSample';
 import { DistanceSample } from './samples/DistanceSample';
 import { ElevationSample } from './samples/ElevationSample';
 import { HeartRateDataSample } from './samples/HeartRateDataSample';
@@ -11,6 +12,7 @@ import { OtherDeviceData } from './samples/OtherDeviceData';
 import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
 import { StepSample } from './samples/StepSample';
 import { StressSample } from './samples/StressSample';
+import { TagEntry } from './samples/TagEntry';
 import { Vo2MaxSample } from './samples/Vo2MaxSample';
 
 export interface Daily {
@@ -25,6 +27,9 @@ export interface Daily {
     start_time: string;
     upload_type: UploadType;
   };
+  tag_data: {
+    tags: Array<TagEntry>;
+  };
   device_data: {
     name: string;
     other_devices: Array<OtherDeviceData>;
@@ -33,6 +38,11 @@ export interface Daily {
     software_version: string;
     activation_timestamp: string;
     serial_number: string;
+  };
+  scores: {
+    recovery: Option<number>;
+    activity: Option<number>;
+    sleep: Option<number>;
   };
   distance_data: {
     swimming: {
@@ -70,6 +80,7 @@ export interface Daily {
     BMR_calories: Option<number>;
     total_burned_calories: Option<number>;
     net_activity_calories: Option<number>;
+    calorie_samples: Array<CalorieSample>;
   };
   heart_rate_data: {
     summary: {

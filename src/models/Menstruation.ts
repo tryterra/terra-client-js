@@ -1,4 +1,5 @@
 import { Option } from './helpers/typings';
+import { MenstruationFlowSample } from './samples/MenstruationFlowSample';
 
 export interface Menstruation {
   metadata: {
@@ -16,5 +17,6 @@ export interface Menstruation {
     last_updated_time: Option<string>;
     cycle_length_days: Option<number>;
     is_predicted_cycle: Option<string>;
+    menstruation_flow: Array<MenstruationFlowSample>;
   };
 }

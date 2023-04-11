@@ -4,6 +4,8 @@ import { Option } from '../helpers/typings';
 export interface Meal {
   name: string;
   id: string;
+  timestamp: Option<string>;
+  type: Option<number>;
   quantity: {
     unit: Option<NutritionUnits>;
     amount: Option<number>;
