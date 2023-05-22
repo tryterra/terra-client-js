@@ -1,5 +1,5 @@
 export interface BloodPressureSample {
   timestamp: string;
-  diastolic_bp_mmHg: number;
-  systolic_bp_mmHg: number;
+  diastolic_bp: number;
+  systolic_bp: number;
 }
