@@ -19,6 +19,7 @@ export function GetData<T>(
   startDate: Date,
   endDate?: Date,
   toWebhook?: boolean,
+  withSamples?: boolean,
 ): Promise<TerraDataResponse<T>> {
   const requestOptions = {
     method: 'GET',
@@ -41,6 +42,11 @@ export function GetData<T>(
   if (toWebhook !== undefined) {
     requestParams = Object.assign({}, requestParams, {
       to_webhook: toWebhook.toString(),
+    });
+  }
+  if (withSamples !== undefined) {
+    requestParams = Object.assign({}, requestParams, {
+      with_samples: withSamples,
     });
   }
 
