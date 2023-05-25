@@ -152,8 +152,15 @@ export default class Terra {
     startDate: Date;
     endDate?: Date;
     toWebhook?: boolean;
+    withSamples?: boolean;
   }) => Promise<TerraDataResponse<T>> {
-    return (params: { userId: string; startDate: Date; endDate?: Date; toWebhook?: boolean }) => {
+    return (params: {
+      userId: string;
+      startDate: Date;
+      endDate?: Date;
+      toWebhook?: boolean;
+      withSamples?: boolean;
+    }) => {
       return GetData<T>(
         type,
         this.devID,
@@ -162,6 +169,7 @@ export default class Terra {
         params.startDate,
         params.endDate,
         params.toWebhook,
+        params.withSamples,
       );
     };
   }
@@ -182,6 +190,7 @@ export default class Terra {
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
+   * @param {boolean} withSamples - True for getting samples and false for only getting summaries
    * @return {Promise<TerraDataResponse<Activity>>} A promise of type Activity Data
    *
    */
@@ -192,6 +201,7 @@ export default class Terra {
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
+   * @param {boolean} withSamples - True for getting samples and false for only getting summaries
    * @return {Promise<TerraDataResponse<Body>>} A promise of type Body Data
    *
    */
@@ -202,6 +212,7 @@ export default class Terra {
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
+   * @param {boolean} withSamples - True for getting samples and false for only getting summaries
    * @return {Promise<TerraDataResponse<Daily>>} A promise of type Daily Data
    *
    */
@@ -212,6 +223,7 @@ export default class Terra {
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
+   * @param {boolean} withSamples - True for getting samples and false for only getting summaries
    * @return {Promise<TerraDataResponse<Sleep>>} A promise of type Sleep Data
    *
    */
@@ -222,6 +234,7 @@ export default class Terra {
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
+   * @param {boolean} withSamples - True for getting samples and false for only getting summaries
    * @return {Promise<TerraDataResponse<Nutrition>>} A promise of type Nutrition Data
    *
    */
@@ -232,6 +245,7 @@ export default class Terra {
    * @param {boolean} toWebhook - True for sending data to webhook and false for sending data in response body
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
+   * @param {boolean} withSamples - True for getting samples and false for only getting summaries
    * @return {Promise<TerraDataResponse<Menstruation>>} A promise of type Menstruation Data
    *
    */
