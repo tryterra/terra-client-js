@@ -20,6 +20,7 @@ export function GetData<T>(
   endDate?: Date,
   toWebhook?: boolean,
   withSamples?: boolean,
+  retryIfRateLimited?: boolean,
 ): Promise<TerraDataResponse<T>> {
   const requestOptions = {
     method: 'GET',
@@ -47,6 +48,11 @@ export function GetData<T>(
   if (withSamples !== undefined) {
     requestParams = Object.assign({}, requestParams, {
       with_samples: withSamples,
+    });
+  }
+  if (retryIfRateLimited !== undefined) {
+    requestParams = Object.assign({}, requestParams, {
+      retry_if_rate_limited: retryIfRateLimited,
     });
   }
 
