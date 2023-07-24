@@ -153,6 +153,7 @@ export default class Terra {
     endDate?: Date;
     toWebhook?: boolean;
     withSamples?: boolean;
+    retryIfRateLimited?: boolean;
   }) => Promise<TerraDataResponse<T>> {
     return (params: {
       userId: string;
@@ -160,6 +161,7 @@ export default class Terra {
       endDate?: Date;
       toWebhook?: boolean;
       withSamples?: boolean;
+      retryIfRateLimited?: boolean;
     }) => {
       return GetData<T>(
         type,
@@ -170,6 +172,7 @@ export default class Terra {
         params.endDate,
         params.toWebhook,
         params.withSamples,
+        params.retryIfRateLimited,
       );
     };
   }
@@ -191,6 +194,7 @@ export default class Terra {
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
    * @param {boolean} withSamples - True for getting samples and false for only getting summaries
+   * @param {boolean} retryIfRateLimited - True for retrying if rate limited and false for not retrying
    * @return {Promise<TerraDataResponse<Activity>>} A promise of type Activity Data
    *
    */
@@ -202,6 +206,7 @@ export default class Terra {
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
    * @param {boolean} withSamples - True for getting samples and false for only getting summaries
+   * @param {boolean} retryIfRateLimited - True for retrying if rate limited and false for not retrying
    * @return {Promise<TerraDataResponse<Body>>} A promise of type Body Data
    *
    */
@@ -213,6 +218,7 @@ export default class Terra {
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
    * @param {boolean} withSamples - True for getting samples and false for only getting summaries
+   * @param {boolean} retryIfRateLimited - True for retrying if rate limited and false for not retrying
    * @return {Promise<TerraDataResponse<Daily>>} A promise of type Daily Data
    *
    */
@@ -224,6 +230,7 @@ export default class Terra {
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
    * @param {boolean} withSamples - True for getting samples and false for only getting summaries
+   * @param {boolean} retryIfRateLimited - True for retrying if rate limited and false for not retrying
    * @return {Promise<TerraDataResponse<Sleep>>} A promise of type Sleep Data
    *
    */
@@ -235,6 +242,7 @@ export default class Terra {
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
    * @param {boolean} withSamples - True for getting samples and false for only getting summaries
+   * @param {boolean} retryIfRateLimited - True for retrying if rate limited and false for not retrying
    * @return {Promise<TerraDataResponse<Nutrition>>} A promise of type Nutrition Data
    *
    */
@@ -246,6 +254,7 @@ export default class Terra {
    * @param {Date} startDate - Start date for the date range limit
    * @param {Date} endDate - End date for the date range limit
    * @param {boolean} withSamples - True for getting samples and false for only getting summaries
+   * @param {boolean} retryIfRateLimited - True for retrying if rate limited and false for not retrying
    * @return {Promise<TerraDataResponse<Menstruation>>} A promise of type Menstruation Data
    *
    */
