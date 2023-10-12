@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.4.1 - 2023-10-12
+
 ## 1.4.0 - 2023-07-24
 ### Changed
 - Add `retry_if_rate_limited` as a query parameter to the getter functions
