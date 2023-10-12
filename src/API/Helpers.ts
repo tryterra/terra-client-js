@@ -1,4 +1,3 @@
-import { URL } from 'url';
 import { TerraPayload } from './WebhookEvents';
 import fetch from 'cross-fetch';
 import { createHmac } from 'crypto';
@@ -21,8 +20,9 @@ export function RequestWrapper<T>(
 ): Promise<T> {
   checkForServerSideAndWarn();
   return new Promise<T>((res, rej) => {
-    const url = new URL(endpoint, 'https://api.tryterra.co/v2/');
-    Object.entries(requestParams).forEach(([k, v]) => url.searchParams.append(k, v));
+    const params = new URLSearchParams();
+    Object.entries(requestParams).forEach(([k, v]) => params.append(k, v));
+    const url = 'https://api.tryterra.co/v2/' + endpoint + (params ? '?' + params.toString() : '');
     fetch(url, requestOptions)
       .then((response) => {
         if (response.status === 500 || response.status === 502) {
