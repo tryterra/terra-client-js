@@ -4,6 +4,7 @@ import { ActivityLevelSample } from './samples/ActivityLevelSample';
 import { CalorieSample } from './samples/CalorieSample';
 import { DistanceSample } from './samples/DistanceSample';
 import { ElevationSample } from './samples/ElevationSample';
+import { FloorsClimbedSample } from './samples/FloorsClimbedSample';
 import { HeartRateDataSample } from './samples/HeartRateDataSample';
 import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabilityDataSampleRMSSD';
 import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
@@ -64,6 +65,7 @@ export interface Daily {
       step_samples: Array<StepSample>;
       distance_samples: Array<DistanceSample>;
       elevation_samples: Array<ElevationSample>;
+      floors_climbed_samples: Array<FloorsClimbedSample>;
     };
     distance_meters: Option<number>;
   };
@@ -107,6 +109,8 @@ export interface Daily {
     num_continuous_inactive_periods: Option<number>;
     inactivity_seconds: Option<number>;
     moderate_intensity_seconds: Option<number>;
+    standing_seconds: Option<number>;
+    standing_hours_count: Option<number>;
   };
   stress_data: {
     rest_stress_duration_seconds: Option<number>;

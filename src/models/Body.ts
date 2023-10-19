@@ -8,6 +8,7 @@ import { HeartRateVariabilityDataSampleRMSSD } from './samples/HeartRateVariabil
 import { HeartRateVariabilityDataSampleSDNN } from './samples/HeartRateVariabilityDataSampleSDNN';
 import { HydrationLevelSample } from './samples/HydrationLevelSample';
 import { HydrationMeasurementSample } from './samples/HydrationMeasurementSample';
+import { KetoneDataSample } from './samples/KetoneDataSample';
 import { MeasurementDataSample } from './samples/MeasurementDataSample';
 import { OtherDeviceData } from './samples/OtherDeviceData';
 import { OxygenSaturationSample } from './samples/OxygenSaturationSample';
@@ -71,6 +72,9 @@ export interface Body {
       };
     };
     pulse_wave_velocity_samples: Array<PulseVelocitySample>;
+  };
+  ketone_data: {
+    ketone_samples: Array<KetoneDataSample>;
   };
   glucose_data: {
     blood_glucose_samples: Array<GlucoseDataSample>;
