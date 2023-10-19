@@ -10,6 +10,7 @@ export interface Athlete {
   city: Option<string>;
   email: Option<string>;
   date_of_birth: Option<string>;
+  provider_user_id: Option<string>;
   first_name: Option<string>;
   gender: Option<string>;
 }
