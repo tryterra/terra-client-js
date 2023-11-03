@@ -33,6 +33,15 @@ export function RequestWrapper<T>(
           } as TerraPayload);
           return;
         }
+        // rate limiting from providers end
+        else if (response.status === 429){
+          rej({
+            status: 'error',
+            type: 'provider_rate_limit',
+            message: response.status.toString(),
+          } as TerraPayload);
+          return;
+        }
         response
           .json()
           .then((result) => (response.ok ? res(result as T) : rej(result as TerraPayload)))

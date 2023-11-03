@@ -20,7 +20,8 @@ type EventType =
   | 'access_revoked'
   | 'deauth'
   | 'internal_server_error'
-  | 'unknown';
+  | 'unknown'
+  | 'provider_rate_limit';
 
 export interface TerraPayload {
   status: EventStatus;
