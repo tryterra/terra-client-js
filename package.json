@@ -1,6 +1,6 @@
 {
   "name": "terra-api",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Terra Javascript Package",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",

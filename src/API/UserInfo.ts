@@ -24,10 +24,15 @@ export function GetUser(
     },
   };
 
-  return RequestWrapper<TerraUserResponse>('userInfo', requestOptions, {
-    user_id: userID,
-    reference_id: referenceID,
-  });
+  if (userID) {
+    return RequestWrapper<TerraUserResponse>('userInfo', requestOptions, {
+      user_id: userID,
+    });
+  } else {
+    return RequestWrapper<TerraUserResponse>('userInfo', requestOptions, {
+      reference_id: referenceID,
+    });
+  }
 }
 
 export function DeauthUser(devId: string, apiKey: string, userId: string): Promise<void> {
