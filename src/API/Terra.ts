@@ -11,10 +11,12 @@ import { Sleep } from '../models/Sleep';
 import { Daily } from '../models/Daily';
 import { Nutrition } from '../models/Nutrition';
 import { Menstruation } from '../models/Menstruation';
-import { checkForServerSideAndWarn, CheckTerraSignature } from './Helpers';
+import { checkForServerSideAndWarn, CheckTerraSignature, RequestWrapper } from './Helpers';
 import { AuthUser, TerraAuthUserResponse } from './AuthUser';
 import { Mutex } from 'async-mutex';
-export default class Terra {
+import { TerraUser } from '../models/TerraUser';
+
+export class Terra {
   private devID: string;
   private apiKey: string;
   private secret: string;
@@ -270,6 +272,27 @@ export default class Terra {
    */
   checkTerraSignature(terraSignature: string, payload: string) {
     return CheckTerraSignature(terraSignature, payload, this.secret);
+  }
+
+  /**
+   * Checks webhook signature
+   * @param {string} userId - The user ID to patch for
+   * @param {String} referenceId - The reference ID to set the userID to (or null to not change)
+   * @param {boolean} setActive - Set if the user is active or not
+   * @return {Promise<TerraUser>} - The new patched Terra user object.
+   */
+  patchUser(userId: string, referenceId: string | null, setActive: boolean): Promise<TerraUser> {
+    const requestOptions = {
+      method: 'PATCH',
+      headers: {
+        'X-API-Key': this.apiKey,
+        'dev-id': this.devID,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ active: setActive, reference_id: referenceId }),
+    };
+
+    return RequestWrapper<TerraUser>(`users/${userId}`, requestOptions);
   }
 
   /**

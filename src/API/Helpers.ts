@@ -34,7 +34,7 @@ export function RequestWrapper<T>(
           return;
         }
         // rate limiting from providers end
-        else if (response.status === 429){
+        else if (response.status === 429) {
           rej({
             status: 'error',
             type: 'provider_rate_limit',
