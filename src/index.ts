@@ -6,6 +6,9 @@ export { Menstruation } from './models/Menstruation';
 export { Activity } from './models/Activity';
 export { Body } from './models/Body';
 export { TerraPayload } from './API/WebhookEvents';
-import { Terra as TerraAPI } from './API/Terra';
 
-export default TerraAPI;
+// Allow import Terra as both named and default imports
+export { Terra } from './API/Terra';
+
+import { Terra } from './API/Terra';
+export default Terra;
