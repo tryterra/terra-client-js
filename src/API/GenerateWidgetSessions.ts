@@ -14,6 +14,7 @@ export function GenerateWidgetSession(
   authSuccessRedirectUrl?: string,
   authFailureRedirectUrl?: string,
   showDisconnect?: boolean,
+  useTerraAvengersApp?: boolean,
 ): Promise<TerraWidgetResponse> {
   const raw = JSON.stringify({
     reference_id: referenceId,
@@ -22,6 +23,7 @@ export function GenerateWidgetSession(
     auth_failure_redirect_url: authFailureRedirectUrl,
     language,
     show_disconnect: showDisconnect,
+    use_terra_avengers_app: useTerraAvengersApp ?? false,
   });
 
   const requestOptions = {
