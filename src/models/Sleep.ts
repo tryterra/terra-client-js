@@ -48,6 +48,7 @@ export interface Sleep {
     end_time: string;
     start_time: string;
     upload_type: Option<SleepUploadType>;
+    is_nap: Option<boolean>;
   };
   heart_rate_data: {
     summary: {
