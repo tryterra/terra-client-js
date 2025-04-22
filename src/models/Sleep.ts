@@ -94,6 +94,7 @@ export interface Sleep {
       start_time: Option<string>;
       end_time: Option<string>;
       samples: Array<OxygenSaturationSample>;
+      avg_saturation_percentage: Option<number>;
     };
   };
 }
