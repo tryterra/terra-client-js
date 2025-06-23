@@ -1,8 +1,9 @@
 node_modules
-.DS_Store
-example
-package-lock.json
-tsconfig.json
 src
-tslint.json
-.prettierrc
+tests
+.gitignore
+.github
+.fernignore
+.prettierrc.yml
+tsconfig.json
+yarn.lock

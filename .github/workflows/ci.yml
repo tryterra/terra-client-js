@@ -1,37 +1,30 @@
 name: ci
 
-on:
-  pull_request:
-    branches:
-      - 'main'
+on: [push]
 
 jobs:
-  lint-format-test:
+  compile:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Set up node
         uses: actions/setup-node@v3
-        with:
-          node-version: 18
 
-      - name: Install modules
-        run: npm install
+      - name: Compile
+        run: yarn && yarn build
 
-      - name: Run linter
-        run: |
-          npm run lint
+  test:
+    runs-on: ubuntu-latest
 
-      - name: Run prettier
-        run: |
-          npm run format_check
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - name: Add environment files
-        run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+      - name: Set up node
+        uses: actions/setup-node@v3
 
-      - name: Run tests
-        run: |
-          npm run test
+      - name: Compile
+        run: yarn && yarn test    
