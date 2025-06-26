@@ -3,7 +3,10 @@
  */
 
 export interface PositionSample {
-    timestamp: string;
-    coords_lat_lng_deg: number[];
-    timer_duration_seconds: number;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    /** Position of the user a given point in time, represented by a 2-value array of latitude, longitude, wherein each of the two numbers can be nullable */
+    coords_lat_lng_deg?: unknown[];
+    /** Time elapsed since the start of the workout, subtracting time during which the recording was paused */
+    timer_duration_seconds?: number;
 }

@@ -23,10 +23,10 @@ describe("Nutrition", () => {
                 {
                     drink_samples: [
                         {
-                            timestamp: "timestamp",
-                            drink_volume: 1.1,
-                            drink_unit: "drink_unit",
-                            drink_name: "drink_name",
+                            timestamp: "2022-11-23T09:00:00.000000+02:00",
+                            drink_volume: 250,
+                            drink_unit: "ml",
+                            drink_name: "Water",
                         },
                     ],
                     meals: [
@@ -129,10 +129,10 @@ describe("Nutrition", () => {
                 {
                     drink_samples: [
                         {
-                            timestamp: "timestamp",
-                            drink_volume: 1.1,
-                            drink_unit: "drink_unit",
-                            drink_name: "drink_name",
+                            timestamp: "2022-11-23T09:00:00.000000+02:00",
+                            drink_volume: 250,
+                            drink_unit: "ml",
+                            drink_name: "Water",
                         },
                     ],
                     meals: [

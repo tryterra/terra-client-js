@@ -3,7 +3,10 @@
  */
 
 export interface BloodPressureSample {
-    timestamp: string;
-    diastolic_bp: number;
-    systolic_bp: number;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    /** User's diastolic blood pressure, in mmHg */
+    diastolic_bp?: number;
+    /** User's systolic blood pressure, in mmHg */
+    systolic_bp?: number;
 }

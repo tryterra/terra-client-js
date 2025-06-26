@@ -5,7 +5,10 @@
 import * as Terra from "../index.js";
 
 export interface KetoneSample {
-    timestamp: string;
-    ketone_mg_per_dL: number;
-    sample_type: Terra.Breath;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    /** Ketone in mg per dL */
+    ketone_mg_per_dL?: number;
+    /** Flag indicating the ketone sample type (e.g. blood, breath, urine) */
+    sample_type?: Terra.Breath;
 }

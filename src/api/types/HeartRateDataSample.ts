@@ -5,8 +5,12 @@
 import * as Terra from "../index.js";
 
 export interface HeartRateDataSample {
-    timestamp: string;
-    bpm: number;
-    timer_duration_seconds: number;
-    context: Terra.HeartRateContext;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    /** User's heart rate in bpm */
+    bpm?: number;
+    /** Time elapsed since the start of the workout, subtracting time during which the recording was paused */
+    timer_duration_seconds?: number;
+    /** Represents the context in which heart rate was measured. */
+    context?: Terra.HeartRateContext;
 }

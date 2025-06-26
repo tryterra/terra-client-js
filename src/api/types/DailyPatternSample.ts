@@ -3,10 +3,16 @@
  */
 
 export interface DailyPatternSample {
-    time_from_midnight: number;
-    percentile_5: number;
-    percentile_25: number;
-    percentile_50: number;
-    percentile_75: number;
-    percentile_95: number;
+    /** Hour of the day, represented as an integer from 0 to 23, where 0 is midnight and 23 is the hour before the next midnight. */
+    time_from_midnight?: number;
+    /** Percentile 5 of the glucose level at the given time of day. */
+    percentile_5?: number;
+    /** Percentile 25 of the glucose level at the given time of day. */
+    percentile_25?: number;
+    /** Percentile 50 of the glucose level at the given time of day. */
+    percentile_50?: number;
+    /** Percentile 75 of the glucose level at the given time of day. */
+    percentile_75?: number;
+    /** Percentile 95 of the glucose level at the given time of day. */
+    percentile_95?: number;
 }

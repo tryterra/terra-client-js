@@ -5,6 +5,8 @@
 import * as Terra from "../index.js";
 
 export interface AFibClassificationSample {
-    timestamp: string;
-    afib_classification: Terra.Inconclusive;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    /** Flag indicating the atrial fibrillation classification of the individual */
+    afib_classification?: Terra.Inconclusive;
 }

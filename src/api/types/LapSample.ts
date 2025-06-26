@@ -5,11 +5,20 @@
 import * as Terra from "../index.js";
 
 export interface LapSample {
-    start_time: string;
-    end_time: string;
-    distance_meters: number;
-    calories: number;
-    total_strokes: number;
-    stroke_type: Terra.StrokeType;
-    avg_speed_meters_per_second: number;
+    /** Calories burned during the lap */
+    calories?: number;
+    /** Average heart rate in bpm, for the Lap sample */
+    avg_hr_bpm?: number;
+    /** The start time of the associated lap, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time */
+    start_time?: string;
+    /** Average speed of the user during the lap */
+    avg_speed_meters_per_second?: number;
+    /** Distance covered during the lap */
+    distance_meters?: number;
+    /** Total strokes performed during the lap - only relevant for swimming activities */
+    total_strokes?: number;
+    /** The end time of the associated lap, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time */
+    end_time?: string;
+    /** Stroke type - only relevant for swimming activities */
+    stroke_type?: Terra.StrokeType;
 }

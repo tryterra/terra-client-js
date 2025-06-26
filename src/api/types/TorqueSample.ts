@@ -3,7 +3,10 @@
  */
 
 export interface TorqueSample {
-    timestamp: string;
-    timer_duration_seconds: number;
-    torque_newton_meters: number;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time */
+    timestamp?: string;
+    /** Time elapsed since the start of the workout, subtracting time during which the recording was paused */
+    timer_duration_seconds?: number;
+    /** Torque generated at a given instant in time, in Newton-meters */
+    torque_newton_meters?: number;
 }

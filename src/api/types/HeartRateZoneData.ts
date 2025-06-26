@@ -5,9 +5,14 @@
 import * as Terra from "../index.js";
 
 export interface HeartRateZoneData {
-    zone: Terra.Other;
-    start_percentage: number;
-    end_percentage: number;
-    name: string;
-    duration_seconds: number;
+    /** Heart rate zone designation */
+    zone?: Terra.Other;
+    /** Start percentage (based off user's max HR) of the HR zone */
+    start_percentage?: number;
+    /** End percentage (based off user's max HR) of the HR zone */
+    end_percentage?: number;
+    /** Name of the associated heart rate zone */
+    name?: string;
+    /** Duration spent in the heart rate zone */
+    duration_seconds?: number;
 }

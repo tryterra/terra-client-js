@@ -5,8 +5,12 @@
 import * as Terra from "../index.js";
 
 export interface EcgReading {
-    start_timestamp: string;
-    avg_hr_bpm: number;
-    afib_classification: Terra.Inconclusive;
-    raw_signal: Terra.RawEcgSample[];
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    start_timestamp?: string;
+    /** User's average heart rate throughout the day, in beats per minute (bpm). */
+    avg_hr_bpm?: number;
+    /** User's afib classification throught the day. */
+    afib_classification?: Terra.Inconclusive;
+    /** List of raw ECG readings sampled through the day. */
+    raw_signal?: Terra.RawEcgSample[];
 }

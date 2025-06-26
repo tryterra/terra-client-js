@@ -36,7 +36,6 @@ describe("Menstruation", () => {
                         last_updated_time: "2022-12-12T14:03:05.000000-05:00",
                         cycle_length_days: "28",
                         is_predicted_cycle: "true",
-                        menstruation_flow: [{ timestamp: "2022-11-23T09:00:00.000000+02:00", flow: 1.1 }],
                     },
                 },
             ],
@@ -74,12 +73,6 @@ describe("Menstruation", () => {
                         last_updated_time: "2022-12-12T14:03:05.000000-05:00",
                         cycle_length_days: "28",
                         is_predicted_cycle: "true",
-                        menstruation_flow: [
-                            {
-                                timestamp: "2022-11-23T09:00:00.000000+02:00",
-                                flow: 1.1,
-                            },
-                        ],
                     },
                 },
             ],

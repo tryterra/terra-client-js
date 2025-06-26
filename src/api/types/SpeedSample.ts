@@ -3,7 +3,8 @@
  */
 
 export interface SpeedSample {
-    timestamp: string;
-    speed_meters_per_second: number;
-    timer_duration_seconds: number;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    speed_meters_per_second?: number;
+    timer_duration_seconds?: number;
 }

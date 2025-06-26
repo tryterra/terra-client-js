@@ -6,7 +6,7 @@ import * as Terra from "../index.js";
 
 export interface MenstruationFlowSample {
     /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
-    timestamp: string;
+    timestamp?: string;
     /** Flag indicating the strength of the user's menstrual flow. */
-    flow: Terra.Had;
+    flow?: Terra.Had;
 }

@@ -3,6 +3,8 @@
  */
 
 export interface TemperatureSample {
-    timestamp: string;
-    temperature_celsius: number;
+    /** Time with which the record is associated, in ISO8601 format with microsecond precision. TimeZone info will be provided whenever possible. If absent, the time corresponds to the user's local time. */
+    timestamp?: string;
+    /** Temperature value in degrees Celsius. */
+    temperature_celsius?: number;
 }
