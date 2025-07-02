@@ -3,13 +3,13 @@
  */
 
 export interface AuthenticationDeauthenticateUserResponse {
-    /** indicates that an error happened (value is success) */
+    /** indicates that the deauthentication was successful (value is success) */
     status?: AuthenticationDeauthenticateUserResponse.Status;
 }
 
 export namespace AuthenticationDeauthenticateUserResponse {
     /**
-     * indicates that an error happened (value is success)
+     * indicates that the deauthentication was successful (value is success)
      */
     export type Status = "success" | "error";
     export const Status = {

@@ -44,7 +44,7 @@ export class Plannedworkout {
     }
 
     /**
-     * Used to get workout plans the user has registered on their account. This can be stregnth workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
+     * Used to get workout plans the user has registered on their account. This can be strength workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
      *
      * @param {Terra.PlannedWorkoutFetchRequest} request
      * @param {Plannedworkout.RequestOptions} requestOptions - Request-specific configuration.
@@ -142,7 +142,7 @@ export class Plannedworkout {
     }
 
     /**
-     * Used to post workout plans users can follow on their wearable. This can be stregnth workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
+     * Used to post workout plans users can follow on their wearable. This can be strength workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
      *
      * @param {Terra.PlannedWorkoutWriteRequest} request
      * @param {Plannedworkout.RequestOptions} requestOptions - Request-specific configuration.
@@ -226,7 +226,7 @@ export class Plannedworkout {
     }
 
     /**
-     * Used to delete workout plans the user has registered on their account. This can be stregnth workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
+     * Used to delete workout plans the user has registered on their account. This can be strength workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
      *
      * @param {Terra.PlannedWorkoutDeleteRequest} request
      * @param {Plannedworkout.RequestOptions} requestOptions - Request-specific configuration.

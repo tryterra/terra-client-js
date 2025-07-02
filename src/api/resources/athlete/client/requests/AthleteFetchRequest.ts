@@ -10,11 +10,11 @@
  */
 export interface AthleteFetchRequest {
     /**
-     * user ID to query data for
+     * Terra user ID (UUID format) to retrieve data for
      */
     user_id: string;
     /**
-     * boolean flag specifying whether to send the data retrieved to the webhook, or in the response
+     * Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response (default: false)
      */
     to_webhook?: boolean;
 }

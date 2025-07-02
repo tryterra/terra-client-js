@@ -53,7 +53,7 @@ export class Authentication {
      *
      * @example
      *     await client.authentication.authenticateuser({
-     *         resource: "resource"
+     *         resource: "FITBIT"
      *     })
      */
     public authenticateuser(

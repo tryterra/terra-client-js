@@ -152,7 +152,7 @@ export class Nutrition {
     }
 
     /**
-     * Used to post nutrition logs to a provider. Available for Fitbit
+     * Used to post nutrition logs to a provider. This endpoint only works for users connected via Fitbit. Returns error for other providers.
      *
      * @param {Terra.NutritionWriteRequest} request
      * @param {Nutrition.RequestOptions} requestOptions - Request-specific configuration.

@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         resource: "resource"
+ *         resource: "FITBIT"
  *     }
  */
 export interface AuthenticationAuthenticateUserRequest {
     /**
-     * resource to authenticate user with
+     * Provider resource identifier (e.g., 'FITBIT', 'GARMIN', 'OURA'). See "Get detailed list of integrations" for available providers
      */
     resource: string;
     language?: string;

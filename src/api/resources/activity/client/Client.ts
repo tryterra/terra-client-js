@@ -152,7 +152,7 @@ export class Activity {
     }
 
     /**
-     * Used to post activity data to a provider. Available for Wahoo
+     * Used to post activity data to a provider. This endpoint only works for users connected via Wahoo. Returns error for other providers.
      *
      * @param {Terra.ActivityWriteRequest} request
      * @param {Activity.RequestOptions} requestOptions - Request-specific configuration.

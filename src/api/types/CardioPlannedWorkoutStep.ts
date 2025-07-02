@@ -12,13 +12,13 @@ export interface CardioPlannedWorkoutStep {
     /** Position of the workout step in the overall workout */
     order?: number;
     /** Name of exercise to be performed for the workout step */
-    exercice_name?: string;
+    exercise_name?: string;
     /** Description of workout step */
     description?: string;
     /** List of conditions to be fulfilled for the workout step to be completed - all of the conditions must be completed */
     durations?: Terra.PlannedWorkoutStepDuration[];
     /** Type of exercise to be performed for the workout step */
-    exercice_category?: CardioPlannedWorkoutStep.ExerciceCategory;
+    exercise_category?: CardioPlannedWorkoutStep.ExerciseCategory;
     /** Name of workout step */
     name?: string;
 }
@@ -27,7 +27,7 @@ export namespace CardioPlannedWorkoutStep {
     /**
      * Type of exercise to be performed for the workout step
      */
-    export type ExerciceCategory =
+    export type ExerciseCategory =
         | "UNKNOWN"
         | "BENCH_PRESS"
         | "CALF_RAISE"
@@ -64,7 +64,7 @@ export namespace CardioPlannedWorkoutStep {
         | "RUN"
         | "BIKE"
         | "CARDIO_SENSORS";
-    export const ExerciceCategory = {
+    export const ExerciseCategory = {
         Unknown: "UNKNOWN",
         BenchPress: "BENCH_PRESS",
         CalfRaise: "CALF_RAISE",

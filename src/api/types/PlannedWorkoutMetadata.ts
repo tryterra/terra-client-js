@@ -26,7 +26,7 @@ export interface PlannedWorkoutMetadata {
     estimated_pace_minutes_per_kilometer?: number;
     /** Name of the original source of the workout plan */
     provider?: string;
-    /** */
+    /** Estimated training stress score for the workout (normalized power-based metric) */
     estimated_tscore?: number;
     /** Description of the workout */
     description?: string;

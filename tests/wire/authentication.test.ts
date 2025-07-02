@@ -26,7 +26,7 @@ describe("Authentication", () => {
             .build();
 
         const response = await client.authentication.authenticateuser({
-            resource: "resource",
+            resource: "FITBIT",
         });
         expect(response).toEqual({
             status: "success",

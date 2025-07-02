@@ -12,7 +12,7 @@ export interface SwimmingPlannedWorkoutStep {
     /** Position of the workout step in the overall workout */
     order?: number;
     /** Workout equipment to be used during the workout step */
-    equipement_type?: SwimmingPlannedWorkoutStep.EquipementType;
+    equipment_type?: SwimmingPlannedWorkoutStep.EquipmentType;
     /** Description of workout step */
     description?: string;
     /** List of conditions to be fulfilled for the workout step to be completed - all of the conditions must be completed */
@@ -27,14 +27,14 @@ export namespace SwimmingPlannedWorkoutStep {
     /**
      * Workout equipment to be used during the workout step
      */
-    export type EquipementType =
+    export type EquipmentType =
         | "NONE"
         | "SWIM_FINS"
         | "SWIM_KICKBOARD"
         | "SWIM_PADDLES"
         | "SWIM_PULL_BUOY"
         | "SWIM_SNORKEL";
-    export const EquipementType = {
+    export const EquipmentType = {
         None: "NONE",
         SwimFins: "SWIM_FINS",
         SwimKickboard: "SWIM_KICKBOARD",

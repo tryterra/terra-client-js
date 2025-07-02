@@ -10,7 +10,7 @@
  */
 export interface AuthenticationDeauthenticateUserRequest {
     /**
-     * user_id to deauthenticate for
+     * Terra user ID (UUID format) to deauthenticate and remove from Terra system
      */
     user_id: string;
 }

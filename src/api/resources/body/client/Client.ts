@@ -152,7 +152,7 @@ export class Body {
     }
 
     /**
-     * Used to post body data to a provider. Available for Google Fit
+     * Used to post body data to a provider. This endpoint only works for users connected via Google Fit. Returns error for other providers.
      *
      * @param {Terra.BodyWriteRequest} request
      * @param {Body.RequestOptions} requestOptions - Request-specific configuration.

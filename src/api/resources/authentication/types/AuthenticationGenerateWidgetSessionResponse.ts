@@ -7,7 +7,7 @@ export interface AuthenticationGenerateWidgetSessionResponse {
     session_id?: string;
     /** the widget URL the user must be redirected to in order to link their account */
     url?: string;
-    /** indicates that an error happened (value is success) */
+    /** indicates that the request was successful (value is success) */
     status?: AuthenticationGenerateWidgetSessionResponse.Status;
     /** a number in seconds depicting how long the url is valid for */
     expires_in?: number;
@@ -15,7 +15,7 @@ export interface AuthenticationGenerateWidgetSessionResponse {
 
 export namespace AuthenticationGenerateWidgetSessionResponse {
     /**
-     * indicates that an error happened (value is success)
+     * indicates that the request was successful (value is success)
      */
     export type Status = "success" | "error";
     export const Status = {

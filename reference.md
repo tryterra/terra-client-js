@@ -31,7 +31,7 @@ Creates a login link that allows end users to connect their fitness tracking acc
 
 ```typescript
 await client.authentication.authenticateuser({
-    resource: "resource",
+    resource: "FITBIT",
 });
 ```
 
@@ -592,7 +592,7 @@ await client.activity.fetch({
 <dl>
 <dd>
 
-Used to post activity data to a provider. Available for Wahoo
+Used to post activity data to a provider. This endpoint only works for users connected via Wahoo. Returns error for other providers.
 
 </dd>
 </dl>
@@ -802,7 +802,7 @@ await client.body.fetch({
 <dl>
 <dd>
 
-Used to post body data to a provider. Available for Google Fit
+Used to post body data to a provider. This endpoint only works for users connected via Google Fit. Returns error for other providers.
 
 </dd>
 </dl>
@@ -1143,7 +1143,7 @@ await client.nutrition.fetch({
 <dl>
 <dd>
 
-Used to post nutrition logs to a provider. Available for Fitbit
+Used to post nutrition logs to a provider. This endpoint only works for users connected via Fitbit. Returns error for other providers.
 
 </dd>
 </dl>
@@ -1350,7 +1350,7 @@ await client.sleep.fetch({
 <dl>
 <dd>
 
-Used to get workout plans the user has registered on their account. This can be stregnth workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
+Used to get workout plans the user has registered on their account. This can be strength workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
 
 </dd>
 </dl>
@@ -1416,7 +1416,7 @@ await client.plannedworkout.fetch({
 <dl>
 <dd>
 
-Used to post workout plans users can follow on their wearable. This can be stregnth workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
+Used to post workout plans users can follow on their wearable. This can be strength workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
 
 </dd>
 </dl>
@@ -1481,7 +1481,7 @@ await client.plannedworkout.write({
 <dl>
 <dd>
 
-Used to delete workout plans the user has registered on their account. This can be stregnth workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
+Used to delete workout plans the user has registered on their account. This can be strength workouts (sets, reps, weight lifted) or cardio workouts (warmup, intervals of different intensities, cooldown etc)
 
 </dd>
 </dl>
