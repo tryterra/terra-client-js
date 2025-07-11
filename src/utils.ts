@@ -1,5 +1,15 @@
-import * as crypto from "crypto";
-import { timingSafeEqual } from "crypto";
+// Conditionally import crypto only in Node.js environments
+let crypto: typeof import("crypto") | null = null;
+let timingSafeEqual: typeof import("crypto").timingSafeEqual | null = null;
+
+try {
+    if (typeof process !== "undefined" && process.versions && process.versions.node) {
+        crypto = require("crypto");
+        timingSafeEqual = require("crypto").timingSafeEqual;
+    }
+} catch (error) {
+    throw new Error("Crypto is not available in this environment");
+}
 
 /**
  * Custom error class for webhook verification failures
@@ -43,6 +53,10 @@ export function verifyTerraWebhookSignature(
     signingSecret: string,
     options: WebhookVerificationOptions = {},
 ): boolean {
+    if (!crypto || !timingSafeEqual) {
+        throw new WebhookVerificationError("Webhook verification is only supported in Node.js environments");
+    }
+
     const { tolerance = 300 } = options;
 
     if (!payload || !signatureHeader || !signingSecret) {
@@ -102,6 +116,9 @@ function extractTimestampAndSignatures(signatureHeader: string): SignatureCompon
  * Compute HMAC-SHA256 signature for the signed payload.
  */
 function computeSignature(signedPayload: string, signingSecret: string): string {
+    if (!crypto) {
+        throw new WebhookVerificationError("Crypto not available in this environment");
+    }
     return crypto.createHmac("sha256", signingSecret).update(signedPayload, "utf8").digest("hex");
 }
 
@@ -110,6 +127,10 @@ function computeSignature(signedPayload: string, signingSecret: string): string 
  * Uses Node.js built-in timingSafeEqual for constant-time comparison to prevent timing attacks.
  */
 function verifySignatures(receivedSignatures: string[], expectedSignature: string): void {
+    if (!timingSafeEqual) {
+        throw new WebhookVerificationError("Timing-safe comparison not available in this environment");
+    }
+
     const expectedBuffer = Buffer.from(expectedSignature, "hex");
 
     for (const signature of receivedSignatures) {
