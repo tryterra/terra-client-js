@@ -3,12 +3,10 @@ let crypto: typeof import("crypto") | null = null;
 let timingSafeEqual: typeof import("crypto").timingSafeEqual | null = null;
 
 try {
-    if (typeof process !== "undefined" && process.versions && process.versions.node) {
-        crypto = require("crypto");
-        timingSafeEqual = require("crypto").timingSafeEqual;
-    }
+    crypto = require("crypto");
+    timingSafeEqual = require("crypto").timingSafeEqual;
 } catch (error) {
-    throw new Error("Crypto is not available in this environment");
+    // crypto not available in this environment
 }
 
 /**
