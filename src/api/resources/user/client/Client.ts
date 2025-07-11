@@ -6,7 +6,6 @@ import * as environments from "../../../../environments.js";
 import * as core from "../../../../core/index.js";
 import * as Terra from "../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
-import urlJoin from "url-join";
 import * as errors from "../../../../errors/index.js";
 
 export declare namespace User {
@@ -68,7 +67,7 @@ export class User {
         requestOptions?: User.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.UserModifyUserResponse>> {
         const _response = await core.fetcher({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.TerraEnvironment.Default,
@@ -158,7 +157,7 @@ export class User {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.TerraEnvironment.Default,
@@ -247,7 +246,7 @@ export class User {
         }
 
         const _response = await core.fetcher({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.TerraEnvironment.Default,
@@ -325,7 +324,7 @@ export class User {
         requestOptions?: User.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.TerraUser[]>> {
         const _response = await core.fetcher({
-            url: urlJoin(
+            url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)) ??
                     environments.TerraEnvironment.Default,
