@@ -1,14 +1,3 @@
-// Conditionally import crypto only in Node.js environments
-let crypto: typeof import("crypto") | null = null;
-let timingSafeEqual: typeof import("crypto").timingSafeEqual | null = null;
-
-try {
-    crypto = require("crypto");
-    timingSafeEqual = require("crypto").timingSafeEqual;
-} catch (error) {
-    // crypto not available in this environment
-}
-
 /**
  * Custom error class for webhook verification failures
  */
@@ -38,21 +27,28 @@ interface SignatureComponents {
 /**
  * Verify Terra webhook signature using HMAC-SHA256.
  *
+ * This function is now async to support dynamic import of the 'crypto' module.
+ *
  * @param payload - The raw JSON payload from the request body
  * @param signatureHeader - The 'terra-signature' header value
  * @param signingSecret - The webhook endpoint's signing secret
  * @param options - Configuration options including tolerance
- * @returns True if signature is valid and within tolerance
+ * @returns A Promise resolving to true if the signature is valid
  * @throws WebhookVerificationError if verification fails
  */
-export function verifyTerraWebhookSignature(
+export async function verifyTerraWebhookSignature(
     payload: string,
     signatureHeader: string,
     signingSecret: string,
     options: WebhookVerificationOptions = {},
-): boolean {
-    if (!crypto || !timingSafeEqual) {
-        throw new WebhookVerificationError("Webhook verification is only supported in Node.js environments");
+): Promise<boolean> {
+    let crypto: typeof import("crypto");
+    try {
+        crypto = await import("crypto");
+    } catch (error) {
+        throw new WebhookVerificationError(
+            "Webhook verification requires the Node.js 'crypto' module, which could not be loaded.",
+        );
     }
 
     const { tolerance = 300 } = options;
@@ -73,9 +69,11 @@ export function verifyTerraWebhookSignature(
 
     const signedPayload = `${timestamp}.${payload}`;
 
-    const expectedSignature = computeSignature(signedPayload, signingSecret);
+    // Pass the crypto module to the helper function
+    const expectedSignature = computeSignature(signedPayload, signingSecret, crypto);
 
-    verifySignatures(signatures, expectedSignature);
+    // Pass the timingSafeEqual function to the helper function
+    verifySignatures(signatures, expectedSignature, crypto.timingSafeEqual);
     verifyTimestamp(timestamp, tolerance);
 
     return true;
@@ -88,21 +86,18 @@ function extractTimestampAndSignatures(signatureHeader: string): SignatureCompon
     let timestamp: string | null = null;
     const signatures: string[] = [];
 
-    const elements = signatureHeader.split(",");
-
-    for (const element of elements) {
+    for (const element of signatureHeader.split(",")) {
         const trimmedElement = element.trim();
         if (!trimmedElement.includes("=")) {
             continue;
         }
 
         const [prefix, ...valueParts] = trimmedElement.split("=");
-        const trimmedPrefix = prefix.trim();
         const value = valueParts.join("=").trim();
 
-        if (trimmedPrefix === "t") {
+        if (prefix.trim() === "t") {
             timestamp = value;
-        } else if (trimmedPrefix === "v1") {
+        } else if (prefix.trim() === "v1") {
             signatures.push(value);
         }
     }
@@ -112,35 +107,36 @@ function extractTimestampAndSignatures(signatureHeader: string): SignatureCompon
 
 /**
  * Compute HMAC-SHA256 signature for the signed payload.
+ * @param signedPayload - The signed payload
+ * @param signingSecret - The webhook endpoint's signing secret
+ * @param crypto - Node.js crypto module
  */
-function computeSignature(signedPayload: string, signingSecret: string): string {
-    if (!crypto) {
-        throw new WebhookVerificationError("Crypto not available in this environment");
-    }
+function computeSignature(signedPayload: string, signingSecret: string, crypto: typeof import("crypto")): string {
     return crypto.createHmac("sha256", signingSecret).update(signedPayload, "utf8").digest("hex");
 }
 
 /**
- * Verify that at least one received signature matches the expected signature.
- * Uses Node.js built-in timingSafeEqual for constant-time comparison to prevent timing attacks.
+ * Verify signatures using a timing-safe comparison.
+ * @param receivedSignatures - The received signatures
+ * @param expectedSignature - The expected signature
+ * @param timingSafeEqual - The crypto.timingSafeEqual function
  */
-function verifySignatures(receivedSignatures: string[], expectedSignature: string): void {
-    if (!timingSafeEqual) {
-        throw new WebhookVerificationError("Timing-safe comparison not available in this environment");
-    }
-
+function verifySignatures(
+    receivedSignatures: string[],
+    expectedSignature: string,
+    timingSafeEqual: typeof import("crypto").timingSafeEqual,
+): void {
     const expectedBuffer = Buffer.from(expectedSignature, "hex");
 
     for (const signature of receivedSignatures) {
         try {
             const signatureBuffer = Buffer.from(signature, "hex");
-
             if (expectedBuffer.length === signatureBuffer.length && timingSafeEqual(expectedBuffer, signatureBuffer)) {
-                return;
+                return; // Signature is valid
             }
         } catch (error) {
-            // Invalid hex string, continue to next signature
-            continue;
+            // Invalid hex string
+            console.error("Invalid hex string", error);
         }
     }
 
