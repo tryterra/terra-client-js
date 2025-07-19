@@ -1,6 +1,6 @@
 {
     "name": "terra-api",
-    "version": "2.0.11",
+    "version": "2.0.12",
     "private": false,
     "repository": "https://github.com/tryterra/terra-client-js",
     "type": "commonjs",
@@ -45,7 +45,7 @@
     "devDependencies": {
         "@types/node-fetch": "^2.6.12",
         "@types/readable-stream": "^4.0.18",
-        "webpack": "5.99.9",
+        "webpack": "^5.97.1",
         "ts-loader": "^9.5.1",
         "jest": "^29.7.0",
         "@jest/globals": "^29.7.0",
