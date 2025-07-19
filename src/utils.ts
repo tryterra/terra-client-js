@@ -27,8 +27,6 @@ interface SignatureComponents {
 /**
  * Verify Terra webhook signature using HMAC-SHA256.
  *
- * This function is now async to support dynamic import of the 'crypto' module.
- *
  * @param payload - The raw JSON payload from the request body
  * @param signatureHeader - The 'terra-signature' header value
  * @param signingSecret - The webhook endpoint's signing secret
