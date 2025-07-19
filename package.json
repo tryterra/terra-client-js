@@ -1,6 +1,6 @@
 {
     "name": "terra-api",
-    "version": "2.0.12",
+    "version": "2.0.13",
     "private": false,
     "repository": "https://github.com/tryterra/terra-client-js",
     "type": "commonjs",
