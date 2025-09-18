@@ -9,9 +9,7 @@
  *     }
  */
 export interface AuthenticationAuthenticateUserRequest {
-    /**
-     * Provider resource identifier (e.g., 'FITBIT', 'GARMIN', 'OURA'). See "Get detailed list of integrations" for available providers
-     */
+    /** Provider resource identifier (e.g., 'FITBIT', 'GARMIN', 'OURA'). See "Get detailed list of integrations" for available providers */
     resource: string;
     language?: string;
     reference_id?: string;

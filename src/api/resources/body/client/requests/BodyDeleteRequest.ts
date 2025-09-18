@@ -9,9 +9,7 @@
  *     }
  */
 export interface BodyDeleteRequest {
-    /**
-     * Terra user ID (UUID format) to retrieve data for
-     */
+    /** Terra user ID (UUID format) to retrieve data for */
     user_id: string;
     /** List of identifiers for body metrics entries to be deleted */
     log_ids?: string[];

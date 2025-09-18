@@ -17,7 +17,7 @@ export declare namespace User {
         /** Override the dev-id header */
         devId: core.Supplier<string>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 
     export interface RequestOptions {
@@ -29,8 +29,10 @@ export declare namespace User {
         abortSignal?: AbortSignal;
         /** Override the dev-id header */
         devId?: string;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -66,6 +68,14 @@ export class User {
         request: Terra.UserModifyUserRequest = {},
         requestOptions?: User.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.UserModifyUserResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -74,15 +84,9 @@ export class User {
                 `users/${encodeURIComponent(userId)}`,
             ),
             method: "PATCH",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -156,6 +160,14 @@ export class User {
             _queryParams["reference_id"] = referenceId;
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -164,15 +176,8 @@ export class User {
                 "userInfo",
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
-            queryParameters: _queryParams,
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -245,6 +250,14 @@ export class User {
             _queryParams["per_page"] = perPage.toString();
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -253,15 +266,8 @@ export class User {
                 "subscriptions",
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
-            queryParameters: _queryParams,
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -323,6 +329,14 @@ export class User {
         request: string[],
         requestOptions?: User.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.TerraUser[]>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -331,15 +345,9 @@ export class User {
                 "bulkUserInfo",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -9,9 +9,7 @@
  *     }
  */
 export interface NutritionDeleteRequest {
-    /**
-     * Terra user ID (UUID format) to retrieve data for
-     */
+    /** Terra user ID (UUID format) to retrieve data for */
     user_id: string;
     /** List of identifiers for nutrition entries to be deleted */
     data?: string[];

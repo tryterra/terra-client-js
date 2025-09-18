@@ -7,8 +7,6 @@
  *     {}
  */
 export interface IntegrationsDetailedFetchRequest {
-    /**
-     * If `true`, allows SDK integrations to be included in the response.
-     */
+    /** If `true`, allows SDK integrations to be included in the response. */
     sdk?: boolean;
 }

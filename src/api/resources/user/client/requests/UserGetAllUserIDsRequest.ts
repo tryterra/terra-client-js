@@ -7,12 +7,8 @@
  *     {}
  */
 export interface UserGetAllUserIDsRequest {
-    /**
-     * Zero-based page number. If omitted, results are not paginated.
-     */
+    /** Zero-based page number. If omitted, results are not paginated. */
     page?: number;
-    /**
-     * Number of results per page (default is 500).
-     */
+    /** Number of results per page (default is 500). */
     per_page?: number;
 }

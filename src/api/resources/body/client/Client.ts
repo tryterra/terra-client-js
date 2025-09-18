@@ -18,7 +18,7 @@ export declare namespace Body {
         /** Override the dev-id header */
         devId: core.Supplier<string>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 
     export interface RequestOptions {
@@ -30,8 +30,10 @@ export declare namespace Body {
         abortSignal?: AbortSignal;
         /** Override the dev-id header */
         devId?: string;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -91,6 +93,14 @@ export class Body {
             _queryParams["with_samples"] = withSamples.toString();
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -99,15 +109,8 @@ export class Body {
                 "body",
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
-            queryParameters: _queryParams,
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -180,6 +183,14 @@ export class Body {
         request: Terra.BodyWriteRequest,
         requestOptions?: Body.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.BodyWriteResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -188,15 +199,9 @@ export class Body {
                 "body",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -268,6 +273,14 @@ export class Body {
         const { user_id: userId, ..._body } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["user_id"] = userId;
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -276,16 +289,9 @@ export class Body {
                 "body",
             ),
             method: "DELETE",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
-            queryParameters: _queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
             body: _body,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

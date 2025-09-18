@@ -12,24 +12,14 @@ import * as Terra from "../../../../index.js";
  *     }
  */
 export interface MenstruationFetchRequest {
-    /**
-     * Terra user ID (UUID format) to retrieve data for
-     */
+    /** Terra user ID (UUID format) to retrieve data for */
     user_id: string;
-    /**
-     * Start date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit)
-     */
+    /** Start date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit) */
     start_date: Terra.MenstruationFetchRequestStartDate;
-    /**
-     * End date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit)
-     */
+    /** End date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit) */
     end_date?: number;
-    /**
-     * Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response (default: false)
-     */
+    /** Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response (default: false) */
     to_webhook?: boolean;
-    /**
-     * Boolean flag specifying whether to include detailed samples in the returned payload (default: false)
-     */
+    /** Boolean flag specifying whether to include detailed samples in the returned payload (default: false) */
     with_samples?: boolean;
 }

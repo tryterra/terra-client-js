@@ -9,9 +9,7 @@
  *     }
  */
 export interface PlannedWorkoutDeleteRequest {
-    /**
-     * Terra user ID (UUID format) to retrieve data for
-     */
+    /** Terra user ID (UUID format) to retrieve data for */
     user_id: string;
     /** List of identifiers for planned workout entries to be deleted */
     data?: string[];

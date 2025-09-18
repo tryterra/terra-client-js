@@ -26,7 +26,7 @@ export declare namespace TerraClient {
         /** Override the dev-id header */
         devId: core.Supplier<string>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 
     export interface RequestOptions {
@@ -38,8 +38,10 @@ export declare namespace TerraClient {
         abortSignal?: AbortSignal;
         /** Override the dev-id header */
         devId?: string;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -65,8 +67,8 @@ export class TerraClient {
                     "dev-id": _options?.devId,
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "terra-api",
-                    "X-Fern-SDK-Version": "2.0.20",
-                    "User-Agent": "terra-api/2.0.20",
+                    "X-Fern-SDK-Version": "2.0.21",
+                    "User-Agent": "terra-api/2.0.21",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                 },

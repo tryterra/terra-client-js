@@ -17,7 +17,7 @@ export declare namespace Integrations {
         /** Override the dev-id header */
         devId: core.Supplier<string>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 
     export interface RequestOptions {
@@ -29,8 +29,10 @@ export declare namespace Integrations {
         abortSignal?: AbortSignal;
         /** Override the dev-id header */
         devId?: string;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -58,6 +60,14 @@ export class Integrations {
     private async __fetch(
         requestOptions?: Integrations.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.IntegrationsFetchResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -66,14 +76,8 @@ export class Integrations {
                 "integrations",
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -133,6 +137,14 @@ export class Integrations {
             _queryParams["sdk"] = sdk.toString();
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({
+                "dev-id": requestOptions?.devId ?? this._options?.devId,
+                ...(await this._getCustomAuthorizationHeaders()),
+            }),
+            requestOptions?.headers,
+        );
         const _response = await core.fetcher({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -141,15 +153,8 @@ export class Integrations {
                 "integrations/detailed",
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({
-                    "dev-id": requestOptions?.devId,
-                    ...(await this._getCustomAuthorizationHeaders()),
-                }),
-                requestOptions?.headers,
-            ),
-            queryParameters: _queryParams,
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

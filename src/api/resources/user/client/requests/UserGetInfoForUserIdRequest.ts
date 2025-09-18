@@ -7,12 +7,8 @@
  *     {}
  */
 export interface UserGetInfoForUserIdRequest {
-    /**
-     * user ID to query for
-     */
+    /** user ID to query for */
     user_id?: string;
-    /**
-     * reference ID to query for
-     */
+    /** reference ID to query for */
     reference_id?: string;
 }
