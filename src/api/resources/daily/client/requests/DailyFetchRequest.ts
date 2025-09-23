@@ -17,7 +17,7 @@ export interface DailyFetchRequest {
     /** Start date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit) */
     start_date: Terra.DailyFetchRequestStartDate;
     /** End date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit) */
-    end_date?: number;
+    end_date?: Terra.DailyFetchRequestEndDate;
     /** Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response (default: false) */
     to_webhook?: boolean;
     /** Boolean flag specifying whether to include detailed samples in the returned payload (default: false) */

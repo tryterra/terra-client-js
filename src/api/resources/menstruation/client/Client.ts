@@ -82,7 +82,7 @@ export class Menstruation {
         _queryParams["user_id"] = userId;
         _queryParams["start_date"] = typeof startDate === "string" ? startDate : toJson(startDate);
         if (endDate != null) {
-            _queryParams["end_date"] = endDate.toString();
+            _queryParams["end_date"] = typeof endDate === "string" ? endDate : toJson(endDate);
         }
 
         if (toWebhook != null) {
