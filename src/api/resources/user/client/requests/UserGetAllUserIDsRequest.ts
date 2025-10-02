@@ -4,7 +4,10 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         page: 1,
+ *         per_page: 1
+ *     }
  */
 export interface UserGetAllUserIDsRequest {
     /** Zero-based page number. If omitted, results are not paginated. */

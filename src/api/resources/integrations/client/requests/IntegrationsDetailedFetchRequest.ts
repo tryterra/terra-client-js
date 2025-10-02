@@ -4,7 +4,9 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         sdk: true
+ *     }
  */
 export interface IntegrationsDetailedFetchRequest {
     /** If `true`, allows SDK integrations to be included in the response. */

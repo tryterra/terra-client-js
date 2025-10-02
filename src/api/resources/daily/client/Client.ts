@@ -57,7 +57,10 @@ export class Daily {
      * @example
      *     await client.daily.fetch({
      *         user_id: "user_id",
-     *         start_date: 1
+     *         start_date: 1,
+     *         end_date: 1,
+     *         to_webhook: true,
+     *         with_samples: true
      *     })
      */
     public fetch(

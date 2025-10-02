@@ -84,6 +84,9 @@ describe("Daily", () => {
         const response = await client.daily.fetch({
             user_id: "user_id",
             start_date: 1,
+            end_date: 1,
+            to_webhook: true,
+            with_samples: true,
         });
         expect(response).toEqual({
             user: {
@@ -180,11 +183,7 @@ describe("Daily", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("fetch (3)", async () => {
@@ -199,11 +198,7 @@ describe("Daily", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.UnauthorizedError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.UnauthorizedError);
     });
 
     test("fetch (4)", async () => {
@@ -218,10 +213,6 @@ describe("Daily", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 });

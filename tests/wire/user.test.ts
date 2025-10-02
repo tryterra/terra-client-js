@@ -64,11 +64,7 @@ describe("User", () => {
                 reference_id: undefined,
                 active: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("getinfoforuserid (1)", async () => {
@@ -89,7 +85,10 @@ describe("User", () => {
         };
         server.mockEndpoint().get("/userInfo").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.user.getinfoforuserid();
+        const response = await client.user.getinfoforuserid({
+            user_id: "user_id",
+            reference_id: "reference_id",
+        });
         expect(response).toEqual({
             user: {
                 user_id: "123e4567-e89b-12d3-a456-426614174000",
@@ -113,11 +112,7 @@ describe("User", () => {
 
         await expect(async () => {
             return await client.user.getinfoforuserid();
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("getinfoforuserid (3)", async () => {
@@ -129,11 +124,7 @@ describe("User", () => {
 
         await expect(async () => {
             return await client.user.getinfoforuserid();
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("getalluserids (1)", async () => {
@@ -154,7 +145,10 @@ describe("User", () => {
         };
         server.mockEndpoint().get("/subscriptions").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
-        const response = await client.user.getalluserids();
+        const response = await client.user.getalluserids({
+            page: 1,
+            per_page: 1,
+        });
         expect(response).toEqual({
             users: [
                 {
@@ -178,11 +172,7 @@ describe("User", () => {
 
         await expect(async () => {
             return await client.user.getalluserids();
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("getinfoformultipleuserids (1)", async () => {
@@ -237,11 +227,7 @@ describe("User", () => {
 
         await expect(async () => {
             return await client.user.getinfoformultipleuserids(["string", "string"]);
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("getinfoformultipleuserids (3)", async () => {
@@ -260,10 +246,6 @@ describe("User", () => {
 
         await expect(async () => {
             return await client.user.getinfoformultipleuserids(["string", "string"]);
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 });

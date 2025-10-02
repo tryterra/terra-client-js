@@ -64,11 +64,7 @@ describe("Authentication", () => {
                 auth_success_redirect_url: undefined,
                 auth_failure_redirect_url: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("authenticateuser (3)", async () => {
@@ -98,11 +94,7 @@ describe("Authentication", () => {
                 auth_success_redirect_url: undefined,
                 auth_failure_redirect_url: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("generatewidgetsession (1)", async () => {
@@ -161,11 +153,7 @@ describe("Authentication", () => {
                 auth_success_redirect_url: undefined,
                 auth_failure_redirect_url: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("deauthenticateuser (1)", async () => {
@@ -206,11 +194,7 @@ describe("Authentication", () => {
             return await client.authentication.deauthenticateuser({
                 user_id: "user_id",
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("generateauthtoken (1)", async () => {
@@ -253,10 +237,6 @@ describe("Authentication", () => {
 
         await expect(async () => {
             return await client.authentication.generateauthtoken();
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 });

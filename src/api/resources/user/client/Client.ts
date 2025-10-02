@@ -137,7 +137,10 @@ export class User {
      * @throws {@link Terra.NotFoundError}
      *
      * @example
-     *     await client.user.getinfoforuserid()
+     *     await client.user.getinfoforuserid({
+     *         user_id: "user_id",
+     *         reference_id: "reference_id"
+     *     })
      */
     public getinfoforuserid(
         request: Terra.UserGetInfoForUserIdRequest = {},
@@ -227,7 +230,10 @@ export class User {
      * @throws {@link Terra.BadRequestError}
      *
      * @example
-     *     await client.user.getalluserids()
+     *     await client.user.getalluserids({
+     *         page: 1,
+     *         per_page: 1
+     *     })
      */
     public getalluserids(
         request: Terra.UserGetAllUserIDsRequest = {},

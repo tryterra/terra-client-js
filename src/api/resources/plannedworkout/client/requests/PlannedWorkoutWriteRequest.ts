@@ -7,10 +7,13 @@ import * as Terra from "../../../../index.js";
 /**
  * @example
  *     {
+ *         user_id: "user_id",
  *         data: [{}]
  *     }
  */
 export interface PlannedWorkoutWriteRequest {
+    /** Terra user ID (UUID format) to retrieve data for */
+    user_id: string;
     /** PlannedWorkout entry to post to data provider */
     data: Terra.PlannedWorkout[];
 }

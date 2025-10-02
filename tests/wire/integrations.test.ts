@@ -53,7 +53,9 @@ describe("Integrations", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.integrations.detailedfetch();
+        const response = await client.integrations.detailedfetch({
+            sdk: true,
+        });
         expect(response).toEqual({
             status: "success",
             providers: [

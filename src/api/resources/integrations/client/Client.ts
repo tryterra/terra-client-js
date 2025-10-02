@@ -118,7 +118,9 @@ export class Integrations {
      * @param {Integrations.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.integrations.detailedfetch()
+     *     await client.integrations.detailedfetch({
+     *         sdk: true
+     *     })
      */
     public detailedfetch(
         request: Terra.IntegrationsDetailedFetchRequest = {},

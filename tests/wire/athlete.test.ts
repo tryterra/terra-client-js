@@ -50,6 +50,7 @@ describe("Athlete", () => {
 
         const response = await client.athlete.fetch({
             user_id: "user_id",
+            to_webhook: true,
         });
         expect(response).toEqual({
             type: "athlete",
@@ -99,11 +100,7 @@ describe("Athlete", () => {
             return await client.athlete.fetch({
                 user_id: "user_id",
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("fetch (3)", async () => {
@@ -117,11 +114,7 @@ describe("Athlete", () => {
             return await client.athlete.fetch({
                 user_id: "user_id",
             });
-        }).rejects.toThrow(
-            new Terra.UnauthorizedError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.UnauthorizedError);
     });
 
     test("fetch (4)", async () => {
@@ -135,10 +128,6 @@ describe("Athlete", () => {
             return await client.athlete.fetch({
                 user_id: "user_id",
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 });

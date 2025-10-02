@@ -4,7 +4,10 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         user_id: "user_id",
+ *         reference_id: "reference_id"
+ *     }
  */
 export interface UserGetInfoForUserIdRequest {
     /** user ID to query for */

@@ -8,7 +8,10 @@ import * as Terra from "../../../../index.js";
  * @example
  *     {
  *         user_id: "user_id",
- *         start_date: 1
+ *         start_date: 1,
+ *         end_date: 1,
+ *         to_webhook: true,
+ *         with_samples: true
  *     }
  */
 export interface SleepFetchRequest {
@@ -18,7 +21,7 @@ export interface SleepFetchRequest {
     start_date: Terra.SleepFetchRequestStartDate;
     /** End date for data query - either ISO8601 date (YYYY-MM-DD) or unix timestamp in seconds (10-digit) */
     end_date?: Terra.SleepFetchRequestEndDate;
-    /** Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response (default: false) */
+    /** Boolean flag specifying whether to send the data retrieved to the webhook instead of in the response (default: true if not provided) */
     to_webhook?: boolean;
     /** Boolean flag specifying whether to include detailed samples in the returned payload (default: false) */
     with_samples?: boolean;

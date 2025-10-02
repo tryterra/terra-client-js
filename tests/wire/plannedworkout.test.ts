@@ -28,6 +28,8 @@ describe("Plannedworkout", () => {
         const response = await client.plannedworkout.fetch({
             user_id: "user_id",
             start_date: 1,
+            end_date: 1,
+            to_webhook: true,
         });
         expect(response).toEqual({
             user: {
@@ -63,11 +65,7 @@ describe("Plannedworkout", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("fetch (3)", async () => {
@@ -82,11 +80,7 @@ describe("Plannedworkout", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.UnauthorizedError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.UnauthorizedError);
     });
 
     test("fetch (4)", async () => {
@@ -101,11 +95,7 @@ describe("Plannedworkout", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("write (1)", async () => {
@@ -134,6 +124,7 @@ describe("Plannedworkout", () => {
             .build();
 
         const response = await client.plannedworkout.write({
+            user_id: "user_id",
             data: [{}],
         });
         expect(response).toEqual({
@@ -171,6 +162,7 @@ describe("Plannedworkout", () => {
 
         await expect(async () => {
             return await client.plannedworkout.write({
+                user_id: "user_id",
                 data: [
                     {
                         steps: undefined,
@@ -182,11 +174,7 @@ describe("Plannedworkout", () => {
                     },
                 ],
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("write (3)", async () => {
@@ -210,6 +198,7 @@ describe("Plannedworkout", () => {
 
         await expect(async () => {
             return await client.plannedworkout.write({
+                user_id: "user_id",
                 data: [
                     {
                         steps: undefined,
@@ -221,11 +210,7 @@ describe("Plannedworkout", () => {
                     },
                 ],
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -292,11 +277,7 @@ describe("Plannedworkout", () => {
                 user_id: "user_id",
                 data: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("delete (3)", async () => {
@@ -318,11 +299,7 @@ describe("Plannedworkout", () => {
                 user_id: "user_id",
                 data: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.UnauthorizedError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.UnauthorizedError);
     });
 
     test("delete (4)", async () => {
@@ -344,10 +321,6 @@ describe("Plannedworkout", () => {
                 user_id: "user_id",
                 data: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 });

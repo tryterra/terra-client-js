@@ -57,7 +57,9 @@ export class Plannedworkout {
      * @example
      *     await client.plannedworkout.fetch({
      *         user_id: "user_id",
-     *         start_date: 1
+     *         start_date: 1,
+     *         end_date: 1,
+     *         to_webhook: true
      *     })
      */
     public fetch(
@@ -154,6 +156,7 @@ export class Plannedworkout {
      *
      * @example
      *     await client.plannedworkout.write({
+     *         user_id: "user_id",
      *         data: [{}]
      *     })
      */
@@ -168,6 +171,9 @@ export class Plannedworkout {
         request: Terra.PlannedWorkoutWriteRequest,
         requestOptions?: Plannedworkout.RequestOptions,
     ): Promise<core.WithRawResponse<Terra.PlannedWorkoutWriteResponse>> {
+        const { user_id: userId, ..._body } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams["user_id"] = userId;
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
             mergeOnlyDefinedHeaders({
@@ -186,9 +192,9 @@ export class Plannedworkout {
             method: "POST",
             headers: _headers,
             contentType: "application/json",
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             requestType: "json",
-            body: request,
+            body: _body,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

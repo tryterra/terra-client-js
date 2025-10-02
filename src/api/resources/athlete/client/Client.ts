@@ -55,7 +55,8 @@ export class Athlete {
      *
      * @example
      *     await client.athlete.fetch({
-     *         user_id: "user_id"
+     *         user_id: "user_id",
+     *         to_webhook: true
      *     })
      */
     public fetch(

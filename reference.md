@@ -351,7 +351,10 @@ Used to query for information on one Terra user ID, or to query for all register
 <dd>
 
 ```typescript
-await client.user.getinfoforuserid();
+await client.user.getinfoforuserid({
+    user_id: "user_id",
+    reference_id: "reference_id",
+});
 ```
 
 </dd>
@@ -414,7 +417,10 @@ Used to query for information for all Terra User IDs. Supports optional paginati
 <dd>
 
 ```typescript
-await client.user.getalluserids();
+await client.user.getalluserids({
+    page: 1,
+    per_page: 1,
+});
 ```
 
 </dd>
@@ -545,6 +551,9 @@ Fetches completed workout sessions, with a defined start and end time and activi
 await client.activity.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
+    with_samples: true,
 });
 ```
 
@@ -687,6 +696,7 @@ Fetches relevant profile info such as first & last name, birth date etc. for a g
 ```typescript
 await client.athlete.fetch({
     user_id: "user_id",
+    to_webhook: true,
 });
 ```
 
@@ -755,6 +765,9 @@ Fetches body metrics such as weight, height, body fat percentage etc. for a give
 await client.body.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
+    with_samples: true,
 });
 ```
 
@@ -960,6 +973,9 @@ Fetches daily summaries of activity metrics such as steps, distance, calories bu
 await client.daily.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
+    with_samples: true,
 });
 ```
 
@@ -1028,6 +1044,9 @@ Fetches menstruation data such as cycle length, period length, ovulation date et
 await client.menstruation.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
+    with_samples: true,
 });
 ```
 
@@ -1096,6 +1115,9 @@ Fetches nutrition log data such as meal type, calories, macronutrients etc. for 
 await client.nutrition.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
+    with_samples: true,
 });
 ```
 
@@ -1301,6 +1323,9 @@ Fetches sleep data such as sleep duration, sleep stages, sleep quality etc. for 
 await client.sleep.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
+    with_samples: true,
 });
 ```
 
@@ -1369,6 +1394,8 @@ Used to get workout plans the user has registered on their account. This can be 
 await client.plannedworkout.fetch({
     user_id: "user_id",
     start_date: 1,
+    end_date: 1,
+    to_webhook: true,
 });
 ```
 
@@ -1433,6 +1460,7 @@ Used to post workout plans users can follow on their wearable. This can be stren
 
 ```typescript
 await client.plannedworkout.write({
+    user_id: "user_id",
     data: [{}],
 });
 ```
@@ -1619,7 +1647,9 @@ Retrieve a detailed list of supported integrations, optionally filtered by the d
 <dd>
 
 ```typescript
-await client.integrations.detailedfetch();
+await client.integrations.detailedfetch({
+    sdk: true,
+});
 ```
 
 </dd>

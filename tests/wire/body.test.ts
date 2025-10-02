@@ -47,6 +47,9 @@ describe("Body", () => {
         const response = await client.body.fetch({
             user_id: "user_id",
             start_date: 1,
+            end_date: 1,
+            to_webhook: true,
+            with_samples: true,
         });
         expect(response).toEqual({
             user: {
@@ -100,11 +103,7 @@ describe("Body", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("fetch (3)", async () => {
@@ -119,11 +118,7 @@ describe("Body", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.UnauthorizedError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.UnauthorizedError);
     });
 
     test("fetch (4)", async () => {
@@ -138,11 +133,7 @@ describe("Body", () => {
                 user_id: "user_id",
                 start_date: 1,
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("write (1)", async () => {
@@ -281,11 +272,7 @@ describe("Body", () => {
                     },
                 ],
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("write (3)", async () => {
@@ -366,11 +353,7 @@ describe("Body", () => {
                     },
                 ],
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -437,11 +420,7 @@ describe("Body", () => {
                 user_id: "user_id",
                 log_ids: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.BadRequestError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.BadRequestError);
     });
 
     test("delete (3)", async () => {
@@ -463,11 +442,7 @@ describe("Body", () => {
                 user_id: "user_id",
                 log_ids: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.UnauthorizedError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.UnauthorizedError);
     });
 
     test("delete (4)", async () => {
@@ -489,10 +464,6 @@ describe("Body", () => {
                 user_id: "user_id",
                 log_ids: undefined,
             });
-        }).rejects.toThrow(
-            new Terra.NotFoundError({
-                key: "value",
-            }),
-        );
+        }).rejects.toThrow(Terra.NotFoundError);
     });
 });
