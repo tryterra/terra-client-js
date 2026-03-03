@@ -9,8 +9,8 @@ export interface GlucoseDataSample {
     timestamp?: string;
     /** User's blood glucose reading */
     blood_glucose_mg_per_dL?: number;
-    /** Flag indicating state of user's blood glucose level */
-    glucose_level_flag?: Terra.Low;
+    /** Flag indicating state of user's blood glucose level. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models#glucoseflag */
+    glucose_level_flag?: Terra.GlucoseFlag;
     /** Flag indicating the current trend in the user's blood glucose level (e.g. rising, constant, falling) */
     trend_arrow?: Terra.TrendArrow;
 }

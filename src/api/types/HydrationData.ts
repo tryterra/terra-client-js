@@ -7,6 +7,6 @@ import * as Terra from "../index.js";
 export interface HydrationData {
     /** User's total water consumption throughout the day. */
     day_total_water_consumption_ml?: number;
-    /** User's hydration level samples throughout the day. */
-    hydration_amount_samples?: Terra.HydrationMeasurementSample[];
+    /** User's hydration amount samples throughout the day. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models (Body.hydration_data) */
+    hydration_amount_samples?: Terra.HydrationAmountSample[];
 }

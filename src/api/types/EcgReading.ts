@@ -9,8 +9,8 @@ export interface EcgReading {
     start_timestamp?: string;
     /** User's average heart rate throughout the day, in beats per minute (bpm). */
     avg_hr_bpm?: number;
-    /** User's afib classification throught the day. */
-    afib_classification?: Terra.Inconclusive;
+    /** User's afib classification throughout the day. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models#afibflag */
+    afib_classification?: Terra.AFibFlag;
     /** List of raw ECG readings sampled through the day. */
     raw_signal?: Terra.RawEcgSample[];
 }
