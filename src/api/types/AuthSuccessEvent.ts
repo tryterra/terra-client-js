@@ -10,6 +10,8 @@ import * as Terra from "../index.js";
 export interface AuthSuccessEvent extends Terra.AuthEvent {
     /** User who authenticated */
     user: Terra.TerraUser;
+    /** Status of the authentication */
+    status: "success";
     /** Client-provided reference ID */
     reference_id: string;
     /** Widget session identifier */

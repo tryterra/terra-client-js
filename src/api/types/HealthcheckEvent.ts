@@ -7,6 +7,8 @@
  */
 export interface HealthcheckEvent {
     type: "healthcheck";
+    /** Status of the healthcheck */
+    status?: string;
     /** Timestamp when the event was created */
     creation_timestamp: string;
     /** Percentage change in trends */

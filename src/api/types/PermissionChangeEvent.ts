@@ -17,8 +17,8 @@ export interface PermissionChangeEvent {
     message: string;
     /** API version */
     version: string;
-    /** Newly added scopes */
-    scopes_added: string;
-    /** Removed scopes */
-    scopes_removed: string;
+    /** Newly added scopes (when applicable) */
+    scopes_added?: string;
+    /** Removed scopes (when applicable) */
+    scopes_removed?: string;
 }
