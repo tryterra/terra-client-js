@@ -9,6 +9,12 @@ The Terra TypeScript library provides convenient access to the Terra APIs from T
 
 API reference documentation is available [here](https://docs.tryterra.co/reference).
 
+The TypeScript types in this library are aligned with Terra's public API documentation:
+
+- [Event types](https://docs.tryterra.co/reference/health-and-fitness-api/event-types) (webhooks: auth, deauth, activity, sleep, etc.)
+- [Data models](https://docs.tryterra.co/reference/health-and-fitness-api/data-models) (Activity, Body, Daily, Nutrition, Sleep, Menstruation, Athlete)
+- [Samples](https://docs.tryterra.co/reference/health-and-fitness-api/samples) (sample payloads for time-series and event data)
+
 ## Installation
 
 ```sh
