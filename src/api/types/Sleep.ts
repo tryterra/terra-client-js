@@ -17,7 +17,7 @@ export interface Sleep {
     readiness_data?: Terra.ReadinessData;
     /** Object containing information on the user's respiration throughout the sleep session. */
     respiration_data?: Terra.RespirationData;
-    /** User's sleep score */
+    /** User's sleep score. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models (Sleep.scores) */
     scores?: Sleep.Scores;
     /** Object containing information on the user's duration spent in various sleep stages. */
     sleep_durations_data?: Terra.SleepDurationsData;
@@ -27,10 +27,10 @@ export interface Sleep {
 
 export namespace Sleep {
     /**
-     * User's sleep score
+     * User's sleep score. Doc: "sleep": Number
      */
     export interface Scores {
         /** User's sleep score. */
-        sleep_score?: number;
+        sleep?: number;
     }
 }

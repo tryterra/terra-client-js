@@ -7,8 +7,8 @@ import * as Terra from "../index.js";
 export interface Meal {
     /** Micronutrient information for associated food. */
     micros: Terra.NutritionMicros;
-    /** Enum representing the category the consumed food/meal falls under (i.e. Breakfast/Lunch/Dinner etc). */
-    type: Terra.Snack;
+    /** Enum representing the category the consumed food/meal falls under. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models#mealtype */
+    type: Terra.MealType;
     /** Identifier for food logged by the user. */
     id: string;
     /** Timestamp the food is associated with, in ISO8601 format, with microsecond precision. */

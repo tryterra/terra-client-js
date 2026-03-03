@@ -22,9 +22,17 @@ export interface MenstruationData {
     /** Last time when the user recorded information regarding their cycle, in ISO8601 format, with microseconds precision. */
     last_updated_time?: string;
     /** Total cycle length. */
-    cycle_length_days?: string;
+    cycle_length_days?: number;
     /** Flag indicating whether associated object is a prediction or user-logged information. */
-    is_predicted_cycle?: string;
+    is_predicted_cycle?: boolean;
     /** List of user logs of information related to the strength of user's menstrual flow. */
     menstruation_flow?: Terra.MenstruationFlowSample[];
+    /** Intervals data (when available). */
+    intervals?: unknown[];
+    /** Start of fertility window, ISO8601. */
+    fertility_window_start?: string;
+    /** End of fertility window, ISO8601. */
+    fertility_window_end?: string;
+    /** Predicted ovulation day, ISO8601. */
+    ovulation_day?: string;
 }

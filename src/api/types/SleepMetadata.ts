@@ -14,6 +14,6 @@ export interface SleepMetadata {
     /** A unique identifier for the sleep session. */
     summary_id?: string;
     timestamp_localization?: Terra.TimestampLocalization;
-    /** The upload type for the associated sleep session, providing information on whether this was an automatic sleep or user-entered. */
-    upload_type: Terra.Indeterminate;
+    /** The upload type for the associated sleep session. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models#sleepuploadtype */
+    upload_type: Terra.SleepUploadType;
 }

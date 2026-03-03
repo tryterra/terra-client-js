@@ -21,7 +21,7 @@ export interface ActivityMetadata {
     summary_id: string;
     timestamp_localization?: Terra.TimestampLocalization;
     /** The type of activity performed for the associated workout. */
-    type: Terra.Hurling;
+    type: Terra.ActivityType;
     /** The upload type for the associated workout, providing information on whether this was an automatic workout or user-entered. */
     upload_type: Terra.UploadType;
 }

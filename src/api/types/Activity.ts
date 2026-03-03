@@ -9,7 +9,7 @@ export interface Activity {
     active_durations_data?: Terra.ActiveDurationsData;
     /** Object containing calorie-related information for the user during the specific workout. */
     calories_data?: Terra.CaloriesData;
-    /** Cheat detection flag. */
+    /** Cheat detection. See https://docs.tryterra.co/reference/health-and-fitness-api/data-models (Activity.cheat_detection) */
     cheat_detection?: number;
     /** Object containing Terra Scores. */
     data_enrichment?: Terra.DataEnrichment;
